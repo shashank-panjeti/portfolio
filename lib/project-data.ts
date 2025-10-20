@@ -1,3 +1,5 @@
+import { string } from "three/src/nodes/TSL.js"
+
 export type ContentSection =
   | {
       type: "hero"
@@ -7,6 +9,7 @@ export type ContentSection =
       tags: string[]
       year: string
       timeline: string
+      team?: string
       image?: string
       modelPath?: string
     }
@@ -17,6 +20,7 @@ export type ContentSection =
       navFullLabel: string // Full label shown on hover (e.g., "Spark (Project Overview)")
       heading: string // Actual heading displayed in content
       blocks?: Array<{
+        subheading?: string[]
         content?: string | string[]
         image?: {
           src: string
@@ -44,6 +48,17 @@ export type ContentSection =
       modelPath?: string // Optional 3D model
       figmaUrl?: string // Optional Figma prototype embed URL
       layout?: "single" | "two-column" // Default: single
+    }
+  | {
+      type: "comparison"
+      id: string
+      heading?: string
+      description?: string
+      images: Array<{
+        src: string
+        alt: string
+        caption?: string
+      }>
     }
   | {
       type: "text"
@@ -113,13 +128,6 @@ export type ContentSection =
       heading: string
       description?: string
       image?: string // Added image property to display award certificate or trophy
-      awards: Array<{
-        title: string
-        organization: string
-        year: string
-        description?: string
-        icon?: string
-      }>
     }
 
 export interface Project {
@@ -145,7 +153,7 @@ export const projects: Project[] = [
     timeline: "Timeline - 12 Weeks",
     year: "2024",
     tags: ["UX/UI Design", "Accessibility", "Research", "Branding", "Mobile"],
-    image: "/modern-health-app.png",
+    image: "/ux-ui-safemilo/safemilo-cover-photo.png",
     modelPath: "/models/projects/safemilo-home-iphone-model.glb",
     featured: true,
     content: [
@@ -157,6 +165,7 @@ export const projects: Project[] = [
         tags: ["UX/UI Design", "Accessibility", "Research", "Branding", "Mobile"],
         year: "2024",
         timeline: "Timeline - 12 Weeks",
+        team: "5 Designers and 4 Developers",
         modelPath: "/models/projects/safemilo-home-iphone-model.glb",
       },
       {
@@ -166,9 +175,9 @@ export const projects: Project[] = [
         navFullLabel: "Spark (Project Overview)",
         heading: "Project Overview",
         content:
-          "SafeMilo is a scam protection app created for seniors (65+) who are most at risk of online fraud. The goal was to design a product that doesn't just detect scams, but also educates and empowers seniors to feel safe when using technology.",
+          "SafeMilo is a mobile app built to protect seniors from online scams through education, alerts, and support. The app screens suspicious calls or messages, delivers bite-sized learning modules, verified scam news, and a 24/7 AI chatbot, all wrapped in a warm, senior-friendly interface. The goal was to design a product that doesn't just detect scams, but also educates and empowers seniors to feel safe when using technology.",
         image: {
-          src: "/modern-health-app.png",
+          src: "/ux-ui-safemilo/safemilo-hero-photo.png",
           alt: "SafeMilo app overview",
           position: "below",
         },
@@ -180,17 +189,18 @@ export const projects: Project[] = [
         navFullLabel: "Struggle (The Problem)",
         heading: "The Problem",
         content: [
-          "Through research, we identified core struggles:",
-          "Confusion → Hard to tell fake from real.",
-          "Fear → Anxiety around calls, emails, and messages.",
-          "Complexity → Existing apps weren't senior-friendly.",
-          "Accessibility → Vision and usability challenges.",
-          "Without trusted support, seniors often feel alone when facing scams.",
+          "In today’s digital world, seniors (65+) are among the most targeted by scammers. Many feel anxious or ashamed after falling for fake calls, messages, or phishing links.",
+          "They struggle with:",
+          "•  Small text, cluttered layouts, and complex navigation.",
+          "•  Doubt in verifying legitimate messages or calls.",
+          "•  Lack of trustworthy, real-time scam updates.",
+          "•  Fear of using technology without guidance.",
+          "SafeMilo tackles this by combining education, real-time protection, and emotional reassurance, not just stopping scams, but building confidence.",
         ],
         image: {
-          src: "/wireframe-process.png",
-          alt: "Problem identification",
-          position: "right",
+          src: "/ux-ui-safemilo/safemilo-problem.png",
+          alt: "Safemilo Problem identification",
+          position: "below",
         },
       },
       {
@@ -199,17 +209,45 @@ export const projects: Project[] = [
         navLabel: "Scan",
         navFullLabel: "Scan (Research & Insights)",
         heading: "Research & Insights",
-        content: [
-          "Secondary Research: Existing scam apps focus only on blocking. Most ignore education, real-time alerts, or accessibility.",
-          "Desk Research: Seniors prefer familiar UI patterns from apps like Facebook and YouTube.",
-          "User Interviews: Seniors feel embarrassed admitting they've been scammed. Many depend on family members for tech help. Scam information is often from unverified forwards, not reliable sources.",
-          "Personas: Albert (65, retired accountant) & Margaret (72, retired teacher) → both anxious but eager to stay independent online.",
+        blocks: [
+          {
+            subheading: ["Primary Research: User Interviews and Personas"],
+            content: [
+              "Our research goal is to understand how seniors recognize and respond to scams, and identify the design patterns, content formats, and support features that make a mobile app intuitive, accessible, and effective for scam prevention and education. We combined primary interviews with seniors and secondary research on apps like Scam Shield, GranPad, and MediSafe.",
+              "Two participant cohorts were interviewed: seniors (60+) and adults (18–60) who regularly support seniors with technology.",
+            ],
+          },
+          { 
+            subheading: ["Key Insights"],
+            content: [
+              "•  Topic sensitivity. Many seniors feel embarrassed or ashamed after a scam incident, which reduces help-seeking and disclosure.",
+              "•  Information reliability. Scam awareness often comes from forwarded messages and social media, sources that are rarely verified and can amplify fear or misinformation.",
+              "•  Technology dependence. Seniors frequently rely on family or friends for basic digital tasks, slowing their ability to verify threats and respond promptly.",
+              "These findings directly informed SafeMilo’s emphasis on plain language, verified news, voice/large-type interfaces, and just-in-time guidance through an AI assistant.",
+            ],
+            images: [
+              {
+                src: "/ux-ui-safemilo/safemilo-user-persona-01.png",
+                alt: "Safemilo User Persona 01",
+              },
+              {
+                src: "/ux-ui-safemilo/safemilo-user-persona-02.png",
+                alt: "Safemilo User Persona 02",
+              },
+            ],
+          },
+          {
+            subheading: ["Secondary Research: Competitor Analysis"],
+            content: [
+              "This comparison highlights that SafeMilo is the only solution to combine all four senior-critical capabilities: a structured learning module, 24/7 AI assistance, call/message screening, and verified scam news. Competing tools typically emphasize screening, while lacking guided education and a trusted information channel. As a result, SafeMilo not only mitigates immediate risk but also builds long-term user confidence and digital literacy.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-competitor-analysis.png",
+              alt: "Safemilo Competitor Analysis",
+              position: "below",
+            },
+          },
         ],
-        image: {
-          src: "/modern-health-app.png",
-          alt: "Research findings",
-          position: "left",
-        },
       },
       {
         type: "case-study-section",
@@ -217,18 +255,28 @@ export const projects: Project[] = [
         navLabel: "Scope",
         navFullLabel: "Scope (Solution Definition)",
         heading: "Solution Definition",
-        content: [
-          "The app was scoped around four must-have features:",
-          "📚 Learning Modules: Bite-sized lessons + quizzes with voice assistance.",
-          "📞 Call & Message Screening: Warns but doesn't block, leaving control to the user.",
-          "🤖 AI Chatbot: 'Ask Milo' for instant scam verification.",
-          "📰 News Updates: Trusted alerts from banks & law enforcement.",
+        blocks: [
+          {
+            content: [
+              "SafeMilo is a digital companion, not just a filter.",
+              "It teaches seniors to recognize and avoid scams while keeping them informed in real time.",
+            ],
+          },
+          {
+            subheading: ["Core Features"],
+            content: [
+              "•  Learning Modules: Bite-sized, voice-assisted lessons with quizzes and videos.",
+              "•  Call & Message Screening: Detects suspicious content and warns before answering.",
+              "•  AI Chatbot: 24/7 instant scam-check assistant.",
+              "•  Verified News Feed: Updates from banks and law enforcement.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-features.png",
+              alt: "Safemilo Features",
+              position: "below",
+            },
+          },
         ],
-        image: {
-          src: "/van-rental-mobile-app-interface.jpg",
-          alt: "Solution features",
-          position: "below",
-        },
       },
       {
         type: "case-study-section",
@@ -236,37 +284,116 @@ export const projects: Project[] = [
         navLabel: "Sketch",
         navFullLabel: "Sketch (Wireframes & Ideation)",
         heading: "Wireframes & Ideation",
-        content: [
-          "Created flows for onboarding, learning, and alerts.",
-          "Conducted mid-fidelity testing → feedback showed:",
-          "• Fonts were still too small → added font size adjuster.",
-          "• Homepage was overwhelming → applied progressive disclosure.",
-          "Iterated wireframes into accessible layouts with large buttons & clear navigation.",
+        blocks: [
+          {
+            subheading: ["Information Architecture"],
+            content: [
+              "We structured SafeMilo around the senior user’s mental model of “learn, check, protect,” which informed five top-level areas: Home, Learn, Ask Milo, User Profile, and Notifications.",
+              "•  Home surfaces only what’s “actionable now”: recent scam alerts, call/message screening status, and a gentle prompt to learn.",
+              "•  Learn contains courses, scam categories, and achievements—organized by task, not by content type—to reduce cognitive load.",
+              "•  Ask Milo is a single-purpose space for type/voice questions with clear system feedback (“Milo Answers”).",
+              "•  User Profile centralizes Accessibility Settings (text size, voice, contrast) and App Permissions, so assistive adjustments are always one tap away.",
+              "•  Notifications is separated from Home to avoid clutter and keep alerts reviewable later.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-information-architecture.png",
+              alt: "Safemilo Information Architecture",
+              position: "below",
+            },
+          },
+          {
+            subheading: ["Wireframes"],
+            content: [
+              "We conducted moderated usability sessions with mid-fidelity prototypes. Two key findings informed the next iteration",
+              "•  Legibility: Base typography was insufficient for some participants. We introduced an in-app text-size control and increased base size/line height to improve readability.",
+              "•  Information density: The Home screen created initial overwhelm. We applied progressive disclosure, prioritizing primary actions and moving secondary details behind concise cards and drill-downs.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-wireframes.png",
+              alt: "Safemilo Wireframes",
+              position: "below",
+            },
+          },
         ],
-        image: {
-          src: "/wireframe-process.png",
-          alt: "Wireframe iterations",
-          position: "right",
-        },
       },
       {
         type: "case-study-section",
-        id: "shape",
-        navLabel: "Shape",
-        navFullLabel: "Shape (Brand & UI Kit)",
+        id: "style",
+        navLabel: "Style",
+        navFullLabel: "Style (Brand & UI Kit)",
         heading: "Brand & UI Kit",
-        content: [
-          "Colors: Milo Orange (warmth), Navy Blue (trust), Yellow (accessibility).",
-          "Typography: Montserrat → clear & modern.",
-          "Mascot: Milo the fox, a friendly guide & protector.",
-          "Components: Spacious cards, flat icons, simplified navigation.",
-          "Accessibility Testing: Simulated common visual impairments to ensure legibility and contrast.",
+        blocks: [
+          {
+            subheading: ["Mascot"],
+            content: [
+              "Our primary challenge was creating an experience that felt welcoming to seniors, especially those less comfortable with technology. We introduced Milo the Fox as a friendly, familiar guide to reduce anxiety and support first-time use. At the same time, because SafeMilo is a scam-protection product, we balanced Milo’s warmth with protective cues and clear system messaging, striking the right balance between approachable and trustworthy.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-mascot.gif",
+              alt: "Safemilo Fox Mascot",
+              position: "right",
+            },
+          },
+          {
+            subheading: ["Color System"],
+            content: [
+              "We selected a palette that communicates trust, warmth, and safety for seniors. High contrast supports readability, while Milo Orange and Deep Navy create a calm, protective atmosphere. The result is an accessible, user-friendly visual system that feels both welcoming and reliable.",
+              "The palette was tested for contrast to support WCAG AA/AAA on critical states.",
+            ],
+          },
+          {
+            subheading: ["Typography"],
+            content: [
+              "Montserrat was chosen for the UI and core content due to its clean geometry, open forms, and consistent legibility across sizes, critical for senior audiences. It delivers a modern, orderly rhythm that keeps labels, buttons, and body copy easy to scan and read.",
+              "Alpino is used in brand and narrative elements to introduce a subtle humanist warmth. Its clean, slightly decorative forms maintain clarity while adding personality, reinforcing SafeMilo’s approachable voice without compromising readability.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-color-typography.png",
+              alt: "Safemilo Color & Typography",
+              position: "below",
+            },
+          },
+          {
+            subheading: ["Logo"],
+            content: [
+              "Our logo unites Milo the Fox with a shield, Milo conveys warmth and approachability, while the shield signals protection and security. Together, they express SafeMilo’s promise: a friendly companion that keeps seniors safe.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-logo.png",
+              alt: "Safemilo Logo",
+              position: "below",
+            },
+          },
+          {
+            subheading: ["UI Kit"],
+            content: [
+              "Our component library adopts rounded corners and a clean layout, pairing confident brand colors with ample white space and subtle dividers. Simple line-style illustrations add character without distraction. All interactive elements such as buttons, icons, headings, and touch targets are intentionally sized larger to support seniors’ motor and visual needs, resulting in an interface that is functional, inviting, and effortless to use.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-ui-kit.png",
+              alt: "Safemilo UI Kit",
+              position: "below",
+            },
+          },
+          {
+            subheading: ["Accessibility"],
+            content: [
+              "We selected a color palette that remains effective across common age-related visual impairments. It meets WCAG AA for text and icons, with AAA contrast on critical alerts, ensuring information stays distinguishable regardless of color perception. SafeMilo also includes in-app text-size controls and generous line spacing, so seniors can personalize readability without disrupting their flow. Together, these choices deliver a calm, highly legible experience for a wide range of visual needs.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-accissibility-screens.gif",
+              alt: "Safemilo Accissibility Gif",
+              position: "right",
+            },
+          },
+          {
+            image: {
+              src: "/ux-ui-safemilo/safemilo-accissibility.png",
+              alt: "Safemilo Accissibility",
+              position: "below",
+            },
+          },
         ],
-        image: {
-          src: "/modern-health-app.png",
-          alt: "Brand identity",
-          position: "left",
-        },
       },
       {
         type: "case-study-section",
@@ -276,93 +403,86 @@ export const projects: Project[] = [
         heading: "Final Solution",
         blocks: [
           {
+            subheading: ["Onboarding with Mascot Guidance & Feature Walk through"],
             content: [
-              "Onboarding & Accessibility Setup (voice, text size).",
-              "Learning Hub with quizzes, progress, and achievements.",
-              "Chatbot 'Ask Milo' for scam verification.",
-              "Scam Alerts for flagged calls, messages, and news.",
-              "Celebrations for completed lessons → building confidence and engagement.",
+              "Milo, our friendly mascot, welcomes first-time users and offers an optional guided tour that explains benefits and permissions in plain language.",
             ],
             image: {
-              src: "/modern-health-app.png",
-              alt: "Final solution overview",
+              src: "/ux-ui-safemilo/safemilo-screens-onboarding.png",
+              alt: "Safemilo Onboarding Screens",
               position: "below",
             },
           },
           {
-            content:
-              "The onboarding experience guides users through accessibility settings, ensuring the app is personalized for their needs from the start.",
+            subheading: ["Call & Message Screening"],
+            content: [
+              "With user consent, SafeMilo flags suspicious calls and texts and provides clear, non-technical warnings and keeping seniors informed and in control of how to respond.",
+            ],
             image: {
-              src: "/van-rental-mobile-app-interface.jpg",
-              alt: "Onboarding flow",
-              position: "right",
+              src: "/ux-ui-safemilo/safemilo-screens-calls.png",
+              alt: "Safemilo Calling Screens",
+              position: "below",
             },
           },
           {
-            content:
-              "The Learning Hub makes education engaging with bite-sized lessons, interactive quizzes, and a progress tracking system that celebrates achievements.",
+            subheading: ["Learning Modules"],
+            content: [
+              "Bite-sized, accessible lessons with short videos and simple quizzes teach common scam patterns.",
+            ],
             image: {
-              src: "/wireframe-process.png",
-              alt: "Learning hub interface",
-              position: "left",
+              src: "/ux-ui-safemilo/safemilo-screens-learn.png",
+              alt: "Safemilo Learning Screens",
+              position: "below",
             },
           },
           {
+            content: ["Progress is acknowledged with gentle celebrations that build confidence over time."],
             image: {
-              src: "/van-rental-mobile-app-interface.jpg",
-              alt: "Onboarding flow",
-              position: "right",
+              src: "/ux-ui-safemilo/safemilo-screens-achievement.png",
+              alt: "Safemilo Achievement Screens",
+              position: "below",
             },
           },
           {
+            subheading: ["Verified Scam News"],
+            content: [
+              "A dedicated feed of updates from trusted organizations (banks, insurers, law enforcement) keeps users current on emerging scams, source-first and time-stamped for trust.",
+            ],
             image: {
-              src: "/wireframe-process.png",
-              alt: "Learning hub interface",
-              position: "left",
+              src: "/ux-ui-safemilo/safemilo-screens-news.png",
+              alt: "Safemilo News Screens",
+              position: "below",
             },
           },
-        ],
-      },
-      {
-        type: "case-study-section",
-        id: "success",
-        navLabel: "Success",
-        navFullLabel: "Success (Impact & Strategy)",
-        heading: "Impact & Strategy",
-        content: [
-          "Impact: Seniors reported feeling safer and more confident. The app offered both prevention + real-time support. Accessibility-first design improved usability.",
-          "Business Strategy: Partnerships with banks & law enforcement for verified updates. Community-driven adoption via shareable scam awareness content.",
-        ],
-        image: {
-          src: "/van-rental-mobile-app-interface.jpg",
-          alt: "Impact metrics",
-          position: "below",
-        },
-      },
-      {
-        type: "metrics",
-        heading: "Key Results",
-        metrics: [
-          { value: "92%", label: "User confidence increase" },
-          { value: "4.8/5", label: "Accessibility rating" },
-          { value: "78%", label: "Scam detection accuracy" },
+          {
+            subheading: ["AI Chatbot (Ask Milo)"],
+            content: [
+              "Available 24/7 to answer scam-related questions via text or voice. Users can check links, messages, or scenarios and get instant, empathetic guidance.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-screens-aichat.png",
+              alt: "Safemilo AI Chat Screens",
+              position: "below",
+            },
+          },
         ],
       },
       {
         type: "case-study-section",
         id: "step-forward",
         navLabel: "Step Forward",
-        navFullLabel: "Step Forward (Future & Reflection)",
-        heading: "Future & Reflection",
+        navFullLabel: "Step Forward (Future Features)",
+        heading: "Future Features",
         content: [
-          "Planned Features: Verified organization login. Email scam scanning. Advanced accessibility (dark mode, full text-to-speech).",
-          "Reflection: Designing SafeMilo taught me the importance of empathy-driven design. It showed me that accessible design is not just for seniors — it's the future of inclusive UX.",
+          "•  Verified Organization Access. We will gate the organization portal behind vetted admin credentials so only trusted partners (banks, insurers, law enforcement) can publish alerts. This reduces misinformation risk, strengthens content integrity, and increases user trust in every notification.",
+          "•  Deeper Accessibility. Next, We will expand accessibility with dark mode, app-wide text-to-speech, adjustable text sizes, and high-contrast themes. These options let seniors personalize readability and comfort in real time, improving sustained engagement without sacrificing clarity.",
+          "•  Email Scam Detection. Finally, We will extend screening beyond calls and SMS to include email. The system will flag suspicious senders, risky links, and scam keywords warning users before they open a message, so SafeMilo protects across the most common attack surfaces.",
         ],
-        image: {
-          src: "/modern-health-app.png",
-          alt: "Future roadmap",
-          position: "right",
-        },
+        // image: {
+        //   src: "/modern-health-app.png",
+        //   alt: "Future roadmap",
+        //   position: "right",
+        // },
       },
       {
         type: "spotlight",
@@ -371,30 +491,7 @@ export const projects: Project[] = [
         navFullLabel: "Spotlight (Awards & Recognition)",
         heading: "Awards & Recognition",
         description: "SafeMilo has been recognized for its innovative approach to senior safety and accessible design.",
-        image: "/modern-health-app.png",
-        awards: [
-          {
-            title: "Best Accessibility Design",
-            organization: "UX Design Awards 2024",
-            year: "2024",
-            description: "Recognized for exceptional accessibility features and senior-friendly interface design.",
-            icon: "🏆",
-          },
-          {
-            title: "Innovation in Senior Tech",
-            organization: "Tech for Good Summit",
-            year: "2024",
-            description: "Awarded for creating technology that empowers seniors and promotes digital inclusion.",
-            icon: "💡",
-          },
-          {
-            title: "People's Choice Award",
-            organization: "Design Community Awards",
-            year: "2024",
-            description: "Selected by the design community for outstanding user-centered design approach.",
-            icon: "⭐",
-          },
-        ],
+        image: "/ux-ui-safemilo/safemilo-award.png",
       },
       {
         type: "case-study-section",
@@ -405,74 +502,373 @@ export const projects: Project[] = [
         content:
           "Experience the SafeMilo app firsthand through our interactive Figma prototype. Click through the flows and explore the features designed to protect seniors from online scams.",
         figmaUrl:
-          "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FYOUR_FIGMA_FILE_ID",
+          "https://embed.figma.com/proto/UitX28hFMxBpbAStnN3NTB/High-Fed?page-id=84%3A249&node-id=4727-24370&p=f&viewport=232%2C483%2C0.03&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4727%3A24370&embed-host=share",
       },
     ],
   },
-  // {
-  //   id: "siesta-campers",
-  //   title: "Siesta Campers",
-  //   category: "ux-ui",
-  //   description: "Elevating Portugal's premier van rental company",
-  //   timeline: "Timeline - 12 Weeks",
-  //   year: "2024",
-  //   tags: ["Design", "Rental", "Travel", "Technology"],
-  //   image: "/van-rental-mobile-app-interface.jpg",
-  //   featured: true,
-  //   content: [
-  //     {
-  //       type: "hero",
-  //       title: "Siesta Campers",
-  //       subtitle: "UX/UI Design",
-  //       description: "Elevating Portugal's premier van rental company",
-  //       tags: ["Design", "Rental", "Travel", "Technology"],
-  //       year: "2024",
-  //       timeline: "Timeline - 12 Weeks",
-  //       image: "/van-rental-mobile-app-interface.jpg",
-  //     },
-  //     {
-  //       type: "text",
-  //       heading: "Project Overview",
-  //       content:
-  //         "Siesta Campers needed a complete digital transformation to match their premium service offering. We created a seamless booking experience that captures the spirit of adventure while maintaining professional reliability.",
-  //       layout: "single",
-  //     },
-  //     {
-  //       type: "grid-features",
-  //       heading: "Key Features",
-  //       features: [
-  //         {
-  //           title: "Smart Booking System",
-  //           description: "Intuitive calendar interface with real-time availability and instant confirmation.",
-  //         },
-  //         {
-  //           title: "Van Customization",
-  //           description: "Interactive tool to customize van features and add-ons before booking.",
-  //         },
-  //         {
-  //           title: "Trip Planning",
-  //           description: "Integrated route suggestions and points of interest across Portugal.",
-  //         },
-  //       ],
-  //       columns: 3,
-  //     },
-  //     {
-  //       type: "image",
-  //       src: "/van-rental-mobile-app-interface.jpg",
-  //       alt: "Siesta Campers mobile interface",
-  //       caption: "Mobile-first design for on-the-go bookings",
-  //     },
-  //     {
-  //       type: "metrics",
-  //       heading: "Business Impact",
-  //       metrics: [
-  //         { value: "150%", label: "Increase in online bookings" },
-  //         { value: "4.8/5", label: "Customer satisfaction" },
-  //         { value: "60%", label: "Reduction in booking time" },
-  //       ],
-  //     },
-  //   ],
-  // },
+
+  {
+    id: "togathr-webapp",
+    title: "Togathr",
+    category: "ux-ui",
+    description: "Scam protection app for senior citizens",
+    timeline: "Timeline - 12 Weeks",
+    year: "2024",
+    tags: ["UX/UI Design", "Event Planning", "Research", "Branding", "Web"],
+    image: "/ux-ui-safemilo/safemilo-cover-photo.png",
+    modelPath: "/models/projects/togathr-home-desktop-model.glb",
+    featured: true,
+    content: [
+      {
+        type: "hero",
+        title: "SafeMilo",
+        subtitle: "Your Shield Against Scams",
+        description: "A senior-friendly app that turns online safety into confidence",
+        tags: ["UX/UI Design", "Accessibility", "Research", "Branding", "Mobile"],
+        year: "2024",
+        timeline: "Timeline - 12 Weeks",
+        team: "5 Designers and 4 Developers",
+        modelPath: "/models/projects/togathr-home-desktop-model.glb",
+      },
+      {
+        type: "case-study-section",
+        id: "spark",
+        navLabel: "Spark",
+        navFullLabel: "Spark (Project Overview)",
+        heading: "Project Overview",
+        content:
+          "SafeMilo is a mobile app built to protect seniors from online scams through education, alerts, and support. The app screens suspicious calls or messages, delivers bite-sized learning modules, verified scam news, and a 24/7 AI chatbot, all wrapped in a warm, senior-friendly interface. The goal was to design a product that doesn't just detect scams, but also educates and empowers seniors to feel safe when using technology.",
+        image: {
+          src: "/ux-ui-safemilo/safemilo-hero-photo.png",
+          alt: "SafeMilo app overview",
+          position: "below",
+        },
+      },
+      {
+        type: "case-study-section",
+        id: "struggle",
+        navLabel: "Struggle",
+        navFullLabel: "Struggle (The Problem)",
+        heading: "The Problem",
+        content: [
+          "In today’s digital world, seniors (65+) are among the most targeted by scammers. Many feel anxious or ashamed after falling for fake calls, messages, or phishing links.",
+          "They struggle with:",
+          "•  Small text, cluttered layouts, and complex navigation.",
+          "•  Doubt in verifying legitimate messages or calls.",
+          "•  Lack of trustworthy, real-time scam updates.",
+          "•  Fear of using technology without guidance.",
+          "SafeMilo tackles this by combining education, real-time protection, and emotional reassurance, not just stopping scams, but building confidence.",
+        ],
+        image: {
+          src: "/ux-ui-safemilo/safemilo-problem.png",
+          alt: "Safemilo Problem identification",
+          position: "below",
+        },
+      },
+      {
+        type: "case-study-section",
+        id: "scan",
+        navLabel: "Scan",
+        navFullLabel: "Scan (Research & Insights)",
+        heading: "Research & Insights",
+        blocks: [
+          {
+            subheading: ["Primary Research: User Interviews and Personas"],
+            content: [
+              "Our research goal is to understand how seniors recognize and respond to scams, and identify the design patterns, content formats, and support features that make a mobile app intuitive, accessible, and effective for scam prevention and education. We combined primary interviews with seniors and secondary research on apps like Scam Shield, GranPad, and MediSafe.",
+              "Two participant cohorts were interviewed: seniors (60+) and adults (18–60) who regularly support seniors with technology.",
+            ],
+          },
+          { 
+            subheading: ["Key Insights"],
+            content: [
+              "•  Topic sensitivity. Many seniors feel embarrassed or ashamed after a scam incident, which reduces help-seeking and disclosure.",
+              "•  Information reliability. Scam awareness often comes from forwarded messages and social media, sources that are rarely verified and can amplify fear or misinformation.",
+              "•  Technology dependence. Seniors frequently rely on family or friends for basic digital tasks, slowing their ability to verify threats and respond promptly.",
+              "These findings directly informed SafeMilo’s emphasis on plain language, verified news, voice/large-type interfaces, and just-in-time guidance through an AI assistant.",
+            ],
+            images: [
+              {
+                src: "/ux-ui-safemilo/safemilo-user-persona-01.png",
+                alt: "Safemilo User Persona 01",
+              },
+              {
+                src: "/ux-ui-safemilo/safemilo-user-persona-02.png",
+                alt: "Safemilo User Persona 02",
+              },
+            ],
+          },
+          {
+            subheading: ["Secondary Research: Competitor Analysis"],
+            content: [
+              "This comparison highlights that SafeMilo is the only solution to combine all four senior-critical capabilities: a structured learning module, 24/7 AI assistance, call/message screening, and verified scam news. Competing tools typically emphasize screening, while lacking guided education and a trusted information channel. As a result, SafeMilo not only mitigates immediate risk but also builds long-term user confidence and digital literacy.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-competitor-analysis.png",
+              alt: "Safemilo Competitor Analysis",
+              position: "below",
+            },
+          },
+        ],
+      },
+      {
+        type: "case-study-section",
+        id: "scope",
+        navLabel: "Scope",
+        navFullLabel: "Scope (Solution Definition)",
+        heading: "Solution Definition",
+        blocks: [
+          {
+            content: [
+              "SafeMilo is a digital companion, not just a filter.",
+              "It teaches seniors to recognize and avoid scams while keeping them informed in real time.",
+            ],
+          },
+          {
+            subheading: ["Core Features"],
+            content: [
+              "•  Learning Modules: Bite-sized, voice-assisted lessons with quizzes and videos.",
+              "•  Call & Message Screening: Detects suspicious content and warns before answering.",
+              "•  AI Chatbot: 24/7 instant scam-check assistant.",
+              "•  Verified News Feed: Updates from banks and law enforcement.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-features.png",
+              alt: "Safemilo Features",
+              position: "below",
+            },
+          },
+        ],
+      },
+      {
+        type: "case-study-section",
+        id: "sketch",
+        navLabel: "Sketch",
+        navFullLabel: "Sketch (Wireframes & Ideation)",
+        heading: "Wireframes & Ideation",
+        blocks: [
+          {
+            subheading: ["Information Architecture"],
+            content: [
+              "We structured SafeMilo around the senior user’s mental model of “learn, check, protect,” which informed five top-level areas: Home, Learn, Ask Milo, User Profile, and Notifications.",
+              "•  Home surfaces only what’s “actionable now”: recent scam alerts, call/message screening status, and a gentle prompt to learn.",
+              "•  Learn contains courses, scam categories, and achievements—organized by task, not by content type—to reduce cognitive load.",
+              "•  Ask Milo is a single-purpose space for type/voice questions with clear system feedback (“Milo Answers”).",
+              "•  User Profile centralizes Accessibility Settings (text size, voice, contrast) and App Permissions, so assistive adjustments are always one tap away.",
+              "•  Notifications is separated from Home to avoid clutter and keep alerts reviewable later.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-information-architecture.png",
+              alt: "Safemilo Information Architecture",
+              position: "below",
+            },
+          },
+          {
+            subheading: ["Wireframes"],
+            content: [
+              "We conducted moderated usability sessions with mid-fidelity prototypes. Two key findings informed the next iteration",
+              "•  Legibility: Base typography was insufficient for some participants. We introduced an in-app text-size control and increased base size/line height to improve readability.",
+              "•  Information density: The Home screen created initial overwhelm. We applied progressive disclosure, prioritizing primary actions and moving secondary details behind concise cards and drill-downs.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-wireframes.png",
+              alt: "Safemilo Wireframes",
+              position: "below",
+            },
+          },
+        ],
+      },
+      {
+        type: "case-study-section",
+        id: "style",
+        navLabel: "Style",
+        navFullLabel: "Style (Brand & UI Kit)",
+        heading: "Brand & UI Kit",
+        blocks: [
+          {
+            subheading: ["Mascot"],
+            content: [
+              "Our primary challenge was creating an experience that felt welcoming to seniors, especially those less comfortable with technology. We introduced Milo the Fox as a friendly, familiar guide to reduce anxiety and support first-time use. At the same time, because SafeMilo is a scam-protection product, we balanced Milo’s warmth with protective cues and clear system messaging, striking the right balance between approachable and trustworthy.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-mascot.gif",
+              alt: "Safemilo Fox Mascot",
+              position: "right",
+            },
+          },
+          {
+            subheading: ["Color System"],
+            content: [
+              "We selected a palette that communicates trust, warmth, and safety for seniors. High contrast supports readability, while Milo Orange and Deep Navy create a calm, protective atmosphere. The result is an accessible, user-friendly visual system that feels both welcoming and reliable.",
+              "The palette was tested for contrast to support WCAG AA/AAA on critical states.",
+            ],
+          },
+          {
+            subheading: ["Typography"],
+            content: [
+              "Montserrat was chosen for the UI and core content due to its clean geometry, open forms, and consistent legibility across sizes, critical for senior audiences. It delivers a modern, orderly rhythm that keeps labels, buttons, and body copy easy to scan and read.",
+              "Alpino is used in brand and narrative elements to introduce a subtle humanist warmth. Its clean, slightly decorative forms maintain clarity while adding personality, reinforcing SafeMilo’s approachable voice without compromising readability.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-color-typography.png",
+              alt: "Safemilo Color & Typography",
+              position: "below",
+            },
+          },
+          {
+            subheading: ["Logo"],
+            content: [
+              "Our logo unites Milo the Fox with a shield, Milo conveys warmth and approachability, while the shield signals protection and security. Together, they express SafeMilo’s promise: a friendly companion that keeps seniors safe.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-logo.png",
+              alt: "Safemilo Logo",
+              position: "below",
+            },
+          },
+          {
+            subheading: ["UI Kit"],
+            content: [
+              "Our component library adopts rounded corners and a clean layout, pairing confident brand colors with ample white space and subtle dividers. Simple line-style illustrations add character without distraction. All interactive elements such as buttons, icons, headings, and touch targets are intentionally sized larger to support seniors’ motor and visual needs, resulting in an interface that is functional, inviting, and effortless to use.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-ui-kit.png",
+              alt: "Safemilo UI Kit",
+              position: "below",
+            },
+          },
+          {
+            subheading: ["Accessibility"],
+            content: [
+              "We selected a color palette that remains effective across common age-related visual impairments. It meets WCAG AA for text and icons, with AAA contrast on critical alerts, ensuring information stays distinguishable regardless of color perception. SafeMilo also includes in-app text-size controls and generous line spacing, so seniors can personalize readability without disrupting their flow. Together, these choices deliver a calm, highly legible experience for a wide range of visual needs.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-accissibility-screens.gif",
+              alt: "Safemilo Accissibility Gif",
+              position: "right",
+            },
+          },
+          {
+            image: {
+              src: "/ux-ui-safemilo/safemilo-accissibility.png",
+              alt: "Safemilo Accissibility",
+              position: "below",
+            },
+          },
+        ],
+      },
+      {
+        type: "case-study-section",
+        id: "showcase",
+        navLabel: "Showcase",
+        navFullLabel: "Showcase (Final Solution)",
+        heading: "Final Solution",
+        blocks: [
+          {
+            subheading: ["Onboarding with Mascot Guidance & Feature Walk through"],
+            content: [
+              "Milo, our friendly mascot, welcomes first-time users and offers an optional guided tour that explains benefits and permissions in plain language.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-screens-onboarding.png",
+              alt: "Safemilo Onboarding Screens",
+              position: "below",
+            },
+          },
+          {
+            subheading: ["Call & Message Screening"],
+            content: [
+              "With user consent, SafeMilo flags suspicious calls and texts and provides clear, non-technical warnings and keeping seniors informed and in control of how to respond.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-screens-calls.png",
+              alt: "Safemilo Calling Screens",
+              position: "below",
+            },
+          },
+          {
+            subheading: ["Learning Modules"],
+            content: [
+              "Bite-sized, accessible lessons with short videos and simple quizzes teach common scam patterns.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-screens-learn.png",
+              alt: "Safemilo Learning Screens",
+              position: "below",
+            },
+          },
+          {
+            content: ["Progress is acknowledged with gentle celebrations that build confidence over time."],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-screens-achievement.png",
+              alt: "Safemilo Achievement Screens",
+              position: "below",
+            },
+          },
+          {
+            subheading: ["Verified Scam News"],
+            content: [
+              "A dedicated feed of updates from trusted organizations (banks, insurers, law enforcement) keeps users current on emerging scams, source-first and time-stamped for trust.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-screens-news.png",
+              alt: "Safemilo News Screens",
+              position: "below",
+            },
+          },
+          {
+            subheading: ["AI Chatbot (Ask Milo)"],
+            content: [
+              "Available 24/7 to answer scam-related questions via text or voice. Users can check links, messages, or scenarios and get instant, empathetic guidance.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-screens-aichat.png",
+              alt: "Safemilo AI Chat Screens",
+              position: "below",
+            },
+          },
+        ],
+      },
+      {
+        type: "case-study-section",
+        id: "step-forward",
+        navLabel: "Step Forward",
+        navFullLabel: "Step Forward (Future Features)",
+        heading: "Future Features",
+        content: [
+          "•  Verified Organization Access. We will gate the organization portal behind vetted admin credentials so only trusted partners (banks, insurers, law enforcement) can publish alerts. This reduces misinformation risk, strengthens content integrity, and increases user trust in every notification.",
+          "•  Deeper Accessibility. Next, We will expand accessibility with dark mode, app-wide text-to-speech, adjustable text sizes, and high-contrast themes. These options let seniors personalize readability and comfort in real time, improving sustained engagement without sacrificing clarity.",
+          "•  Email Scam Detection. Finally, We will extend screening beyond calls and SMS to include email. The system will flag suspicious senders, risky links, and scam keywords warning users before they open a message, so SafeMilo protects across the most common attack surfaces.",
+        ],
+        // image: {
+        //   src: "/modern-health-app.png",
+        //   alt: "Future roadmap",
+        //   position: "right",
+        // },
+      },
+      {
+        type: "spotlight",
+        id: "spotlight",
+        navLabel: "Spotlight",
+        navFullLabel: "Spotlight (Awards & Recognition)",
+        heading: "Awards & Recognition",
+        description: "SafeMilo has been recognized for its innovative approach to senior safety and accessible design.",
+        image: "/ux-ui-safemilo/safemilo-award.png",
+      },
+      {
+        type: "case-study-section",
+        id: "see-it-live",
+        navLabel: "See It Live",
+        navFullLabel: "See It Live (Interactive Prototype)",
+        heading: "Interactive Prototype",
+        content:
+          "Experience the SafeMilo app firsthand through our interactive Figma prototype. Click through the flows and explore the features designed to protect seniors from online scams.",
+        figmaUrl:
+          "https://embed.figma.com/proto/UitX28hFMxBpbAStnN3NTB/High-Fed?page-id=84%3A249&node-id=4727-24370&p=f&viewport=232%2C483%2C0.03&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4727%3A24370&embed-host=share",
+      },
+    ],
+  },
+
   // {
   //   id: "architectural-residence",
   //   title: "Modern Residence",
@@ -625,6 +1021,251 @@ export const projects: Project[] = [
   //   image: "/3d-character-model-stylized.jpg",
   //   featured: false,
   // },
+    {
+    id: "wesley-chapel",
+    title: "Wesley Chapel Residence",
+    category: "interior",
+    description: "Modern luxury interior design with contemporary aesthetics",
+    timeline: "Timeline - 8 Weeks",
+    year: "2024",
+    tags: ["Interior Design", "Residential", "Modern", "Luxury"],
+    image: "/interior-wesleychappel/9.1imp.jpg",
+    featured: true,
+    content: [
+      {
+        type: "hero",
+        title: "Wesley Chapel Residence",
+        subtitle: "Modern Luxury Interior",
+        description: "A sophisticated blend of contemporary design and timeless elegance",
+        tags: ["Interior Design", "Residential", "Modern", "Luxury"],
+        year: "2024",
+        timeline: "Timeline - 8 Weeks",
+        image: "/interior-wesleychappel/9.1imp.jpg",
+      },
+      {
+        type: "case-study-section",
+        id: "gallery",
+        navLabel: "Gallery",
+        navFullLabel: "Gallery (Project Images)",
+        heading: "Project Gallery",
+        blocks: [
+          {
+            content:
+              "Explore the complete transformation of this modern residence through our curated gallery of interior spaces.",
+            images: [
+              { src: "/interior-wesleychappel/1.1.jpg", alt: "Modern luxury living room", caption: "Living Room" },
+              { src: "/interior-wesleychappel/2.1.jpg", alt: "Modern bedroom", caption: "Master Bedroom" },
+              { src: "/interior-wesleychappel/3.1.jpg", alt: "Luxury kitchen", caption: "Kitchen" },
+              { src: "/interior-wesleychappel/4.1.jpg", alt: "Modern bathroom", caption: "Bathroom" },
+              { src: "/interior-wesleychappel/5.1.jpg", alt: "Dining room", caption: "Dining Area" },
+              { src: "/interior-wesleychappel/6.1.jpg", alt: "Home office", caption: "Home Office" },
+              { src: "/interior-wesleychappel/7.1.jpg", alt: "Balcony", caption: "Balcony" },
+              { src: "/interior-wesleychappel/8.1.jpg", alt: "Entrance", caption: "Entrance" },
+              { src: "/interior-wesleychappel/9.1imp.jpg", alt: "Luxury kitchen", caption: "Kitchen" },
+              { src: "/interior-wesleychappel/10.1.jpg", alt: "Modern bathroom", caption: "Bathroom" },
+              { src: "/interior-wesleychappel/11.1.jpg", alt: "Dining room", caption: "Dining Area" },
+              { src: "/interior-wesleychappel/12.1.jpg", alt: "Home office", caption: "Home Office" },
+              { src: "/interior-wesleychappel/13.1.jpg", alt: "Balcony", caption: "Balcony" },
+
+            ],
+            imageLayout: "grid-3",
+          },
+        ],
+      },
+      {
+        type: "comparison",
+        id: "comparison",
+        heading: "Design Evolution",
+        description: "Explore the transformation of key spaces through our interactive comparison view.",
+        images: [
+          { src: "/interior-wesleychappel/Autocad.png", alt: "Living room view 1", caption: "Living Room - Angle 1" },
+          { src: "/interior-wesleychappel/Sketchup Model.png", alt: "Bedroom view", caption: "Master Bedroom" },
+          { src: "/interior-wesleychappel/Lumion.png", alt: "Kitchen view", caption: "Kitchen" },
+          { src: "/interior-wesleychappel/final.png", alt: "Dining view", caption: "Dining Area" },
+        ],
+      }
+    ],
+  },
+  {
+    id: "ashok-narsing",
+    title: "Ashok Narsing Apartment",
+    category: "interior",
+    description: "Contemporary urban living with minimalist design principles",
+    timeline: "Timeline - 6 Weeks",
+    year: "2024",
+    tags: ["Interior Design", "Apartment", "Minimalist", "Urban"],
+    image: "/minimalist-apartment-interior.jpg",
+    featured: true,
+    content: [
+      {
+        type: "hero",
+        title: "Ashok Narsing Apartment",
+        subtitle: "Contemporary Urban Living",
+        description: "Clean lines and functional spaces define this modern apartment",
+        tags: ["Interior Design", "Apartment", "Minimalist", "Urban"],
+        year: "2024",
+        timeline: "Timeline - 6 Weeks",
+        image: "/minimalist-apartment-interior.jpg",
+      },
+      {
+        type: "case-study-section",
+        id: "gallery",
+        navLabel: "Gallery",
+        navFullLabel: "Gallery (Project Images)",
+        heading: "Project Gallery",
+        blocks: [
+          {
+            content: "Discover the minimalist elegance and functional beauty of this urban apartment.",
+            images: [
+              { src: "/minimalist-apartment-interior.jpg", alt: "Minimalist living space", caption: "Living Space" },
+              { src: "/minimalist-bedroom.png", alt: "Minimalist bedroom", caption: "Bedroom" },
+              { src: "/modern-kitchen-minimalist.jpg", alt: "Modern kitchen", caption: "Kitchen" },
+              { src: "/minimalist-bathroom.jpg", alt: "Minimalist bathroom", caption: "Bathroom" },
+              { src: "/minimalist-dining.jpg", alt: "Dining area", caption: "Dining Area" },
+              { src: "/minimalist-workspace.png", alt: "Workspace", caption: "Workspace" },
+            ],
+            imageLayout: "grid-3",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "sandeep-residence",
+    title: "Sandeep Residence",
+    category: "interior",
+    description: "Warm and inviting family home with traditional touches",
+    timeline: "Timeline - 10 Weeks",
+    year: "2023",
+    tags: ["Interior Design", "Residential", "Traditional", "Family Home"],
+    image: "/traditional-family-home-interior.jpg",
+    featured: false,
+    content: [
+      {
+        type: "hero",
+        title: "Sandeep Residence",
+        subtitle: "Traditional Family Home",
+        description: "A warm and welcoming space that celebrates family living",
+        tags: ["Interior Design", "Residential", "Traditional", "Family Home"],
+        year: "2023",
+        timeline: "Timeline - 10 Weeks",
+        image: "/traditional-family-home-interior.jpg",
+      },
+      {
+        type: "case-study-section",
+        id: "gallery",
+        navLabel: "Gallery",
+        navFullLabel: "Gallery (Project Images)",
+        heading: "Project Gallery",
+        blocks: [
+          {
+            content: "Experience the warmth and character of this beautifully designed family residence.",
+            images: [
+              { src: "/traditional-family-home-interior.jpg", alt: "Traditional living room", caption: "Living Room" },
+              { src: "/traditional-bedroom.jpg", alt: "Traditional bedroom", caption: "Bedroom" },
+              { src: "/traditional-kitchen.png", alt: "Traditional kitchen", caption: "Kitchen" },
+              { src: "/family-dining-room.jpg", alt: "Dining room", caption: "Dining Room" },
+              { src: "/traditional-bathroom.jpg", alt: "Bathroom", caption: "Bathroom" },
+              { src: "/kids-room.jpg", alt: "Kids room", caption: "Kids Room" },
+            ],
+            imageLayout: "grid-3",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "oxygen-park",
+    title: "Oxygen Park Villa",
+    category: "interior",
+    description: "Biophilic design integrating nature with modern living",
+    timeline: "Timeline - 12 Weeks",
+    year: "2023",
+    tags: ["Interior Design", "Villa", "Biophilic", "Sustainable"],
+    image: "/biophilic-villa-interior-with-plants.jpg",
+    featured: false,
+    content: [
+      {
+        type: "hero",
+        title: "Oxygen Park Villa",
+        subtitle: "Biophilic Design",
+        description: "Where nature meets modern luxury in perfect harmony",
+        tags: ["Interior Design", "Villa", "Biophilic", "Sustainable"],
+        year: "2023",
+        timeline: "Timeline - 12 Weeks",
+        image: "/biophilic-villa-interior-with-plants.jpg",
+      },
+      {
+        type: "case-study-section",
+        id: "gallery",
+        navLabel: "Gallery",
+        navFullLabel: "Gallery (Project Images)",
+        heading: "Project Gallery",
+        blocks: [
+          {
+            content: "Immerse yourself in the natural beauty and sustainable design of this unique villa.",
+            images: [
+              {
+                src: "/biophilic-villa-interior-with-plants.jpg",
+                alt: "Biophilic living space",
+                caption: "Living Space with Plants",
+              },
+              { src: "/biophilic-bedroom-plants.jpg", alt: "Bedroom with plants", caption: "Bedroom" },
+              { src: "/green-kitchen.jpg", alt: "Green kitchen", caption: "Kitchen" },
+              { src: "/bathroom-plants.jpg", alt: "Bathroom with plants", caption: "Bathroom" },
+              { src: "/indoor-garden.jpg", alt: "Indoor garden", caption: "Indoor Garden" },
+              { src: "/green-dining-room.jpg", alt: "Dining room", caption: "Dining Room" },
+            ],
+            imageLayout: "grid-3",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "urban-habitite",
+    title: "Urban Habitite Loft",
+    category: "interior",
+    description: "Industrial-chic loft conversion with modern amenities",
+    timeline: "Timeline - 9 Weeks",
+    year: "2023",
+    tags: ["Interior Design", "Loft", "Industrial", "Modern"],
+    image: "/industrial-loft-interior.jpg",
+    featured: false,
+    content: [
+      {
+        type: "hero",
+        title: "Urban Habitite Loft",
+        subtitle: "Industrial-Chic Living",
+        description: "Raw materials and refined design create an urban sanctuary",
+        tags: ["Interior Design", "Loft", "Industrial", "Modern"],
+        year: "2023",
+        timeline: "Timeline - 9 Weeks",
+        image: "/industrial-loft-interior.jpg",
+      },
+      {
+        type: "case-study-section",
+        id: "gallery",
+        navLabel: "Gallery",
+        navFullLabel: "Gallery (Project Images)",
+        heading: "Project Gallery",
+        blocks: [
+          {
+            content: "Explore the industrial elegance and modern functionality of this converted loft space.",
+            images: [
+              { src: "/industrial-loft-interior.jpg", alt: "Industrial loft living area", caption: "Living Area" },
+              { src: "/industrial-bedroom.jpg", alt: "Industrial bedroom", caption: "Bedroom" },
+              { src: "/industrial-kitchen.png", alt: "Industrial kitchen", caption: "Kitchen" },
+              { src: "/industrial-bathroom.jpg", alt: "Industrial bathroom", caption: "Bathroom" },
+              { src: "/loft-workspace.jpg", alt: "Workspace", caption: "Workspace" },
+              { src: "/placeholder.svg?height=600&width=800", alt: "Dining area", caption: "Dining Area" },
+            ],
+            imageLayout: "grid-3",
+          },
+        ],
+      },
+    ],
+  },
 ]
 
 export const categories = [
