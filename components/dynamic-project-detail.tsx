@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { Project3DModel } from "./project-3d-model"
+import { InteriorGallery } from "./interior-gallery"
+import { InteriorComparison } from "./interior-comparison"
 import type { Project, ContentSection } from "@/lib/project-data"
 
 interface DynamicProjectDetailProps {
@@ -25,7 +27,7 @@ export function DynamicProjectDetail({ project }: DynamicProjectDetailProps) {
     (section) => section.type !== "hero" && section.type !== "case-study-section" && section.type !== "spotlight",
   )
 
-  const hasCaseStudyNav = caseStudySections.length > 0
+  const hasCaseStudyNav = caseStudySections.length > 0 && project.category !== "interior"
 
   useEffect(() => {
     if (!hasCaseStudyNav) return
@@ -104,9 +106,9 @@ export function DynamicProjectDetail({ project }: DynamicProjectDetailProps) {
 
       {hasCaseStudyNav ? (
         <div ref={contentStartRef} className="max-w-[1400px] mx-auto">
-          <div className="flex gap-12 items-start">
+          <div className="flex gap-4 items-start">
             <nav
-              className={`hidden md:block w-48 shrink-0 sticky transition-all duration-300 ${
+              className={`hidden md:block w-56 shrink-0 sticky transition-all duration-300 ${
                 isNavCentered ? "top-1/2 -translate-y-1/2" : "top-24"
               }`}
             >
@@ -117,11 +119,24 @@ export function DynamicProjectDetail({ project }: DynamicProjectDetailProps) {
                       onClick={() => scrollToSection(section.id)}
                       onMouseEnter={() => setHoveredSection(section.id)}
                       onMouseLeave={() => setHoveredSection("")}
-                      className={`text-base font-medium transition-colors text-left w-full ${
-                        activeSection === section.id ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                      className={`text-base font-medium transition-all text-left w-full relative overflow-hidden h-6 ${
+                        activeSection === section.id ? "text-primary scale-110" : "text-muted-foreground"
                       }`}
                     >
-                      {hoveredSection === section.id ? section.navFullLabel : section.navLabel}
+                      <span
+                        className={`absolute inset-0 transition-transform duration-300 ${
+                          hoveredSection === section.id ? "-translate-y-full" : "translate-y-0"
+                        }`}
+                      >
+                        {section.navLabel}
+                      </span>
+                      <span
+                        className={`absolute inset-0 transition-transform duration-300 ${
+                          hoveredSection === section.id ? "translate-y-0" : "translate-y-full"
+                        }`}
+                      >
+                        {section.navFullLabel}
+                      </span>
                     </button>
                   </li>
                 ))}
@@ -130,10 +145,10 @@ export function DynamicProjectDetail({ project }: DynamicProjectDetailProps) {
 
             <div className="flex-1 min-w-0 space-y-16">
               {caseStudySections.map((section, index) => (
-                <ContentSectionRenderer key={index} section={section} />
+                <ContentSectionRenderer key={index} section={section} project={project} />
               ))}
               {otherSections?.map((section, index) => (
-                <ContentSectionRenderer key={`other-${index}`} section={section} />
+                <ContentSectionRenderer key={`other-${index}`} section={section} project={project} />
               ))}
             </div>
           </div>
@@ -143,7 +158,7 @@ export function DynamicProjectDetail({ project }: DynamicProjectDetailProps) {
           {project.content
             .filter((section) => section.type !== "hero")
             .map((section, index) => (
-              <ContentSectionRenderer key={index} section={section} />
+              <ContentSectionRenderer key={index} section={section} project={project} />
             ))}
         </div>
       )}
@@ -151,14 +166,16 @@ export function DynamicProjectDetail({ project }: DynamicProjectDetailProps) {
   )
 }
 
-function ContentSectionRenderer({ section }: { section: ContentSection }) {
+function ContentSectionRenderer({ section, project }: { section: ContentSection; project?: Project }) {
   switch (section.type) {
     case "hero":
       return <HeroSection section={section} />
     case "case-study-section":
-      return <CaseStudySection section={section} />
+      return <CaseStudySection section={section} project={project} />
     case "spotlight":
       return <SpotlightSection section={section} />
+    case "comparison":
+      return <ComparisonSection section={section} />
     case "text":
       return <TextSection section={section} />
     case "text-with-sidebar":
@@ -199,6 +216,8 @@ function HeroSection({ section }: { section: Extract<ContentSection, { type: "he
         </div>
 
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
+          <span>{section.team}</span>
+          <span>•</span>
           <span>{section.timeline}</span>
           <span>•</span>
           <span>{section.year}</span>
@@ -206,10 +225,18 @@ function HeroSection({ section }: { section: Extract<ContentSection, { type: "he
       </div>
 
       <div className="relative aspect-square bg-muted/20 rounded-lg overflow-hidden max-w-[100%]">
+        {/* <div className="relative w-full bg-muted/20 rounded-lg overflow-hidden"> */}
         {section.modelPath ? (
           <Project3DModel modelPath={section.modelPath} className="w-full h-full" />
         ) : section.image ? (
-          <Image src={section.image || "/placeholder.svg"} alt={section.title} fill className="object-cover" />
+          <Image
+            src={section.image || "/placeholder.svg"}
+            alt={section.title}
+            // fill
+            width={800}
+            height={800}
+            className="object-contain w-full h-auto"
+          />
         ) : null}
       </div>
     </section>
@@ -262,14 +289,16 @@ function TextWithSidebarSection({ section }: { section: Extract<ContentSection, 
 }
 
 function ImageSection({ section }: { section: Extract<ContentSection, { type: "image" }> }) {
-  const isFullWidth = section.layout === "full"
-
   return (
     <section className="space-y-4">
-      <div
-        className={`relative ${isFullWidth ? "w-full aspect-[21/9]" : "aspect-video"} bg-muted/20 rounded-lg overflow-hidden`}
-      >
-        <Image src={section.src || "/placeholder.svg"} alt={section.alt} fill className="object-cover" />
+      <div className="relative w-full bg-muted/20 rounded-lg overflow-hidden">
+        <Image
+          src={section.src || "/placeholder.svg"}
+          alt={section.alt}
+          width={1200}
+          height={800}
+          className="object-contain w-full h-auto"
+        />
       </div>
       {section.caption && <p className="text-sm text-muted-foreground text-center">{section.caption}</p>}
     </section>
@@ -290,8 +319,14 @@ function ImageGridSection({ section }: { section: Extract<ContentSection, { type
       <div className={`grid ${gridClass} gap-6`}>
         {section.images.map((image, index) => (
           <div key={index} className="space-y-2">
-            <div className="relative aspect-[4/3] bg-muted/20 rounded-lg overflow-hidden">
-              <Image src={image.src || "/placeholder.svg"} alt={image.alt} fill className="object-cover" />
+            <div className="relative w-full bg-muted/20 rounded-lg overflow-hidden">
+              <Image
+                src={image.src || "/placeholder.svg"}
+                alt={image.alt}
+                width={600}
+                height={450}
+                className="object-contain w-full h-auto"
+              />
             </div>
             {image.caption && <p className="text-sm text-muted-foreground">{image.caption}</p>}
           </div>
@@ -320,14 +355,13 @@ function TwoColumnTextImageSection({
             </p>
           ))}
         </div>
-        <div
-          className={`relative aspect-[4/3] bg-muted/20 rounded-lg overflow-hidden ${imageOnLeft ? "lg:order-1" : ""}`}
-        >
+        <div className={`relative w-full bg-muted/20 rounded-lg overflow-hidden ${imageOnLeft ? "lg:order-1" : ""}`}>
           <Image
             src={section.image.src || "/placeholder.svg"}
             alt={section.image.alt}
-            fill
-            className="object-cover rounded-lg"
+            width={800}
+            height={600}
+            className="object-contain w-full h-auto rounded-lg"
           />
         </div>
       </div>
@@ -372,10 +406,36 @@ function GridFeaturesSection({ section }: { section: Extract<ContentSection, { t
   )
 }
 
-function CaseStudySection({ section }: { section: Extract<ContentSection, { type: "case-study-section" }> }) {
+function CaseStudySection({
+  section,
+  project,
+}: {
+  section: Extract<ContentSection, { type: "case-study-section" }>
+  project?: Project
+}) {
   const hasBlocks = section.blocks && section.blocks.length > 0
+  const isInteriorGallery = project?.category === "interior" && section.id === "gallery"
 
-  // Legacy support for single content/image
+  if (isInteriorGallery && hasBlocks && section.blocks?.[0]?.images) {
+    return (
+      <section id={section.id} className="scroll-mt-24 space-y-8">
+        <h2 className="text-3xl font-light text-foreground">{section.heading}</h2>
+        {section.blocks[0].content && (
+          <div className="space-y-4">
+            {(Array.isArray(section.blocks[0].content) ? section.blocks[0].content : [section.blocks[0].content]).map(
+              (paragraph, index) => (
+                <p key={index} className="text-lg text-muted-foreground leading-relaxed">
+                  {paragraph}
+                </p>
+              ),
+            )}
+          </div>
+        )}
+        <InteriorGallery images={section.blocks[0].images} />
+      </section>
+    )
+  }
+
   if (!hasBlocks) {
     const content = Array.isArray(section.content) ? section.content : section.content ? [section.content] : []
     const imagePosition = section.image?.position || "below"
@@ -389,17 +449,18 @@ function CaseStudySection({ section }: { section: Extract<ContentSection, { type
 
         {imagePosition === "left" && (hasImage || hasModel) && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            <div className="relative aspect-[4/3] bg-muted/20 rounded-lg overflow-hidden">
-              {hasModel ? (
-                <Project3DModel modelPath={section.modelPath!} className="w-full h-full" />
-              ) : (
+            <div className="relative w-full bg-muted/20 rounded-lg overflow-hidden">
+              {hasModel && section.modelPath ? (
+                <Project3DModel modelPath={section.modelPath} className="w-full h-full" />
+              ) : section.image ? (
                 <Image
-                  src={section.image!.src || "/placeholder.svg"}
-                  alt={section.image!.alt}
-                  fill
-                  className="object-cover"
+                  src={section.image.src || "/placeholder.svg"}
+                  alt={section.image.alt}
+                  width={800}
+                  height={600}
+                  className="object-contain w-full h-auto"
                 />
-              )}
+              ) : null}
             </div>
             <div className="space-y-4">
               {content.map((paragraph, index) => (
@@ -420,17 +481,18 @@ function CaseStudySection({ section }: { section: Extract<ContentSection, { type
                 </p>
               ))}
             </div>
-            <div className="relative aspect-[4/3] bg-muted/20 rounded-lg overflow-hidden">
-              {hasModel ? (
-                <Project3DModel modelPath={section.modelPath!} className="w-full h-full" />
-              ) : (
+            <div className="relative w-full bg-muted/20 rounded-lg overflow-hidden">
+              {hasModel && section.modelPath ? (
+                <Project3DModel modelPath={section.modelPath} className="w-full h-full" />
+              ) : section.image ? (
                 <Image
-                  src={section.image!.src || "/placeholder.svg"}
-                  alt={section.image!.alt}
-                  fill
-                  className="object-cover"
+                  src={section.image.src || "/placeholder.svg"}
+                  alt={section.image.alt}
+                  width={800}
+                  height={600}
+                  className="object-contain w-full h-auto"
                 />
-              )}
+              ) : null}
             </div>
           </div>
         )}
@@ -444,27 +506,28 @@ function CaseStudySection({ section }: { section: Extract<ContentSection, { type
                 </p>
               ))}
             </div>
-            {hasFigma && (
+            {hasFigma && section.figmaUrl && (
               <div className="relative w-full aspect-[16/10] bg-muted/20 rounded-lg overflow-hidden border border-border">
                 <iframe src={section.figmaUrl} className="w-full h-full" allowFullScreen title="Figma Prototype" />
               </div>
             )}
             {(hasImage || hasModel) && !hasFigma && (
-              <div className="relative aspect-video bg-muted/20 rounded-lg overflow-hidden">
-                {hasModel ? (
-                  <Project3DModel modelPath={section.modelPath!} className="w-full h-full" />
-                ) : (
+              <div className="relative w-full bg-muted/20 rounded-lg overflow-hidden">
+                {hasModel && section.modelPath ? (
+                  <Project3DModel modelPath={section.modelPath} className="w-full h-full" />
+                ) : section.image ? (
                   <Image
-                    src={section.image!.src || "/placeholder.svg"}
-                    alt={section.image!.alt}
-                    fill
-                    className="object-cover"
+                    src={section.image.src || "/placeholder.svg"}
+                    alt={section.image.alt}
+                    width={1200}
+                    height={800}
+                    className="object-contain w-full h-auto"
                   />
-                )}
+                ) : null}
               </div>
             )}
-            {hasImage && section.image!.caption && (
-              <p className="text-sm text-muted-foreground text-center">{section.image!.caption}</p>
+            {hasImage && section.image?.caption && (
+              <p className="text-sm text-muted-foreground text-center">{section.image.caption}</p>
             )}
           </>
         ) : null}
@@ -478,6 +541,7 @@ function CaseStudySection({ section }: { section: Extract<ContentSection, { type
 
       {section.blocks?.map((block, blockIndex) => {
         const content = Array.isArray(block.content) ? block.content : block.content ? [block.content] : []
+        const subheadings = block.subheading || []
         const imagePosition = block.image?.position || "below"
         const hasImage = !!block.image
         const hasModel = !!block.modelPath
@@ -487,11 +551,21 @@ function CaseStudySection({ section }: { section: Extract<ContentSection, { type
         const imageLayout = block.imageLayout || "grid-2"
 
         return (
-          <div key={blockIndex} className="space-y-6">
+          <div key={blockIndex} className="space-y-3">
+            {subheadings.length > 0 && (
+              <div className="space-y-3">
+                {subheadings.map((subheading, index) => (
+                  <h3 key={index} className="text-xl font-medium text-foreground">
+                    {subheading}
+                  </h3>
+                ))}
+              </div>
+            )}
+
             {hasMultipleImages && (
               <>
                 {hasContent && (
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {content.map((paragraph, index) => (
                       <p key={index} className="text-lg text-muted-foreground leading-relaxed">
                         {paragraph}
@@ -508,10 +582,16 @@ function CaseStudySection({ section }: { section: Extract<ContentSection, { type
                         : "grid-cols-1"
                   }`}
                 >
-                  {block.images!.map((img, imgIndex) => (
+                  {block.images?.map((img, imgIndex) => (
                     <div key={imgIndex} className="space-y-2">
-                      <div className="relative aspect-[4/3] bg-muted/20 rounded-lg overflow-hidden">
-                        <Image src={img.src || "/placeholder.svg"} alt={img.alt} fill className="object-cover" />
+                      <div className="relative w-full bg-muted/20 rounded-lg overflow-hidden">
+                        <Image
+                          src={img.src || "/placeholder.svg"}
+                          alt={img.alt}
+                          width={600}
+                          height={450}
+                          className="object-contain w-full h-auto"
+                        />
                       </div>
                       {img.caption && <p className="text-sm text-muted-foreground text-center">{img.caption}</p>}
                     </div>
@@ -522,17 +602,18 @@ function CaseStudySection({ section }: { section: Extract<ContentSection, { type
 
             {!hasMultipleImages && imagePosition === "left" && (hasImage || hasModel) && hasContent && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                <div className="relative aspect-[4/3] bg-muted/20 rounded-lg overflow-hidden">
-                  {hasModel ? (
-                    <Project3DModel modelPath={block.modelPath!} className="w-full h-full" />
-                  ) : (
+                <div className="relative w-full bg-muted/20 rounded-lg overflow-hidden">
+                  {hasModel && block.modelPath ? (
+                    <Project3DModel modelPath={block.modelPath} className="w-full h-full" />
+                  ) : block.image ? (
                     <Image
-                      src={block.image!.src || "/placeholder.svg"}
-                      alt={block.image!.alt}
-                      fill
-                      className="object-cover"
+                      src={block.image.src || "/placeholder.svg"}
+                      alt={block.image.alt}
+                      width={800}
+                      height={600}
+                      className="object-contain w-full h-auto"
                     />
-                  )}
+                  ) : null}
                 </div>
                 <div className="space-y-4">
                   {content.map((paragraph, index) => (
@@ -553,17 +634,18 @@ function CaseStudySection({ section }: { section: Extract<ContentSection, { type
                     </p>
                   ))}
                 </div>
-                <div className="relative aspect-[4/3] bg-muted/20 rounded-lg overflow-hidden">
-                  {hasModel ? (
-                    <Project3DModel modelPath={block.modelPath!} className="w-full h-full" />
-                  ) : (
+                <div className="relative w-full bg-muted/20 rounded-lg overflow-hidden">
+                  {hasModel && block.modelPath ? (
+                    <Project3DModel modelPath={block.modelPath} className="w-full h-full" />
+                  ) : block.image ? (
                     <Image
-                      src={block.image!.src || "/placeholder.svg"}
-                      alt={block.image!.alt}
-                      fill
-                      className="object-cover"
+                      src={block.image.src || "/placeholder.svg"}
+                      alt={block.image.alt}
+                      width={800}
+                      height={600}
+                      className="object-contain w-full h-auto"
                     />
-                  )}
+                  ) : null}
                 </div>
               </div>
             )}
@@ -580,29 +662,30 @@ function CaseStudySection({ section }: { section: Extract<ContentSection, { type
                   </div>
                 )}
 
-                {hasFigma && (
+                {hasFigma && block.figmaUrl && (
                   <div className="relative w-full aspect-[16/10] bg-muted/20 rounded-lg overflow-hidden border border-border">
                     <iframe src={block.figmaUrl} className="w-full h-full" allowFullScreen title="Figma Prototype" />
                   </div>
                 )}
 
                 {(hasImage || hasModel) && !hasFigma && (
-                  <div className="relative aspect-video bg-muted/20 rounded-lg overflow-hidden">
-                    {hasModel ? (
-                      <Project3DModel modelPath={block.modelPath!} className="w-full h-full" />
-                    ) : (
+                  <div className="relative w-full bg-muted/20 rounded-lg overflow-hidden">
+                    {hasModel && block.modelPath ? (
+                      <Project3DModel modelPath={block.modelPath} className="w-full h-full" />
+                    ) : block.image ? (
                       <Image
-                        src={block.image!.src || "/placeholder.svg"}
-                        alt={block.image!.alt}
-                        fill
-                        className="object-cover"
+                        src={block.image.src || "/placeholder.svg"}
+                        alt={block.image.alt}
+                        width={1200}
+                        height={800}
+                        className="object-contain w-full h-auto"
                       />
-                    )}
+                    ) : null}
                   </div>
                 )}
 
-                {hasImage && block.image!.caption && (
-                  <p className="text-sm text-muted-foreground text-center">{block.image!.caption}</p>
+                {hasImage && block.image?.caption && (
+                  <p className="text-sm text-muted-foreground text-center">{block.image.caption}</p>
                 )}
               </>
             )}
@@ -622,30 +705,24 @@ function SpotlightSection({ section }: { section: Extract<ContentSection, { type
       </div>
 
       {section.image && (
-        <div className="relative aspect-video bg-muted/20 rounded-lg overflow-hidden border border-border/50">
-          <Image src={section.image || "/placeholder.svg"} alt="Award certificate" fill className="object-cover" />
+        <div className="relative w-full bg-muted/20 rounded-lg overflow-hidden border border-border/50">
+          <Image
+            src={section.image || "/placeholder.svg"}
+            alt="Award certificate"
+            width={1200}
+            height={800}
+            className="object-contain w-full h-auto"
+          />
         </div>
       )}
+    </section>
+  )
+}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {section.awards.map((award, index) => (
-          <div
-            key={index}
-            className="bg-muted/20 p-6 rounded-lg space-y-4 hover:bg-muted/30 transition-colors border border-border/50"
-          >
-            {award.icon && <div className="text-4xl">{award.icon}</div>}
-            <div className="space-y-2">
-              <h3 className="text-xl font-medium text-foreground">{award.title}</h3>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <span>{award.organization}</span>
-                <span>•</span>
-                <span>{award.year}</span>
-              </div>
-            </div>
-            {award.description && <p className="text-sm text-muted-foreground leading-relaxed">{award.description}</p>}
-          </div>
-        ))}
-      </div>
+function ComparisonSection({ section }: { section: Extract<ContentSection, { type: "comparison" }> }) {
+  return (
+    <section id={section.id} className="scroll-mt-24">
+      <InteriorComparison images={section.images} heading={section.heading} description={section.description} />
     </section>
   )
 }

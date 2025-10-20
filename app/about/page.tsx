@@ -3,78 +3,98 @@ import { SkillBadge } from "@/components/skill-badge"
 import { DownloadResume } from "@/components/download-resume"
 
 const skills = {
-  design: [
+  designSkills: [
     { name: "UI/UX Design", level: "expert" as const },
-    { name: "Figma", level: "expert" as const },
-    { name: "Adobe Creative Suite", level: "advanced" as const },
-    { name: "Prototyping", level: "advanced" as const },
     { name: "Design Systems", level: "expert" as const },
     { name: "User Research", level: "advanced" as const },
+    { name: "Prototyping", level: "expert" as const },
   ],
-  development: [
-    { name: "React", level: "advanced" as const },
-    { name: "TypeScript", level: "advanced" as const },
-    { name: "Next.js", level: "advanced" as const },
-    { name: "Tailwind CSS", level: "expert" as const },
-    { name: "Three.js", level: "intermediate" as const },
-    { name: "Node.js", level: "intermediate" as const },
+  designTools: [
+    { name: "Figma", level: "expert" as const },
+    { name: "Adobe Photoshop", level: "advanced" as const },
+    { name: "Adobe Illustrator", level: "advanced" as const },
+    { name: "After Effects", level: "advanced" as const },
   ],
   architecture: [
     { name: "AutoCAD", level: "expert" as const },
-    { name: "SketchUp", level: "advanced" as const },
+    { name: "Blender", level: "intermediate" as const },
     { name: "Revit", level: "advanced" as const },
     { name: "Rhino", level: "intermediate" as const },
+    { name: "SketchUp", level: "expert" as const },
     { name: "V-Ray", level: "advanced" as const },
   ],
   creative: [
     { name: "Photography", level: "advanced" as const },
-    { name: "Blender", level: "intermediate" as const },
-    { name: "Cinema 4D", level: "intermediate" as const },
-    { name: "After Effects", level: "advanced" as const },
+    { name: "Architecture Scale Modelling", level: "expert" as const },
+    { name: "Sketching", level: "intermediate" as const },
   ],
 }
 
 const experience = [
   {
-    period: "2024 — Present",
+    period: "Sept 2024 - Present",
     role: "Senior Designer & Developer",
     company: "Freelance",
-    description:
-      "Working with startups and established companies to create digital products that blend beautiful design with robust engineering. Specializing in design systems, user experience, and front-end development.",
-    skills: ["React", "TypeScript", "Figma", "Design Systems"],
+    description:[
+      "•  Evaluated student projects in 3D design, UI/UX design, and prototyping with attention to technical accuracy and design feasibility.",
+      "•  Provided feedback on workflow, design clarity, and construction logic, improving students’ practical design understanding.",
+      "•  Assisted instructors with grading assignments, mid-terms, and final exams.",
+    ],
+    // skills: ["React", "TypeScript", "Figma", "Design Systems"],
   },
   {
-    period: "2022 — 2024",
-    role: "Lead Product Designer",
-    company: "Tech Startup",
-    description:
-      "Led design for a B2B SaaS platform, growing the user base from 1K to 50K users. Built and maintained the design system, conducted user research, and collaborated closely with engineering teams.",
-    skills: ["Product Design", "User Research", "Design Systems", "Leadership"],
+    period: "Mar 2021 - Present",
+    role: "Designer & Artist",
+    company: "Freelance",
+    description:[
+      "•  Created graphic design works for multiple clients.",
+      "•  Provided high-quality rendering services to clients, ensuring market-ready products.",
+      "•  Delivered creative solutions tailored to meet specific client needs, including animations.",
+      "•  Utilized Photoshop for design and paint details for various projects.",
+    ],
+    // skills: ["Product Design", "User Research", "Design Systems", "Leadership"],
   },
   {
-    period: "2020 — 2022",
-    role: "UX/UI Designer",
-    company: "Digital Agency",
-    description:
-      "Designed digital experiences for clients across various industries including healthcare, fintech, and e-commerce. Worked on both web and mobile applications with a focus on accessibility and performance.",
-    skills: ["UI/UX Design", "Mobile Design", "Accessibility", "Client Management"],
+    period: "Sept 2022 - Jun 2023",
+    role: "Junior Architect",
+    company: "Stapit Architects, Hyderabad, India",
+    description:[
+      "•  Assisted in preparing design and construction drawings in AutoCAD for residential, commercial, and institutional projects.",
+      "•  Reviewed building codes and compliance requirements to ensure projects adhered to local regulations.",
+      "•  Supported the preparation of tender documents, specifications, and contract drawings for bidding processes.",
+      "•  Prepared cost estimates for materials and labour in collaboration with senior architects.",
+      "•  Conducted site visits to review construction progress and resolve design/technical issues.",
+      "•  Coordinated with engineers, contractors, and consultants to ensure adherence to project timelines and specifications.",
+    ],
+    // skills: ["UI/UX Design", "Mobile Design", "Accessibility", "Client Management"],
+  },
+  {
+    period: "Mar 2022 - Aug 2022",
+    role: "Intern Architect",
+    company: "Stapit Architects, Hyderabad, India",
+    description:[
+      "•  Assisted senior architects in the development of architectural plans and visual representations for various projects.",
+      "•  Contributed to the design and presentation of client-facing materials.",      "•  Gained practical experience in applying design principles to real-world projects, including reading and understanding architectural plans and layouts.",
+      "•  Prepared architectural and environmental models using SketchUp and AutoCAD",
+    ],
+    // skills: ["UI/UX Design", "Mobile Design", "Accessibility", "Client Management"],
   },
 ]
 
 const education = [
   {
-    period: "2016 — 2020",
-    degree: "Bachelor of Architecture",
-    school: "University of Design",
+    period: "2023 - 2025",
+    degree: "Web and Mobile App Design",
+    school: "Langara College",
     description:
-      "Focused on sustainable design, spatial planning, and digital fabrication. Graduated Magna Cum Laude with a thesis on adaptive reuse in urban environments.",
+      " ",
   },
   {
-    period: "2021",
-    degree: "UX Design Certificate",
-    school: "Google UX Design Professional Certificate",
+    period: "2017 - 2022",
+    degree: "Bachelor of Architecture",
+    school: "Sri Venkateshwara College of Architecture",
     description:
-      "Comprehensive program covering user research, wireframing, prototyping, and usability testing methodologies.",
+      " ",
   },
 ]
 
@@ -118,16 +138,16 @@ export default function AboutPage() {
               <div>
                 <h3 className="text-lg sm:text-xl font-medium text-foreground mb-3 sm:mb-4">Design</h3>
                 <div className="flex flex-wrap gap-2">
-                  {skills.design.map((skill) => (
+                  {skills.designSkills.map((skill) => (
                     <SkillBadge key={skill.name} skill={skill.name} level={skill.level} />
                   ))}
                 </div>
               </div>
 
               <div>
-                <h3 className="text-lg sm:text-xl font-medium text-foreground mb-3 sm:mb-4">Development</h3>
+                <h3 className="text-lg sm:text-xl font-medium text-foreground mb-3 sm:mb-4">Design Tools</h3>
                 <div className="flex flex-wrap gap-2">
-                  {skills.development.map((skill) => (
+                  {skills.designTools.map((skill) => (
                     <SkillBadge key={skill.name} skill={skill.name} level={skill.level} />
                   ))}
                 </div>
@@ -170,14 +190,21 @@ export default function AboutPage() {
                     <span className="text-sm text-muted-foreground">{job.period}</span>
                   </div>
                   <p className="text-base sm:text-lg text-primary font-medium">{job.company}</p>
-                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{job.description}</p>
-                  <div className="flex flex-wrap gap-2 pt-2">
+                  <div className="space-y-0">
+                    {job.description.map((line, lineIndex) => (
+                      <p key={lineIndex} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+                  {/* Skills under Experience */}
+                  {/* <div className="flex flex-wrap gap-2 pt-2">
                     {job.skills.map((skill) => (
                       <span key={skill} className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded">
                         {skill}
                       </span>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}

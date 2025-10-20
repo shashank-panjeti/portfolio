@@ -30,7 +30,7 @@ export default function ContactPage() {
 
             <div className="grid gap-8 sm:gap-12 max-w-3xl mx-auto">
               {/* Contact Form */}
-              <Card className="backdrop-blur-sm bg-background/90 border-border/50">
+              {/* <Card className="backdrop-blur-sm bg-background/90 border-border/50">
                 <CardContent className="p-6 sm:p-8">
                   <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Send a Message</h2>
                   <form className="space-y-4 sm:space-y-6">
@@ -74,7 +74,7 @@ export default function ContactPage() {
                     </Button>
                   </form>
                 </CardContent>
-              </Card>
+              </Card> */}
 
               {/* Contact Information */}
               <Card className="backdrop-blur-sm bg-background/90 border-border/50">
@@ -87,7 +87,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <p className="font-medium">Email</p>
-                        <p className="text-muted-foreground">hello@yourname.com</p>
+                        <p className="text-muted-foreground">shashankpanjeti@gmail.com</p>
                       </div>
                     </div>
 
@@ -97,7 +97,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <p className="font-medium">Phone</p>
-                        <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                        <p className="text-muted-foreground">+1 (672) 338-2305</p>
                       </div>
                     </div>
 
@@ -107,7 +107,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <p className="font-medium">Location</p>
-                        <p className="text-muted-foreground">San Francisco, CA</p>
+                        <p className="text-muted-foreground">Greater Vancouver, BC</p>
                       </div>
                     </div>
                   </div>
@@ -122,20 +122,43 @@ export default function ContactPage() {
                     content.
                   </p>
                   <div className="flex gap-4">
-                    <Button variant="outline" size="sm">
-                      LinkedIn
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      Dribbble
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      Instagram
-                    </Button>
+                    <a 
+                    href="https://www.linkedin.com/in/shashankpanjeti"
+                    target="_blank" 
+                    rel="noopener noreferrer">
+                      <Button variant="outline" size="sm">
+                        LinkedIn
+                      </Button>
+                    </a>
+                    {/* <a 
+                    href="https://www.linkedin.com/in/shashankpanjeti"
+                    target="_blank" 
+                    rel="noopener noreferrer">
+                      <Button variant="outline" size="sm">
+                        Dribbble
+                      </Button>
+                    </a> */}
+                    <a 
+                    href="https://www.linkedin.com/in/shashankpanjeti"
+                    target="_blank" 
+                    rel="noopener noreferrer">
+                      <Button variant="outline" size="sm">
+                        Behance
+                      </Button>
+                    </a>
+                    <a 
+                    href="https://www.instagram.com/shashu_73/"
+                    target="_blank" 
+                    rel="noopener noreferrer">
+                      <Button variant="outline" size="sm">
+                        Instagram
+                      </Button>
+                    </a>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="backdrop-blur-sm bg-background/90 border-border/50">
+              {/* <Card className="backdrop-blur-sm bg-background/90 border-border/50">
                 <CardContent className="p-8">
                   <h3 className="text-xl font-semibold mb-4">Response Time</h3>
                   <p className="text-muted-foreground">
@@ -143,7 +166,7 @@ export default function ContactPage() {
                     directly.
                   </p>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </div>
         </div>
