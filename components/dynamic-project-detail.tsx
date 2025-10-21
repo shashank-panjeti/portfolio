@@ -17,14 +17,19 @@ export function DynamicProjectDetail({ project }: DynamicProjectDetailProps) {
   const [isNavCentered, setIsNavCentered] = useState(false)
   const contentStartRef = useRef<HTMLDivElement>(null)
 
-  const heroSection = project.content?.find((section) => section.type === "hero")
+  const heroSection = project.content?.find((section) => section.type === "hero" || section.type === "interior-hero")
   const caseStudySections =
     project.content?.filter(
       (section): section is Extract<ContentSection, { type: "case-study-section" | "spotlight" }> =>
         section.type === "case-study-section" || section.type === "spotlight",
     ) || []
   const otherSections = project.content?.filter(
-    (section) => section.type !== "hero" && section.type !== "case-study-section" && section.type !== "spotlight",
+    (section) => 
+      section.type !== "hero" &&
+      section.type !== "interior-hero" &&
+      section.type !== "case-study-section" &&
+      section.type !== "interior-overview" &&
+      section.type !== "spotlight",
   )
 
   const hasCaseStudyNav = caseStudySections.length > 0 && project.category !== "interior"
@@ -156,7 +161,7 @@ export function DynamicProjectDetail({ project }: DynamicProjectDetailProps) {
       ) : (
         <div className="max-w-[1400px] mx-auto space-y-16">
           {project.content
-            .filter((section) => section.type !== "hero")
+            .filter((section) => section.type !== "hero" && section.type !== "interior-hero")
             .map((section, index) => (
               <ContentSectionRenderer key={index} section={section} project={project} />
             ))}
@@ -170,6 +175,10 @@ function ContentSectionRenderer({ section, project }: { section: ContentSection;
   switch (section.type) {
     case "hero":
       return <HeroSection section={section} />
+    case "interior-hero":
+      return <InteriorHeroSection section={section} />
+    case "interior-overview":
+      return <InteriorOverviewSection section={section} />
     case "case-study-section":
       return <CaseStudySection section={section} project={project} />
     case "spotlight":
@@ -240,6 +249,35 @@ function HeroSection({ section }: { section: Extract<ContentSection, { type: "he
         ) : null}
       </div>
     </section>
+  )
+}
+
+function InteriorHeroSection({ section }: { section: Extract<ContentSection, { type: "interior-hero" }> }) {
+  return (
+    <div className="relative w-full sm:h-[35vh] md:h-[50vh] lg:h-[65vh] min-h-[250px]  overflow-hidden">
+      <Image src={section.heroImage || "/placeholder.svg"} alt={section.title} fill className="w-full h-full object-cover object-center" priority />
+      {/* Dark overlay for text readability */}
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/00 to-black/40" /> */}
+
+      {/* Hero Content */}
+      <div className="absolute inset-0 flex flex-col justify-end max-w-[1400px] mx-auto w-full">
+        <div className="space-y-4 text-white bg-black/50 px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4">
+          <h1 className="text-xl md:text-3xl lg:text-4xl font-light m-0">{section.title}</h1>
+          <div className="inset-0 flex flex-row w-full justify-between items-baseline ">
+            <p className="text-md md:text-xl text-white/90">{section.subtitle}</p>
+
+            {/* Tags */}
+            <div className="hidden sm:flex flex-wrap gap-2 pt-2">
+              {section.tags.map((tag) => (
+                <span key={tag} className="px-3 py-1 text-sm bg-white/20 backdrop-blur-sm text-white rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -723,6 +761,59 @@ function ComparisonSection({ section }: { section: Extract<ContentSection, { typ
   return (
     <section id={section.id} className="scroll-mt-24">
       <InteriorComparison images={section.images} heading={section.heading} description={section.description} />
+    </section>
+  )
+}
+
+
+function InteriorOverviewSection({ section }: { section: Extract<ContentSection, { type: "interior-overview" }> }) {
+  return (
+    <section className="bg-background py-12 md:py-16">
+      <div className="max-w-[1400px] mx-auto">
+        <h2 className="text-2xl md:text-3xl font-light text-foreground mb-8">{section.heading || "Project Overview"}</h2>
+
+        <div className="gap-y-4">
+          {/* Project Details Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+            <div className="flex gap-4">
+              <span className="text-muted-foreground min-w-[140px]">Project Name</span>
+              {section.projectName}
+            </div>
+
+            <div className="flex gap-4">
+              <span className="text-muted-foreground min-w-[140px]">Location</span>
+              {section.location}
+            </div>
+
+            <div className="flex gap-4">
+              <span className="text-muted-foreground min-w-[140px]">Project type</span>
+              {section.projectType}
+            </div>
+
+            <div className="flex gap-4">
+              <span className="text-muted-foreground min-w-[140px]">Work Duration</span>
+              {section.workDuration}
+            </div>
+
+            <div className="flex gap-4 md:col-span-2">
+              <span className="text-muted-foreground min-w-[140px] shrink-0">Software Used</span>
+              {section.softwareUsed}
+            </div>
+          </div>
+
+          {/* My Contribution */}
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <span className="text-muted-foreground min-w-[140px] shrink-0">My Contribution</span>
+            <div className="space-y-4">
+              {section.contribution.map((paragraph, index) => (
+                <p key={index} className="text-foreground leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }

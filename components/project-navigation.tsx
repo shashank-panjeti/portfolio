@@ -22,7 +22,10 @@ export function ProjectNavigation({ currentProjectId }: ProjectNavigationProps) 
             <Link href={`/projects/${prevProject.id}`}>
               <ArrowLeft className="h-4 w-4" />
               <div className="text-left">
-                <div className="text-xs text-muted-foreground">Previous</div>
+                <div className="flex flex-row gap-2">
+                  <div className="text-xs text-muted-foreground">Previous</div>
+                  <div className="text-xs text-muted-foreground capitalize">{prevProject.category} Project</div>
+                </div>
                 <div className="text-sm font-medium">{prevProject.title}</div>
               </div>
             </Link>
@@ -39,7 +42,10 @@ export function ProjectNavigation({ currentProjectId }: ProjectNavigationProps) 
           <Button asChild variant="ghost" className="gap-2">
             <Link href={`/projects/${nextProject.id}`}>
               <div className="text-right">
-                <div className="text-xs text-muted-foreground">Next</div>
+                <div className="flex flex-row-reverse gap-2">
+                  <div className="text-xs text-muted-foreground">Next</div>
+                  <div className="text-xs text-muted-foreground capitalize">{nextProject.category} Project</div>
+                </div>
                 <div className="text-sm font-medium">{nextProject.title}</div>
               </div>
               <ArrowRight className="h-4 w-4" />

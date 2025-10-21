@@ -61,7 +61,7 @@ export default function JumbleText() {
   }, [])
 
   return (
-    <p id="jumbleText" className="text-6xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl tracking-wider pb-16">
+    <p id="jumbleText" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl tracking-wider pb-16">
       {text}
     </p>
   )

@@ -6,6 +6,7 @@ import type { Metadata } from "next"
 import { Lora } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navigation } from "@/components/navigation"
+import { Footer } from "@/components/footer"
 import { Suspense } from "react"
 import "./globals.css"
 import LiquidEther from "@/components/liquid-ether"
@@ -30,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans ${lora.variable}`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <div className="fixed inset-0 z-0 pointer-events-none">
             <LiquidEther
               colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
@@ -53,6 +54,7 @@ export default function RootLayout({
           <Suspense fallback={null}>
             <Navigation />
             <main className="pt-16 relative z-10">{children}</main>
+            <Footer />
           </Suspense>
         </ThemeProvider>
         {/* <Analytics /> */}

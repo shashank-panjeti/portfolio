@@ -223,9 +223,18 @@ export default function Orb({
     const rotationSpeed = 0.3
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (!container) return
+
       const rect = container.getBoundingClientRect()
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
+      
+      // Check if mouse is within the container bounds
+      if (x < 0 || x > rect.width || y < 0 || y > rect.height) {
+        targetHover = 0
+        return
+      }
+
       const width = rect.width
       const height = rect.height
       const size = Math.min(width, height)
@@ -241,12 +250,7 @@ export default function Orb({
       }
     }
 
-    const handleMouseLeave = () => {
-      targetHover = 0
-    }
-
-    container.addEventListener("mousemove", handleMouseMove)
-    container.addEventListener("mouseleave", handleMouseLeave)
+    window.addEventListener("mousemove", handleMouseMove)
 
     let rafId: number
     const update = (t: number) => {
@@ -273,7 +277,6 @@ export default function Orb({
       cancelAnimationFrame(rafId)
       window.removeEventListener("resize", resize)
       container.removeEventListener("mousemove", handleMouseMove)
-      container.removeEventListener("mouseleave", handleMouseLeave)
       container.removeChild(gl.canvas)
       gl.getExtension("WEBGL_lose_context")?.loseContext()
     }

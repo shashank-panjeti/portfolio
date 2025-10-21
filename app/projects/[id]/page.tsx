@@ -5,6 +5,7 @@ import { UXUICaseStudy } from "@/components/ux-ui-case-study"
 import { ArchitectureProject } from "@/components/architecture-project"
 import { PhotographyProject } from "@/components/photography-project"
 import { DynamicProjectDetail } from "@/components/dynamic-project-detail"
+import { ScrollToTop } from "@/components/scroll-to-top"
 
 interface ProjectPageProps {
   params: Promise<{ id: string }>
@@ -45,6 +46,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {renderProjectContent()}
         <ProjectNavigation currentProjectId={project.id} />
       </div>
+
+      <ScrollToTop />
     </div>
   )
 }

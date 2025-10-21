@@ -151,4 +151,28 @@
   p {
     @apply text-pretty leading-relaxed;
   }
+  
+  /* Responsive font sizes for better mobile readability */
+  @media (max-width: 480px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 850px) {
+    html {
+      font-size: 15px;
+    }
+  }
+
+  @media (min-width: 851px) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  /* Hide navigation when lightbox is open */
+  body.lightbox-open nav {
+    display: none !important;
+  }
 }
