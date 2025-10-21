@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 
 export default function ContactPage() {
+  const year = new Date().getFullYear()
   return (
     <div className="min-h-screen relative overflow-hidden">
       <div className="fixed inset-0 w-full h-full pointer-events-none">
@@ -155,6 +156,15 @@ export default function ContactPage() {
                       </Button>
                     </a>
                   </div>
+                </CardContent>
+              </Card>
+
+              {/* Credit line */}
+              <Card className="backdrop-blur-sm bg-background/90 border-border/50">
+                <CardContent className="">
+                  <p className="text-xs text-muted-foreground">
+                    Designed and Developed by Shashank Panjeti © {year}. All Rights Reserved.
+                  </p>
                 </CardContent>
               </Card>
 
