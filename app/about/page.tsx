@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { SkillBadge } from "@/components/skill-badge"
-import { DownloadResume } from "@/components/download-resume"
+import { DownloadResume } from "@/components/download-documents"
 
 const skills = {
   designSkills: [
@@ -33,8 +33,8 @@ const skills = {
 const experience = [
   {
     period: "Sept 2024 - Present",
-    role: "Senior Designer & Developer",
-    company: "Freelance",
+    role: "Marker (Design)",
+    company: "Langara College, Vancouver, Canada",
     description:[
       "•  Evaluated student projects in 3D design, UI/UX design, and prototyping with attention to technical accuracy and design feasibility.",
       "•  Provided feedback on workflow, design clarity, and construction logic, improving students’ practical design understanding.",
@@ -109,14 +109,10 @@ export default function AboutPage() {
               <div className="space-y-4">
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-foreground text-balance">About Me</h1>
                 <p className="text-base sm:text-lg text-muted-foreground leading-relaxed text-pretty">
-                  I'm a multidisciplinary designer and developer passionate about creating meaningful digital
-                  experiences. With a background in architecture and a love for technology, I bring a unique perspective
-                  to every project.
+                  I'm a multidisciplinary designer based in Vancouver. I'm passionate about creating meaningful digital experiences. With a background in architecture and a love for technology, I bring a unique perspective to every project.
                 </p>
                 <p className="text-base sm:text-lg text-muted-foreground leading-relaxed text-pretty">
-                  My work spans across UX/UI design, architectural visualization, interior design, 3D modeling, and
-                  photography. I believe in the power of good design to solve complex problems and create positive
-                  impact.
+                  My work spans across UX/UI design, architectural visualization, interior design, 3D modeling, and photography. I believe in the power of good design to solve complex problems and create positive impact.
                 </p>
               </div>
               <DownloadResume />

@@ -71,7 +71,7 @@ export function ImageAccordion({ images }: ImageAccordionProps) {
                   className={`absolute bottom-2 sm:bottom-4 text-black text-center transition-all duration-800 z-10 pointer-events-none scale-y-[1.25] ${ isHovered ? "left-2 sm:left-4 right-2 sm:right-4" : "left-1/2 -translate-x-1/2"
                   } ${showCaption ? "opacity-100" : "opacity-0"}`}
                 >
-                  <p className="text-xs sm:text-sm font-medium bg-white/10 px-2 sm:px-3 py-1 sm:py-2 rounded-lg backdrop-blur-sm whitespace-nowrap">
+                  <p className="text-xs sm:text-sm font-medium bg-white/40 px-2 sm:px-3 py-1 sm:py-2 rounded-lg backdrop-blur-sm whitespace-nowrap">
                     {image.caption}
                   </p>
                 </div>

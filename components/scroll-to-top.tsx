@@ -34,16 +34,18 @@ export function ScrollToTop() {
       className={[
         "fixed z-70 bottom-6",
         "h-12 w-12 rounded-full",
-        "flex justify-center", 
-        "bg-primary/50 text-primary-foreground shadow-lg",
-        "hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary/40",
+        "flex justify-center",
+        "items-center", 
+        "bg-foreground/20 text-background/50 shadow-lg",
+        "hover:bg-foreground/60 hover:text-background hover:scale-[1.15] hover:backdrop-blur-sm hover:outline-1 hover:outline-background/85",
         "transition-all duration-300",
         show ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-2 pointer-events-none",
         // small nudge so it doesn't clip on ultra-small screens
         "md:bottom-8",
       ].join(" ")}
     >
-      <div className="text-xs w-10 flex  content-center items-center justify-center">Scroll To Top</div>
+      {/* <div className="text-xs w-10 flex  content-center items-center justify-center">Scroll To Top</div> */}
+      <ChevronUp className="h-6 w-6 mx-auto hover:h-7 hover:w-7" />
     </button>
   )
 }

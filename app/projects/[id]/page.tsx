@@ -41,7 +41,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="min-h-screen pt-20">
       <div className="container mx-auto px-6">
         {renderProjectContent()}
         <ProjectNavigation currentProjectId={project.id} />
