@@ -10,8 +10,32 @@ const MORPH_SPEED = 0.005
 const WAIT_TIME = 2000
 const SCATTER_STRENGTH = 5.0
 const POINT_SIZE = 0.005
-const POINT_COLOR = 0xaaaaaa
+// const POINT_COLOR = 0x777777
 const CAMERA_DISTANCE = 2.5
+
+
+// Using Theme Colors
+  function useThemedThreeColor(lightHex = "#2c2c2c", darkHex = "#dedede") {
+  const [color, setColor] = useState(new THREE.Color(lightHex))
+
+  useEffect(() => {
+    const pick = () =>
+      new THREE.Color(
+        document.documentElement.classList.contains("dark") ? darkHex : lightHex
+      )
+
+    setColor(pick())
+
+    // update whenever `.dark` class flips
+    const obs = new MutationObserver(() => setColor(pick()))
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] })
+
+    return () => obs.disconnect()
+  }, [lightHex, darkHex])
+
+  return color
+}
+
 
 const CUSTOM_MODEL_PATHS = [
   // Uncomment and add your model paths here:
@@ -55,7 +79,7 @@ function useCustomModels(modelPaths: string[]) {
             loader.load(path, resolve, undefined, reject)
           })
 
-          console.log("[v0] Loaded model:", path)
+          console.log("Loaded model:", path)
 
           // Extract all meshes from the GLTF scene
           gltf.scene.traverse((child: any) => {
@@ -70,13 +94,13 @@ function useCustomModels(modelPaths: string[]) {
             }
           })
         } catch (error) {
-          console.log("[v0] Failed to load model:", path, error)
+          console.log("Failed to load model:", path, error)
         }
       }
 
       if (loadedGeometries.length > 0) {
         setModels(loadedGeometries)
-        console.log("[v0] Successfully loaded", loadedGeometries.length, "custom geometries")
+        console.log("Successfully loaded", loadedGeometries.length, "custom geometries")
       }
     }
 
@@ -87,6 +111,7 @@ function useCustomModels(modelPaths: string[]) {
 }
 
 function MorphingParticles({ customModelPaths }: { customModelPaths: string[] }) {
+  const POINT_COLOR = useThemedThreeColor("#2c2c2c", "#dedede")
   const pointsRef = useRef<THREE.Points>(null!)
   const { camera } = useThree()
   const [isMobile, setIsMobile] = useState(false)
@@ -119,7 +144,7 @@ function MorphingParticles({ customModelPaths }: { customModelPaths: string[] })
     const proceduralGeoms = createProceduralGeometries()
     const allGeoms = [...proceduralGeoms, ...customGeometries]
 
-    console.log("[v0] Total geometries in morph cycle:", allGeoms.length)
+    console.log(" Total geometries in morph cycle:", allGeoms.length)
 
     const maxCount = Math.max(...allGeoms.map((g) => g.attributes.position.count))
 
@@ -246,7 +271,8 @@ function MorphingParticles({ customModelPaths }: { customModelPaths: string[] })
 
   return (
     <points ref={pointsRef} geometry={geometry}>
-      <pointsMaterial size={POINT_SIZE} color={POINT_COLOR} />
+      {/* Point Color with CSS */}
+      <pointsMaterial size={POINT_SIZE} color={POINT_COLOR} /> 
     </points>
   )
 }

@@ -9,11 +9,11 @@ export default function ContactPage() {
   const year = new Date().getFullYear()
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <div className="fixed inset-0 w-full h-full pointer-events-none">
+      <div className="fixed inset-0 w-full h-full pointer-events-none overflow-auto">
         <ParticleMorphAnimation />
       </div>
 
-      <div className="flex flex-col lg:flex-row min-h-screen relative">
+      <div className="flex flex-col mt-60 sm:mt-0 lg:flex-row min-h-screen relative">
         {/* Right Half: Contact Content (Desktop/Tablet) */}
         {/* Bottom: Content (Mobile) */}
         <div className="relative w-full lg:w-1/2 lg:ml-[50%] z-10 py-12 sm:py-20">
@@ -31,54 +31,11 @@ export default function ContactPage() {
 
             <div className="grid gap-8 sm:gap-12 max-w-3xl mx-auto">
               {/* Contact Form */}
-              {/* <Card className="backdrop-blur-sm bg-background/90 border-border/50">
-                <CardContent className="p-6 sm:p-8">
-                  <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Send a Message</h2>
-                  <form className="space-y-4 sm:space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium mb-2">
-                          Name
-                        </label>
-                        <Input id="name" placeholder="Your name" className="bg-background/50" />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium mb-2">
-                          Email
-                        </label>
-                        <Input id="email" type="email" placeholder="your@email.com" className="bg-background/50" />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                        Subject
-                      </label>
-                      <Input id="subject" placeholder="Project inquiry" className="bg-background/50" />
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium mb-2">
-                        Message
-                      </label>
-                      <Textarea
-                        id="message"
-                        placeholder="Tell me about your project..."
-                        rows={6}
-                        className="bg-background/50"
-                      />
-                    </div>
-
-                    <Button type="submit" className="w-full" size="lg">
-                      <Send className="w-4 h-4 mr-2" />
-                      Send Message
-                    </Button>
-                  </form>
-                </CardContent>
+              {/* <Card">
               </Card> */}
 
               {/* Contact Information */}
-              <Card className="backdrop-blur-sm bg-background/90 border-border/50">
+              <Card className="backdrop-blur-sm bg-background/60 border-border/50">
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-semibold mb-6">Get in Touch</h2>
                   <div className="space-y-6">
@@ -115,7 +72,7 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              <Card className="backdrop-blur-sm bg-background/90 border-border/50">
+              <Card className="backdrop-blur-sm bg-background/60 border-border/50">
                 <CardContent className="p-8">
                   <h3 className="text-xl font-semibold mb-4">Let's Connect</h3>
                   <p className="text-muted-foreground mb-6">
@@ -140,7 +97,7 @@ export default function ContactPage() {
                       </Button>
                     </a> */}
                     <a 
-                    href="https://www.linkedin.com/in/shashankpanjeti"
+                    href="https://www.behance.net/shashankpanjeti"
                     target="_blank" 
                     rel="noopener noreferrer">
                       <Button variant="outline" size="sm">
@@ -160,7 +117,7 @@ export default function ContactPage() {
               </Card>
 
               {/* Credit line */}
-              <Card className="backdrop-blur-sm bg-background/90 border-border/50">
+              <Card className="backdrop-blur-sm bg-background/60 border-border/50">
                 <CardContent className="">
                   <p className="text-xs text-muted-foreground">
                     Designed and Developed by Shashank Panjeti © {year}. All Rights Reserved.
@@ -184,3 +141,58 @@ export default function ContactPage() {
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+{/* Contact Form */}
+  {/* <Card className="backdrop-blur-sm bg-background/90 border-border/50">
+    <CardContent className="p-6 sm:p-8">
+      <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Send a Message</h2>
+      <form className="space-y-4 sm:space-y-6">
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium mb-2">
+              Name
+            </label>
+            <Input id="name" placeholder="Your name" className="bg-background/50" />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-2">
+              Email
+            </label>
+            <Input id="email" type="email" placeholder="your@email.com" className="bg-background/50" />
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="subject" className="block text-sm font-medium mb-2">
+            Subject
+          </label>
+          <Input id="subject" placeholder="Project inquiry" className="bg-background/50" />
+        </div>
+
+        <div>
+          <label htmlFor="message" className="block text-sm font-medium mb-2">
+            Message
+          </label>
+          <Textarea
+            id="message"
+            placeholder="Tell me about your project..."
+            rows={6}
+            className="bg-background/50"
+          />
+        </div>
+
+        <Button type="submit" className="w-full" size="lg">
+          <Send className="w-4 h-4 mr-2" />
+          Send Message
+        </Button>
+      </form>
+    </CardContent>
+  </Card> */}

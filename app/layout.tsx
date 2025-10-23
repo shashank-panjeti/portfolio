@@ -12,9 +12,8 @@ import "./globals.css"
 import LiquidEther from "@/components/liquid-ether"
 
 export const metadata: Metadata = {
-  title: "Portfolio - Designer & Developer",
-  description: "Creative portfolio showcasing UX/UI, Architecture, Interior Design, 3D work, and Photography",
-  generator: "v0.app",
+  title: "Design Portfolio - Shashank Panjeti",
+  description: "Portfolio showcasing UX/UI, Architecture, Interior Design, 3D work, and Photography",
 }
 
 const lora = Lora({

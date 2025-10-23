@@ -15,7 +15,8 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="min-h-[calc(100vh-68px)] flex items-center justify-center px-4  sm:px-6 lg:px-8 relative">
         <div className="absolute inset-0 flex items-center justify-center opacity-60">
-          <div className="absolute top-[-5%] left-[10%] opacity-30 w-full max-w-[300px] sm:max-w-md lg:max-w-3xl aspect-square pointer-event-none grayscale ">
+          {/* <div className="absolute top-[2%] left-[10%] sm:top-[2%] sm:left-[10%] opacity-30 w-full max-w-[300px] sm:max-w-md lg:max-w-3xl aspect-square pointer-event-none grayscale "> */}
+          <div className="absolute top-[15%] align-center sm:top-[2%] sm:left-[10%] opacity-30 w-full max-w-[300px] sm:max-w-md lg:max-w-3xl aspect-square pointer-event-none grayscale ">
             <Orb hue={270} hoverIntensity={1.8} rotateOnHover={true} forceHoverState={false} />
           </div>
         </div>
@@ -95,15 +96,13 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-6 lg:space-y-8">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-foreground">About</h2>
             <p className="text-base sm:text-md lg:text-lg text-muted-foreground leading-relaxed text-pretty">
-              I'm passionate about crafting accessible, pixel-perfect user interfaces that blend thoughtful design with
-              robust engineering. My favorite work lies at the intersection of design and development, creating
-              experiences that not only look great but are meticulously built for performance and usability.
+              I'm passionate about crafting accessible, pixel-perfect user interfaces that blend thoughtful design with robust engineering. My favorite work lies in design, creating experiences that not only look great but are meticulously built for performance and usability.
             </p>
-            <p className="text-base sm:text-md lg:text-lg text-muted-foreground leading-relaxed text-pretty">
-              Currently, I work across various settings — from advertising agencies and large corporations to start-ups
+            {/* <p className="text-base sm:text-md lg:text-lg text-muted-foreground leading-relaxed text-pretty">
+              Currently, I work across various settings  from advertising agencies and large corporations to start-ups
               and small digital product studios. I also released a comprehensive video course a few years ago, guiding
               learners through building modern web applications.
-            </p>
+            </p> */}
             <Button asChild variant="outline" className="mt-4 sm:mt-6 lg:mt-8 bg-transparent">
               <Link href="/about">More About Me</Link>
             </Button>
@@ -139,7 +138,7 @@ export default function HomePage() {
               </Button>
             </a> */}
             <a 
-            href="https://www.linkedin.com/in/shashankpanjeti"
+            href="https://www.behance.net/shashankpanjeti"
             target="_blank" 
             rel="noopener noreferrer">
               <Button variant="outline" size="sm">
