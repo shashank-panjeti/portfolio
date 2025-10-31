@@ -11,49 +11,50 @@ export default function HomePage() {
   const lastProject = featuredProjects[featuredProjects.length - 1]
 
   return (
+    
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="min-h-[calc(100vh-68px)] flex items-center justify-center px-4  sm:px-6 lg:px-8 relative">
+      <section className="min-h-150 flex items-center justify-center px-4  sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center opacity-60">
           {/* <div className="absolute top-[2%] left-[10%] sm:top-[2%] sm:left-[10%] opacity-30 w-full max-w-[300px] sm:max-w-md lg:max-w-3xl aspect-square pointer-event-none grayscale "> */}
-          <div className="absolute top-[15%] align-center sm:top-[2%] sm:left-[10%] opacity-30 w-full max-w-[300px] sm:max-w-md lg:max-w-3xl aspect-square pointer-event-none grayscale ">
+          <div className="absolute top-[4%] align-center sm:top-[0%] sm:left-[8%] opacity-30 w-full max-w-[290px] sm:max-w-[420px] lg:max-w-[600px] aspect-square pointer-event-none grayscale ">
             <Orb hue={270} hoverIntensity={1.8} rotateOnHover={true} forceHoverState={false} />
           </div>
         </div>
 
-        <div className="container mx-auto text-center space-y-4 sm:space-y-6 lg:space-y-8 relative z-10">
-          <div className="space-y-3 sm:space-y-4">
-            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-muted-foreground uppercase tracking-wider">Hi I'm</p>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light text-foreground text-balance">
-              SHASHANK PANJETI
-            </h1>
-            <JumbleText />
-            {/* <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed text-pretty">
-              While design is my primary focus, I regularly work with code, believing that understanding the technical
-              foundations leads to more thoughtful designs.
-            </p> */}
-            {/* {featuredProjects[0] && (
-              <p className="text-sm text-muted-foreground pt-4">
-                Latest: {featuredProjects[0].title} • {featuredProjects[0].timeline}
-              </p>
-            )} */}
-          
-          </div>
-
-          {/* <div className="pt-6 sm:pt-8">
-            <p className="text-sm text-muted-foreground mb-4">Information</p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
-              <Button asChild variant="outline" className="w-full sm:w-auto bg-transparent">
-                <Link href="/about">About Me</Link>
-              </Button>
-              <Button asChild variant="outline" className="w-full sm:w-auto bg-transparent">
-                <Link href="/projects">View All Work</Link>
-              </Button>
-              <Button asChild variant="outline" className="w-full sm:w-auto bg-transparent">
-                <Link href="/contact">Get In Touch</Link>
-              </Button>
+        {/* <div className="container top-4 sm:top-0 mx-auto text-center space-y-4 sm:space-y-6 lg:space-y-8 relative z-10"> */}
+        <div className="container top-4 sm:top-0 mx-auto text-center relative z-10">
+          {/* <div className="space-y-1 sm:space-y-1"> */}
+          <div className="pb-12">
+            {/* <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-muted-foreground uppercase tracking-wider">Hi I'm</p> */}
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-muted-foreground uppercase tracking-wider">Hi I'm</p>
+            {/* <h1 className=" text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-foreground text-balance"> */}
+            <div>
+              <h1 className="peer text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-foreground transition-opacity duration-500 hover:opacity-0">
+                SHASHANK PANJETI
+              </h1>
+              {/* <h1 className="telugu pointer-events-none absolute inset-0
+              top-[-66%] sm:top-[-60%] md:top-[-52%] lg:top-[-49%] xl:top-[-45%] 
+              flex items-center justify-center 
+              text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 
+              font-light text-foreground opacity-0 
+              transition-opacity duration-500 peer-hover:opacity-100"> */}
+              <h1 className="telugu pointer-events-none absolute inset-0 
+              flex items-center justify-center leading-9
+              text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 
+              font-light text-foreground opacity-0 
+              transition-opacity duration-500 peer-hover:opacity-100">
+                శశాంక్ పంజేటి
+              </h1>
             </div>
-          </div> */}
+            <JumbleText />
+          </div>
+          <div className="max-w-[75%] mx-auto text-center space-y-4 sm:space-y-6 lg:space-y-8 grid grid-cols-1 sm:grid-cols-4 md:grid-cols-6">
+            <h3 className="text-left text-xl sm:text-2xl lg:text-3xl font-light text-foreground grid col-span-1">About</h3>
+            <p className="text-left text-md sm:text-lg lg:text-xl text-muted-foreground leading-relaxed text-pretty grid sm:col-span-3 md:col-span-5">
+              I'm passionate about crafting accessible, pixel-perfect user interfaces that blend thoughtful design with robust engineering. My favorite work lies in design, creating experiences that not only look great but are meticulously built for performance and usability.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -91,24 +92,24 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-muted/20 relative z-30">
+      {/*<section className="py-12 sm:py-16 lg:py-20 bg-muted/20 relative z-30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-6 lg:space-y-8">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-foreground">About</h2>
             <p className="text-base sm:text-md lg:text-lg text-muted-foreground leading-relaxed text-pretty">
               I'm passionate about crafting accessible, pixel-perfect user interfaces that blend thoughtful design with robust engineering. My favorite work lies in design, creating experiences that not only look great but are meticulously built for performance and usability.
             </p>
-            {/* <p className="text-base sm:text-md lg:text-lg text-muted-foreground leading-relaxed text-pretty">
+             <p className="text-base sm:text-md lg:text-lg text-muted-foreground leading-relaxed text-pretty">
               Currently, I work across various settings  from advertising agencies and large corporations to start-ups
               and small digital product studios. I also released a comprehensive video course a few years ago, guiding
               learners through building modern web applications.
-            </p> */}
+            </p> 
             <Button asChild variant="outline" className="mt-4 sm:mt-6 lg:mt-8 bg-transparent">
               <Link href="/about">More About Me</Link>
             </Button>
           </div>
         </div>
-      </section>
+      </section>*/}
 
       {/* Contact Section */}
       <section className="py-12 sm:py-16 lg:py-20 relative z-30">
@@ -120,40 +121,6 @@ export default function HomePage() {
           <Button asChild size="lg" className="w-full sm:w-auto">
             <Link href="/contact">Contact</Link>
           </Button>
-          <div className="flex gap-4 center justify-center">
-            <a 
-            href="https://www.linkedin.com/in/shashankpanjeti"
-            target="_blank" 
-            rel="noopener noreferrer">
-              <Button variant="outline" size="sm">
-                LinkedIn
-              </Button>
-            </a>
-            {/* <a 
-            href="https://www.linkedin.com/in/shashankpanjeti"
-            target="_blank" 
-            rel="noopener noreferrer">
-              <Button variant="outline" size="sm">
-                Dribbble
-              </Button>
-            </a> */}
-            <a 
-            href="https://www.behance.net/shashankpanjeti"
-            target="_blank" 
-            rel="noopener noreferrer">
-              <Button variant="outline" size="sm">
-                Behance
-              </Button>
-            </a>
-            <a 
-            href="https://www.instagram.com/shashu_73/"
-            target="_blank" 
-            rel="noopener noreferrer">
-              <Button variant="outline" size="sm">
-                Instagram
-              </Button>
-            </a>
-          </div>
         </div>
       </section>
     </div>

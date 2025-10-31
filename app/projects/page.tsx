@@ -7,13 +7,14 @@ import { PhotographyGallery } from "@/components/photography-gallery"
 import { projects } from "@/lib/project-data"
 
 export default function ProjectsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("ux-ui")
+  const [selectedCategory, setSelectedCategory] = useState("all")
 
   const filteredProjects = useMemo(() => {
     if (selectedCategory === "all") {
       return projects
     }
-    return projects.filter((project) => project.category === selectedCategory)
+    // return projects.filter((project) => project.category === selectedCategory)
+    return projects.filter((project) => project.category.includes(selectedCategory))
   }, [selectedCategory])
 
   const showPhotographyGallery = selectedCategory === "photography"

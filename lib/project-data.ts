@@ -849,7 +849,7 @@ export const projects: Project[] = [
         year: "2024",
         timeline: "Timeline - 12 Weeks",
         team: "5 Designers and 4 Developers",
-        modelPath: "/models/projects/togathr-home-desktop-model.glb",
+        modelPath: "/ux-ui-gnw/gnw-laptop-model.glb",
       },
       {
         type: "case-study-section",
@@ -1101,300 +1101,391 @@ export const projects: Project[] = [
       },
     ],
   },
-   {
-    id: "atdd-webapp",
-    title: "Anytime Dock and Door",
-    category: "ux-ui",
-    description: "",
-    timeline: "Timeline - 12 Weeks",
+
+
+
+
+
+      {
+    id: "wesley-chapel",
+    title: "Wesley Chapel Residence",
+    category: "3d",
+    description: "Modern luxury interior design with contemporary aesthetics",
+    timeline: "Timeline - 8 Days",
     year: "2024",
-    tags: ["UX/UI Design", "Event Planning", "Research", "Branding", "Web"],
-    image: "/ux-ui-atdd/atdd-cover-photo.png",
-    modelPath: "/models/projects/togathr-home-desktop-model.glb",
+    tags: ["Interior Design", "Residential", "Modern", "Luxury"],
+    image: "/interior-wesleychappel/9.1imp.jpg",
     featured: true,
     content: [
       {
-        type: "hero",
-        title: "Anytime Dock and Door",
-        subtitle: "",
-        description: "",
-        tags: ["UX/UI Design", "Accessibility", "Research", "Branding", "Mobile"],
+        type: "interior-hero",
+        title: "Wesley Chapel Residence",
+        subtitle: "3D Rendering Project - Architecture",
+        heroImage: "/interior-wesleychappel/9.1imp.jpg",
+        tags: ["Interior Design", "Residential", "Modern", "Luxury"],
+        timeline: "Timeline - 8 Days",
         year: "2024",
-        timeline: "Timeline - 12 Weeks",
-        modelPath: "/models/projects/togathr-home-desktop-model.glb",
+      },
+      {
+        type: "interior-overview",
+        heading: "Project Overview",
+        projectName: "Singh Residence",
+        location: "Wesley Chapel, Florida, US",
+        projectType: "Residential",
+        workDuration: "8 days",
+        softwareUsed: "SketchUp, Lumion, Photoshop, Aftereffects",
+        contribution: [
+          "I was provided with a comprehensive set of architectural construction drawings by the project's real estate developer. My primary responsibility was to interpret these technical documents and translate them into photorealistic architectural visualizations that accurately reflect the design intent.",
+          "The process began with an in-depth review of the architectural, structural, and interior detailing to ensure precision in spatial proportions and materiality. Using SketchUp, I developed a detailed 3D model that captured the architectural language and volumetric articulation of the structure. To achieve real-time rendering performance without compromising quality, the model was seamlessly imported into Lumion.",
+          "A curated selection of physically-based rendering (PBR) materials was applied, with careful consideration of surface properties such as roughness, reflectivity, and albedo, to align with both the visual style and material specifications indicated in the construction documents.",
+          "To further enhance the realism, I exported multiple render passes including lighting maps, reflection/specular maps, and shadow overlays from Lumion. These were composited and refined in Adobe Photoshop, allowing for greater control over atmospheric conditions, depth, and photorealistic enhancement.",
+          "The final visualizations are not just renders. They are a visual narrative that communicates the project's design ethos, spatial qualities, and material textures with clarity and realism.",
+        ],
+      },
+      {
+        type: "comparison",
+        id: "comparison",
+        heading: "Design Evolution",
+        description: "Explore the transformation of key spaces through our interactive comparison view.",
+        images: [
+          { src: "/interior-wesleychappel/Autocad.png", alt: "2d-drawing-autocad", caption: "2d Drawing" },
+          { src: "/interior-wesleychappel/Sketchup Model.png", alt: "3d-model-wireframe", caption: "3d Model" },
+          { src: "/interior-wesleychappel/Lumion.png", alt: "real-time-render", caption: "Render" },
+          { src: "/interior-wesleychappel/final.png", alt: "final-image", caption: "Final Image" },
+        ],
       },
       {
         type: "case-study-section",
-        id: "spark",
-        navLabel: "Spark",
-        navFullLabel: "Spark (Project Overview)",
-        heading: "Project Overview",
-        // content:
-        //   "ToGathr is a web platform that centralizes every aspect of event planning, vendors and venues, guest RSVPs, budget tracking, and team collaboration and supported by an AI assistant that jump-starts tasks and keeps work moving. The product was delivered in 12 weeks by a cross-functional team (5 designers, 4 developers) operating in an Agile workflow.",
-        image: {
-          src: "/ux-ui-atdd/atdd-hero-photo.png",
-          alt: "Anytime Dock and Door app overview",
-          position: "below",
-        },
+        id: "gallery",
+        navLabel: "Gallery",
+        navFullLabel: "Gallery (Project Images)",
+        heading: "Project Gallery",
+        blocks: [
+          {
+            content:
+              "Explore the complete transformation of this modern residence through our curated gallery of interior spaces.",
+            images: [
+              { src: "/interior-wesleychappel/1.1.jpg", alt: "Exterior Elevation 1", caption: "Exterior Elevation 1" },
+              { src: "/interior-wesleychappel/2.1.jpg", alt: "Exterior Elevation 2", caption: "Exterior Elevation 2" },
+              { src: "/interior-wesleychappel/3.1.jpg", alt: "Swimming Pool", caption: "Swimming Pool" },
+              { src: "/interior-wesleychappel/4.1.jpg", alt: "Swimming Pool", caption: "Swimming Pool" },
+              // { src: "/interior-wesleychappel/5.1.jpg", alt: "Aeriel View", caption: "Aeriel View" },
+              { src: "/interior-wesleychappel/6.1.jpg", alt: "Garden", caption: "Garden" },
+              { src: "/interior-wesleychappel/7.1.jpg", alt: "Back-yard Seating", caption: "Back-yard Seating" },
+              { src: "/interior-wesleychappel/8.1.jpg", alt: "Elevation with Fountain", caption: "Elevation with Fountain" },
+              { src: "/interior-wesleychappel/9.1imp.jpg", alt: "Front Elevation", caption: "Front Elevation" },
+              { src: "/interior-wesleychappel/10.1.jpg", alt: "Exterior Elevation 3", caption: "Exterior Elevation 3" },
+              { src: "/interior-wesleychappel/11.1.jpg", alt: "Exterior Elevation 4", caption: "Exterior Elevation 4" },
+              { src: "/interior-wesleychappel/12.1.jpg", alt: "Aeriel View", caption: "Aeriel View" },
+              { src: "/interior-wesleychappel/13.1.jpg", alt: "Patio", caption: "Patio" },
+
+            ],
+            imageLayout: "grid-4",
+          },
+        ],
       },
-    //   {
-    //     type: "case-study-section",
-    //     id: "struggle",
-    //     navLabel: "Struggle",
-    //     navFullLabel: "Struggle (The Problem)",
-    //     heading: "The Problem",
-    //     content:
-    //       "Planning even a small event is fragmented: people juggle separate tools for budgets, guest lists, vendor search, and communication, often relying on unverified reviews or word of mouth. This creates duplication, missed details, and decision fatigue. ToGathr addresses the fragmentation with a single, organized workspace.",
-    //     image: {
-    //       src: "/ux-ui-togathr/togathr-problem.png",
-    //       alt: "ToGathr Problem identification",
-    //       position: "below",
-    //     },
-    //   },
-    //   {
-    //     type: "case-study-section",
-    //     id: "scan",
-    //     navLabel: "Scan",
-    //     navFullLabel: "Scan (Research & Insights)",
-    //     heading: "Research & Insights",
-    //     blocks: [
-    //       {
-    //         subheading: ["Primary Research: User Interviews and Personas"],
-    //         content: [
-    //           "To ground ToGathr in real planning needs, we paired competitor analysis (Eventbrite, Zola, Cvent) with primary interviews of individual planners and coordinators, then synthesized insights through personas, card sorting, and user-flow mapping.",
-    //           "This mixed-methods approach clarified pain points.",
-    //         ],
-    //       },
-    //       { 
-    //         subheading: ["Key Insights"],
-    //         content: [
-    //           "•  Tool fragmentation. Planners juggle separate apps for vendors, budgets, RSVPs, and communication. Often creating duplicate work, missed details, and decision fatigue.",
-    //           "•  Trust gap in vendors. Reliance on word-of-mouth and inconsistent reviews makes it hard to compare options or validate quality against the event budget.",
-    //           "•  Coordination friction. Guest management and task handoffs often break down, slowing progress and causing errors.",
-    //           "•  Budget blindness. Costs aren’t visible at decision time, leading to overages and last-minute compromises.",
-    //           "These findings shaped ToGathr’s unified dashboard, verified vendor model, budget-aware flows, simplified navigation (persistent left sidebar, clear confirmations), and an AI assistant that generates starter task lists and nudges next steps.",
-    //         ],
-    //         images: [
-    //           {
-    //             src: "/ux-ui-togathr/togathr-user-persona-01.png",
-    //             alt: "ToGathr User Persona 01",
-    //           },
-    //           {
-    //             src: "/ux-ui-togathr/togathr-user-persona-02.png",
-    //             alt: "ToGathr User Persona 02",
-    //           },
-    //         ],
-    //       },
-    //       {
-    //         subheading: ["Secondary Research: Competitor Analysis"],
-    //         content: [
-    //           "This comparison shows that ToGathr is the only platform to unify the full planning workflow. Competing tools tend to cover only parts of the journey and lack integrated collaboration or AI support. As a result, ToGathr not only streamlines execution end-to-end but also improves planning quality, confidence, and on-time delivery.",
-    //         ],
-    //         image: {
-    //           src: "/ux-ui-togathr/togathr-competitor-analysis.png",
-    //           alt: "ToGathr Competitor Analysis",
-    //           position: "below",
-    //         },
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     type: "case-study-section",
-    //     id: "scope",
-    //     navLabel: "Scope",
-    //     navFullLabel: "Scope (Solution Definition)",
-    //     heading: "Solution Definition",
-    //     blocks: [
-    //       {
-    //         content: [
-    //           "The goal is to create a planning clear, collaborative, and data-driven platform for event organization/managment.",
-    //           "A unified dashboard that ties together vendor discovery.",
-    //         ],
-    //       },
-    //       {
-    //         subheading: ["Core Features"],
-    //         content: [
-    //           "•  Vendor Booking: Find, compare, and book verified vendors and venues in one place.",
-    //           "•  Budget Tracking: Set a budget, track spend by category, and see over/under in real time.",
-    //           "•  Manage Guests: Send invites, collect RSVPs, and handle check-ins without spreadsheets.",
-    //           "•  Collaboration Hub: Add teammates, assign tasks, and keep everyone aligned on one dashboard.",
-    //         ],
-    //         image: {
-    //           src: "/ux-ui-togathr/togathr-features.png",
-    //           alt: "Safemilo Features",
-    //           position: "below",
-    //         },
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     type: "case-study-section",
-    //     id: "sketch",
-    //     navLabel: "Sketch",
-    //     navFullLabel: "Sketch (Wireframes)",
-    //     heading: "Wireframes & Ideation",
-    //     blocks: [
-    //       {
-    //         subheading: ["Information Architecture"],
-    //         image: {
-    //           src: "/ux-ui-togathr/togathr-information-architecture.png",
-    //           alt: "Safemilo Information Architecture",
-    //           position: "below",
-    //         },
-    //       },
-    //       {
-    //         subheading: ["Wireframes"],
-    //         content:
-    //           "Mid-fidelity testing revealed that a collapsed side navigation significantly hurt feature discoverability. In the next iteration, we replaced the collapsible pattern with a persistent, always-open sidebar, which improved wayfinding and reduced navigation friction across core tasks.",
-    //         image: {
-    //           src: "/ux-ui-togathr/togathr-wireframes.png",
-    //           alt: "Safemilo Wireframes",
-    //           position: "below",
-    //         },
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     type: "case-study-section",
-    //     id: "style",
-    //     navLabel: "Style",
-    //     navFullLabel: "Style (Brand & UI Kit)",
-    //     heading: "Brand & UI Kit",
-    //     blocks: [
-    //       {
-    //         subheading: ["Color System"],
-    //         content: [
-    //           "We chose a palette that communicates clarity, momentum, and collaboration. A vivid Violet primary drives focus, with Mint accents for highlights and status.",
-    //           "High contrast supports readability across dashboards and reports, and the system is tested to meet WCAG AA, with AAA applied to critical alerts and confirmations.",
-    //           "The result is an accessible, energetic visual language that scales from personal parties to professional events.",
-    //         ],
-    //       },
-    //       {
-    //         subheading: ["Typography"],
-    //         content: [
-    //           "Meta Pro is used for headings to provide structure and personality, creating clear sectioning across dense planning screens.",
-    //           "Noto Sans handles body copy and UI labels thanks to its even rhythm and excellent legibility across sizes and devices. Together they keep tables, forms, and cards easy to scan while maintaining a confident, modern tone.",
-    //         ],
-    //         image: {
-    //           src: "/ux-ui-togathr/togathr-color-typography.png",
-    //           alt: "Safemilo Color & Typography",
-    //           position: "below",
-    //         },
-    //       },
-    //       {
-    //         subheading: ["Logo"],
-    //         content: [
-    //           "Our mark blends an abstract celebration motif with the T and G letterforms, signaling people coming together.",
-    //           "It remains recognizable in full color or monochrome, across small favicon sizes to large event screens, reinforcing ToGathr’s promise of simple, coordinated planning.",
-    //         ],
-    //         image: {
-    //           src: "/ux-ui-togathr/togathr-logo.png",
-    //           alt: "Safemilo Logo",
-    //           position: "below",
-    //         },
-    //       },
-    //       {
-    //         subheading: ["UI Kit"],
-    //         content: [
-    //           "The component library uses rounded cards, ample white space, and subtle dividers to reduce cognitive load. Flat, readable iconography and accessible button states ensure clarity under time pressure. Vendor cards are designed for quick comparison; budget and RSVP components include built-in chart styles for at-a-glance status. Interactive elements are sized for comfortable clicking and tap targets across breakpoints, resulting in an interface that feels organized, responsive, and effortless to use.",
-    //         ],
-    //         image: {
-    //           src: "/ux-ui-togathr/togathr-ui-kit.png",
-    //           alt: "Safemilo UI Kit",
-    //           position: "below",
-    //         },
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     type: "case-study-section",
-    //     id: "showcase",
-    //     navLabel: "Showcase",
-    //     navFullLabel: "Showcase (Final Solution)",
-    //     heading: "Final Solution",
-    //     blocks: [
-    //       {
-    //         subheading: ["Event Creation"],
-    //         content: [
-    //           "A guided, first-time flow that helps users set goals, dates, budgets, and priorities, making setup fast and approachable.",
-    //         ],
-    //         image: {
-    //           src: "/ux-ui-togathr/togathr-event-creation.png",
-    //           alt: "ToGathr Event Creation",
-    //           position: "below",
-    //         },
-    //       },
-    //       {
-    //         subheading: ["Event Overview Dashboard"],
-    //         content: [
-    //           "A single dashboard snapshot of budget, vendors, RSVPs, and tasks. An AI-generated task list based on event type gives users a head start.",
-    //         ],
-    //         image: {
-    //           src: "/ux-ui-togathr/togathr-overview-dashboard.png",
-    //           alt: "ToGathr Overview Dashboard",
-    //           position: "below",
-    //         },
-    //       },
-    //       {
-    //         subheading: ["Vendors"],
-    //         content: [
-    //           "Browse and compare verified options with clear pricing and packages. Save favorites and book directly from the dashboard.",
-    //         ],
-    //         image: {
-    //           src: "/ux-ui-togathr/togathr-vendors.png",
-    //           alt: "ToGathr Vendors",
-    //           position: "below",
-    //         },
-    //       },
-    //       {
-    //         subheading: ["Budget Tracking"],
-    //         content: ["Browse and compare verified options with clear pricing and packages. Save favorites and book directly from the dashboard."],
-    //         image: {
-    //           src: "/ux-ui-togathr/togathr-budget.png",
-    //           alt: "ToGathr Budget",
-    //           position: "below",
-    //         },
-    //       },
-    //       {
-    //         subheading: ["Collaboration"],
-    //         content: [
-    //           "Invite teammates to co-plan, assign tasks, and keep decisions in one place. Send invites, collect RSVPs, and manage check-ins without spreadsheets.",
-    //         ],
-    //         image: {
-    //           src: "/ux-ui-togathr/togathr-collaboration.png",
-    //           alt: "ToGathr Collaboration",
-    //           position: "below",
-    //         },
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     type: "case-study-section",
-    //     id: "step-forward",
-    //     navLabel: "Step Forward",
-    //     navFullLabel: "Step Forward (Future Features)",
-    //     heading: "Future Features",
-    //     content: [
-    //       "•  In-app collaborator chat to keep decisions and context in one place.",
-    //       "•  Integrated payments for vendor booking inside the platform.",
-    //       "•  Food-waste reduction flow—connect leftover catering to local charities.",
-    //     ],
-    //   },
-    //   {
-    //     type: "case-study-section",
-    //     id: "see-it-live",
-    //     navLabel: "See It Live",
-    //     navFullLabel: "See It Live (Prototype)",
-    //     heading: "Interactive Prototype",
-    //     content: [
-    //       // "Visit the project site: togathr.ca",
-    //       "Experience the ToGathr web-app firsthand through our interactive Figma prototype. Click through the high-fidelity flows and explore the features designed to plan a perfect event. From Event Planning: Budget, Vendors, RSVPs, Collaboration, and Dashboard.",
-    //     ],
-    //     figmaUrl:
-    //       "https://embed.figma.com/proto/tDNwI24nvg5z5sKRvmJSCb/High-Fidelity-Wireframes?page-id=1627%3A71035&node-id=1627-72926&p=f&viewport=524%2C376%2C0.03&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1627%3A72926&show-proto-sidebar=1&embed-host=share",
-    //   },
     ],
   },
+
+
+
+
+
+
+  //  {
+  //   id: "atdd-webapp",
+  //   title: "Anytime Dock and Door",
+  //   category: "ux-ui",
+  //   description: "",
+  //   timeline: "Timeline - 12 Weeks",
+  //   year: "2024",
+  //   tags: ["UX/UI Design", "Event Planning", "Research", "Branding", "Web"],
+  //   image: "/ux-ui-atdd/atdd-cover-photo.png",
+  //   modelPath: "/models/projects/togathr-home-desktop-model.glb",
+  //   featured: true,
+  //   content: [
+  //     {
+  //       type: "hero",
+  //       title: "Anytime Dock and Door",
+  //       subtitle: "",
+  //       description: "",
+  //       tags: ["UX/UI Design", "Accessibility", "Research", "Branding", "Mobile"],
+  //       year: "2024",
+  //       timeline: "Timeline - 12 Weeks",
+  //       modelPath: "/models/projects/togathr-home-desktop-model.glb",
+  //     },
+  //     {
+  //       type: "case-study-section",
+  //       id: "spark",
+  //       navLabel: "Spark",
+  //       navFullLabel: "Spark (Project Overview)",
+  //       heading: "Project Overview",
+  //       // content:
+  //       //   "ToGathr is a web platform that centralizes every aspect of event planning, vendors and venues, guest RSVPs, budget tracking, and team collaboration and supported by an AI assistant that jump-starts tasks and keeps work moving. The product was delivered in 12 weeks by a cross-functional team (5 designers, 4 developers) operating in an Agile workflow.",
+  //       image: {
+  //         src: "/ux-ui-atdd/atdd-hero-photo.png",
+  //         alt: "Anytime Dock and Door app overview",
+  //         position: "below",
+  //       },
+  //     },
+  //   //   {
+  //   //     type: "case-study-section",
+  //   //     id: "struggle",
+  //   //     navLabel: "Struggle",
+  //   //     navFullLabel: "Struggle (The Problem)",
+  //   //     heading: "The Problem",
+  //   //     content:
+  //   //       "Planning even a small event is fragmented: people juggle separate tools for budgets, guest lists, vendor search, and communication, often relying on unverified reviews or word of mouth. This creates duplication, missed details, and decision fatigue. ToGathr addresses the fragmentation with a single, organized workspace.",
+  //   //     image: {
+  //   //       src: "/ux-ui-togathr/togathr-problem.png",
+  //   //       alt: "ToGathr Problem identification",
+  //   //       position: "below",
+  //   //     },
+  //   //   },
+  //   //   {
+  //   //     type: "case-study-section",
+  //   //     id: "scan",
+  //   //     navLabel: "Scan",
+  //   //     navFullLabel: "Scan (Research & Insights)",
+  //   //     heading: "Research & Insights",
+  //   //     blocks: [
+  //   //       {
+  //   //         subheading: ["Primary Research: User Interviews and Personas"],
+  //   //         content: [
+  //   //           "To ground ToGathr in real planning needs, we paired competitor analysis (Eventbrite, Zola, Cvent) with primary interviews of individual planners and coordinators, then synthesized insights through personas, card sorting, and user-flow mapping.",
+  //   //           "This mixed-methods approach clarified pain points.",
+  //   //         ],
+  //   //       },
+  //   //       { 
+  //   //         subheading: ["Key Insights"],
+  //   //         content: [
+  //   //           "•  Tool fragmentation. Planners juggle separate apps for vendors, budgets, RSVPs, and communication. Often creating duplicate work, missed details, and decision fatigue.",
+  //   //           "•  Trust gap in vendors. Reliance on word-of-mouth and inconsistent reviews makes it hard to compare options or validate quality against the event budget.",
+  //   //           "•  Coordination friction. Guest management and task handoffs often break down, slowing progress and causing errors.",
+  //   //           "•  Budget blindness. Costs aren’t visible at decision time, leading to overages and last-minute compromises.",
+  //   //           "These findings shaped ToGathr’s unified dashboard, verified vendor model, budget-aware flows, simplified navigation (persistent left sidebar, clear confirmations), and an AI assistant that generates starter task lists and nudges next steps.",
+  //   //         ],
+  //   //         images: [
+  //   //           {
+  //   //             src: "/ux-ui-togathr/togathr-user-persona-01.png",
+  //   //             alt: "ToGathr User Persona 01",
+  //   //           },
+  //   //           {
+  //   //             src: "/ux-ui-togathr/togathr-user-persona-02.png",
+  //   //             alt: "ToGathr User Persona 02",
+  //   //           },
+  //   //         ],
+  //   //       },
+  //   //       {
+  //   //         subheading: ["Secondary Research: Competitor Analysis"],
+  //   //         content: [
+  //   //           "This comparison shows that ToGathr is the only platform to unify the full planning workflow. Competing tools tend to cover only parts of the journey and lack integrated collaboration or AI support. As a result, ToGathr not only streamlines execution end-to-end but also improves planning quality, confidence, and on-time delivery.",
+  //   //         ],
+  //   //         image: {
+  //   //           src: "/ux-ui-togathr/togathr-competitor-analysis.png",
+  //   //           alt: "ToGathr Competitor Analysis",
+  //   //           position: "below",
+  //   //         },
+  //   //       },
+  //   //     ],
+  //   //   },
+  //   //   {
+  //   //     type: "case-study-section",
+  //   //     id: "scope",
+  //   //     navLabel: "Scope",
+  //   //     navFullLabel: "Scope (Solution Definition)",
+  //   //     heading: "Solution Definition",
+  //   //     blocks: [
+  //   //       {
+  //   //         content: [
+  //   //           "The goal is to create a planning clear, collaborative, and data-driven platform for event organization/managment.",
+  //   //           "A unified dashboard that ties together vendor discovery.",
+  //   //         ],
+  //   //       },
+  //   //       {
+  //   //         subheading: ["Core Features"],
+  //   //         content: [
+  //   //           "•  Vendor Booking: Find, compare, and book verified vendors and venues in one place.",
+  //   //           "•  Budget Tracking: Set a budget, track spend by category, and see over/under in real time.",
+  //   //           "•  Manage Guests: Send invites, collect RSVPs, and handle check-ins without spreadsheets.",
+  //   //           "•  Collaboration Hub: Add teammates, assign tasks, and keep everyone aligned on one dashboard.",
+  //   //         ],
+  //   //         image: {
+  //   //           src: "/ux-ui-togathr/togathr-features.png",
+  //   //           alt: "Safemilo Features",
+  //   //           position: "below",
+  //   //         },
+  //   //       },
+  //   //     ],
+  //   //   },
+  //   //   {
+  //   //     type: "case-study-section",
+  //   //     id: "sketch",
+  //   //     navLabel: "Sketch",
+  //   //     navFullLabel: "Sketch (Wireframes)",
+  //   //     heading: "Wireframes & Ideation",
+  //   //     blocks: [
+  //   //       {
+  //   //         subheading: ["Information Architecture"],
+  //   //         image: {
+  //   //           src: "/ux-ui-togathr/togathr-information-architecture.png",
+  //   //           alt: "Safemilo Information Architecture",
+  //   //           position: "below",
+  //   //         },
+  //   //       },
+  //   //       {
+  //   //         subheading: ["Wireframes"],
+  //   //         content:
+  //   //           "Mid-fidelity testing revealed that a collapsed side navigation significantly hurt feature discoverability. In the next iteration, we replaced the collapsible pattern with a persistent, always-open sidebar, which improved wayfinding and reduced navigation friction across core tasks.",
+  //   //         image: {
+  //   //           src: "/ux-ui-togathr/togathr-wireframes.png",
+  //   //           alt: "Safemilo Wireframes",
+  //   //           position: "below",
+  //   //         },
+  //   //       },
+  //   //     ],
+  //   //   },
+  //   //   {
+  //   //     type: "case-study-section",
+  //   //     id: "style",
+  //   //     navLabel: "Style",
+  //   //     navFullLabel: "Style (Brand & UI Kit)",
+  //   //     heading: "Brand & UI Kit",
+  //   //     blocks: [
+  //   //       {
+  //   //         subheading: ["Color System"],
+  //   //         content: [
+  //   //           "We chose a palette that communicates clarity, momentum, and collaboration. A vivid Violet primary drives focus, with Mint accents for highlights and status.",
+  //   //           "High contrast supports readability across dashboards and reports, and the system is tested to meet WCAG AA, with AAA applied to critical alerts and confirmations.",
+  //   //           "The result is an accessible, energetic visual language that scales from personal parties to professional events.",
+  //   //         ],
+  //   //       },
+  //   //       {
+  //   //         subheading: ["Typography"],
+  //   //         content: [
+  //   //           "Meta Pro is used for headings to provide structure and personality, creating clear sectioning across dense planning screens.",
+  //   //           "Noto Sans handles body copy and UI labels thanks to its even rhythm and excellent legibility across sizes and devices. Together they keep tables, forms, and cards easy to scan while maintaining a confident, modern tone.",
+  //   //         ],
+  //   //         image: {
+  //   //           src: "/ux-ui-togathr/togathr-color-typography.png",
+  //   //           alt: "Safemilo Color & Typography",
+  //   //           position: "below",
+  //   //         },
+  //   //       },
+  //   //       {
+  //   //         subheading: ["Logo"],
+  //   //         content: [
+  //   //           "Our mark blends an abstract celebration motif with the T and G letterforms, signaling people coming together.",
+  //   //           "It remains recognizable in full color or monochrome, across small favicon sizes to large event screens, reinforcing ToGathr’s promise of simple, coordinated planning.",
+  //   //         ],
+  //   //         image: {
+  //   //           src: "/ux-ui-togathr/togathr-logo.png",
+  //   //           alt: "Safemilo Logo",
+  //   //           position: "below",
+  //   //         },
+  //   //       },
+  //   //       {
+  //   //         subheading: ["UI Kit"],
+  //   //         content: [
+  //   //           "The component library uses rounded cards, ample white space, and subtle dividers to reduce cognitive load. Flat, readable iconography and accessible button states ensure clarity under time pressure. Vendor cards are designed for quick comparison; budget and RSVP components include built-in chart styles for at-a-glance status. Interactive elements are sized for comfortable clicking and tap targets across breakpoints, resulting in an interface that feels organized, responsive, and effortless to use.",
+  //   //         ],
+  //   //         image: {
+  //   //           src: "/ux-ui-togathr/togathr-ui-kit.png",
+  //   //           alt: "Safemilo UI Kit",
+  //   //           position: "below",
+  //   //         },
+  //   //       },
+  //   //     ],
+  //   //   },
+  //   //   {
+  //   //     type: "case-study-section",
+  //   //     id: "showcase",
+  //   //     navLabel: "Showcase",
+  //   //     navFullLabel: "Showcase (Final Solution)",
+  //   //     heading: "Final Solution",
+  //   //     blocks: [
+  //   //       {
+  //   //         subheading: ["Event Creation"],
+  //   //         content: [
+  //   //           "A guided, first-time flow that helps users set goals, dates, budgets, and priorities, making setup fast and approachable.",
+  //   //         ],
+  //   //         image: {
+  //   //           src: "/ux-ui-togathr/togathr-event-creation.png",
+  //   //           alt: "ToGathr Event Creation",
+  //   //           position: "below",
+  //   //         },
+  //   //       },
+  //   //       {
+  //   //         subheading: ["Event Overview Dashboard"],
+  //   //         content: [
+  //   //           "A single dashboard snapshot of budget, vendors, RSVPs, and tasks. An AI-generated task list based on event type gives users a head start.",
+  //   //         ],
+  //   //         image: {
+  //   //           src: "/ux-ui-togathr/togathr-overview-dashboard.png",
+  //   //           alt: "ToGathr Overview Dashboard",
+  //   //           position: "below",
+  //   //         },
+  //   //       },
+  //   //       {
+  //   //         subheading: ["Vendors"],
+  //   //         content: [
+  //   //           "Browse and compare verified options with clear pricing and packages. Save favorites and book directly from the dashboard.",
+  //   //         ],
+  //   //         image: {
+  //   //           src: "/ux-ui-togathr/togathr-vendors.png",
+  //   //           alt: "ToGathr Vendors",
+  //   //           position: "below",
+  //   //         },
+  //   //       },
+  //   //       {
+  //   //         subheading: ["Budget Tracking"],
+  //   //         content: ["Browse and compare verified options with clear pricing and packages. Save favorites and book directly from the dashboard."],
+  //   //         image: {
+  //   //           src: "/ux-ui-togathr/togathr-budget.png",
+  //   //           alt: "ToGathr Budget",
+  //   //           position: "below",
+  //   //         },
+  //   //       },
+  //   //       {
+  //   //         subheading: ["Collaboration"],
+  //   //         content: [
+  //   //           "Invite teammates to co-plan, assign tasks, and keep decisions in one place. Send invites, collect RSVPs, and manage check-ins without spreadsheets.",
+  //   //         ],
+  //   //         image: {
+  //   //           src: "/ux-ui-togathr/togathr-collaboration.png",
+  //   //           alt: "ToGathr Collaboration",
+  //   //           position: "below",
+  //   //         },
+  //   //       },
+  //   //     ],
+  //   //   },
+  //   //   {
+  //   //     type: "case-study-section",
+  //   //     id: "step-forward",
+  //   //     navLabel: "Step Forward",
+  //   //     navFullLabel: "Step Forward (Future Features)",
+  //   //     heading: "Future Features",
+  //   //     content: [
+  //   //       "•  In-app collaborator chat to keep decisions and context in one place.",
+  //   //       "•  Integrated payments for vendor booking inside the platform.",
+  //   //       "•  Food-waste reduction flow—connect leftover catering to local charities.",
+  //   //     ],
+  //   //   },
+  //   //   {
+  //   //     type: "case-study-section",
+  //   //     id: "see-it-live",
+  //   //     navLabel: "See It Live",
+  //   //     navFullLabel: "See It Live (Prototype)",
+  //   //     heading: "Interactive Prototype",
+  //   //     content: [
+  //   //       // "Visit the project site: togathr.ca",
+  //   //       "Experience the ToGathr web-app firsthand through our interactive Figma prototype. Click through the high-fidelity flows and explore the features designed to plan a perfect event. From Event Planning: Budget, Vendors, RSVPs, Collaboration, and Dashboard.",
+  //   //     ],
+  //   //     figmaUrl:
+  //   //       "https://embed.figma.com/proto/tDNwI24nvg5z5sKRvmJSCb/High-Fidelity-Wireframes?page-id=1627%3A71035&node-id=1627-72926&p=f&viewport=524%2C376%2C0.03&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1627%3A72926&show-proto-sidebar=1&embed-host=share",
+  //   //   },
+  //   ],
+  // },
 
 
 
@@ -1558,86 +1649,7 @@ export const projects: Project[] = [
 
 
 
-    {
-    id: "wesley-chapel",
-    title: "Wesley Chapel Residence",
-    category: "interior",
-    description: "Modern luxury interior design with contemporary aesthetics",
-    timeline: "Timeline - 8 Days",
-    year: "2024",
-    tags: ["Interior Design", "Residential", "Modern", "Luxury"],
-    image: "/interior-wesleychappel/9.1imp.jpg",
-    featured: true,
-    content: [
-      {
-        type: "interior-hero",
-        title: "Wesley Chapel Residence",
-        subtitle: "3D Rendering Project - Architecture",
-        heroImage: "/interior-wesleychappel/9.1imp.jpg",
-        tags: ["Interior Design", "Residential", "Modern", "Luxury"],
-        timeline: "Timeline - 8 Days",
-        year: "2024",
-      },
-      {
-        type: "interior-overview",
-        heading: "Project Overview",
-        projectName: "Singh Residence",
-        location: "Wesley Chapel, Florida, US",
-        projectType: "Residential",
-        workDuration: "8 days",
-        softwareUsed: "SketchUp, Lumion, Photoshop, Aftereffects",
-        contribution: [
-          "I was provided with a comprehensive set of architectural construction drawings by the project's real estate developer. My primary responsibility was to interpret these technical documents and translate them into photorealistic architectural visualizations that accurately reflect the design intent.",
-          "The process began with an in-depth review of the architectural, structural, and interior detailing to ensure precision in spatial proportions and materiality. Using SketchUp, I developed a detailed 3D model that captured the architectural language and volumetric articulation of the structure. To achieve real-time rendering performance without compromising quality, the model was seamlessly imported into Lumion.",
-          "A curated selection of physically-based rendering (PBR) materials was applied, with careful consideration of surface properties such as roughness, reflectivity, and albedo, to align with both the visual style and material specifications indicated in the construction documents.",
-          "To further enhance the realism, I exported multiple render passes including lighting maps, reflection/specular maps, and shadow overlays from Lumion. These were composited and refined in Adobe Photoshop, allowing for greater control over atmospheric conditions, depth, and photorealistic enhancement.",
-          "The final visualizations are not just renders. They are a visual narrative that communicates the project's design ethos, spatial qualities, and material textures with clarity and realism.",
-        ],
-      },
-      {
-        type: "comparison",
-        id: "comparison",
-        heading: "Design Evolution",
-        description: "Explore the transformation of key spaces through our interactive comparison view.",
-        images: [
-          { src: "/interior-wesleychappel/Autocad.png", alt: "2d-drawing-autocad", caption: "2d Drawing" },
-          { src: "/interior-wesleychappel/Sketchup Model.png", alt: "3d-model-wireframe", caption: "3d Model" },
-          { src: "/interior-wesleychappel/Lumion.png", alt: "real-time-render", caption: "Render" },
-          { src: "/interior-wesleychappel/final.png", alt: "final-image", caption: "Final Image" },
-        ],
-      },
-      {
-        type: "case-study-section",
-        id: "gallery",
-        navLabel: "Gallery",
-        navFullLabel: "Gallery (Project Images)",
-        heading: "Project Gallery",
-        blocks: [
-          {
-            content:
-              "Explore the complete transformation of this modern residence through our curated gallery of interior spaces.",
-            images: [
-              { src: "/interior-wesleychappel/1.1.jpg", alt: "Exterior Elevation 1", caption: "Exterior Elevation 1" },
-              { src: "/interior-wesleychappel/2.1.jpg", alt: "Exterior Elevation 2", caption: "Exterior Elevation 2" },
-              { src: "/interior-wesleychappel/3.1.jpg", alt: "Swimming Pool", caption: "Swimming Pool" },
-              { src: "/interior-wesleychappel/4.1.jpg", alt: "Swimming Pool", caption: "Swimming Pool" },
-              // { src: "/interior-wesleychappel/5.1.jpg", alt: "Aeriel View", caption: "Aeriel View" },
-              { src: "/interior-wesleychappel/6.1.jpg", alt: "Garden", caption: "Garden" },
-              { src: "/interior-wesleychappel/7.1.jpg", alt: "Back-yard Seating", caption: "Back-yard Seating" },
-              { src: "/interior-wesleychappel/8.1.jpg", alt: "Elevation with Fountain", caption: "Elevation with Fountain" },
-              { src: "/interior-wesleychappel/9.1imp.jpg", alt: "Front Elevation", caption: "Front Elevation" },
-              { src: "/interior-wesleychappel/10.1.jpg", alt: "Exterior Elevation 3", caption: "Exterior Elevation 3" },
-              { src: "/interior-wesleychappel/11.1.jpg", alt: "Exterior Elevation 4", caption: "Exterior Elevation 4" },
-              { src: "/interior-wesleychappel/12.1.jpg", alt: "Aeriel View", caption: "Aeriel View" },
-              { src: "/interior-wesleychappel/13.1.jpg", alt: "Patio", caption: "Patio" },
 
-            ],
-            imageLayout: "grid-4",
-          },
-        ],
-      },
-    ],
-  },
 
 
   // {
@@ -1825,8 +1837,8 @@ export const projects: Project[] = [
 export const categories = [
   { id: "all", name: "All Projects" },
   { id: "ux-ui", name: "UX/UI" },
-  { id: "architecture", name: "Architecture" },
-  { id: "interior", name: "Interior" },
+  // { id: "architecture", name: "Architecture" },
+  // { id: "interior", name: "Interior" },
   { id: "3d", name: "3D Works" },
   { id: "photography", name: "Photography" },
 ]

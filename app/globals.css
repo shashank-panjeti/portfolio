@@ -1,3 +1,45 @@
+@font-face {
+  font-family: "MyFont";
+  src: url("/fonts/ivy-mode-regular.woff2") format("woff2"),
+       url("/fonts/ivy-mode-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* @font-face {
+  font-family: "zendots";
+  src: url("/fonts/ZenDots.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+} */
+@font-face {
+  font-family: "telugu-font";
+  src: url("/fonts/telugu.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Melodrama-Light";
+  src: url("/fonts/melodrama/Melodrama-Light.woff2") format("woff2"),
+       url("/fonts/melodrama/Melodrama-Light.woff") format("woff");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Melodrama-Medium";
+  src: url("/fonts/melodrama/Melodrama-Medium.woff2") format("woff2"),
+       url("/fonts/melodrama/Melodrama-Medium.woff") format("woff");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+
+
+
 @import "tailwindcss";
 
 /* @tailwind base;
@@ -137,7 +179,13 @@
 
   h1,
   h2 {
-    font-family: var(--font-lora), serif;
+    font-family: "MyFont", serif;
+    @apply text-balance;
+  }
+  
+  .telugu{
+    font-family: "telugu-font", sans-serif;
+    pointer-events: none;
     @apply text-balance;
   }
   

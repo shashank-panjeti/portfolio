@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 // import { GeistSans } from "geist/font/sans"
 // import { GeistMono } from "geist/font/mono"
 // import { Analytics } from "@vercel/analytics/next"
-import { Lora } from "next/font/google"
+// import { Lora } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
@@ -16,11 +16,11 @@ export const metadata: Metadata = {
   description: "Portfolio showcasing UX/UI, Architecture, Interior Design, 3D work, and Photography",
 }
 
-const lora = Lora({
-  subsets: ["latin"],
-  variable: "--font-lora",
-  display: "swap",
-})
+// const lora = Lora({
+//   subsets: ["latin"],
+//   variable: "--font-lora",
+//   display: "swap",
+// })
 
 export default function RootLayout({
   children,
@@ -29,9 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans ${lora.variable}`}>
+      {/* <body className={`font-sans ${lora.variable}`}> */}
+      <body>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <div className="fixed inset-0 z-0 pointer-events-none">
+          <div className="fixed inset-0 -z-10 pointer-events-none">
             <LiquidEther
               colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
               mouseForce={25}

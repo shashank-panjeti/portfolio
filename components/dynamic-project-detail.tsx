@@ -32,7 +32,7 @@ export function DynamicProjectDetail({ project }: DynamicProjectDetailProps) {
       section.type !== "spotlight",
   )
 
-  const hasCaseStudyNav = caseStudySections.length > 0 && project.category !== "interior"
+  const hasCaseStudyNav = caseStudySections.length > 0 && project.category !== "interior" && project.category !== "3d"
 
   useEffect(() => {
     if (!hasCaseStudyNav) return
@@ -452,7 +452,7 @@ function CaseStudySection({
   project?: Project
 }) {
   const hasBlocks = section.blocks && section.blocks.length > 0
-  const isInteriorGallery = project?.category === "interior" && section.id === "gallery"
+  const isInteriorGallery = project?.category === "interior" || project?.category === "3d" && section.id === "gallery"
 
   if (isInteriorGallery && hasBlocks && section.blocks?.[0]?.images) {
     return (

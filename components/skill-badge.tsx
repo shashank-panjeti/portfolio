@@ -5,14 +5,14 @@ interface SkillBadgeProps {
 
 export function SkillBadge({ skill, level = "advanced" }: SkillBadgeProps) {
   const levelColors = {
-    beginner: "bg-muted text-muted-foreground",
-    intermediate: "bg-accent text-accent-foreground",
-    advanced: "bg-primary/10 text-primary",
-    expert: "bg-primary text-primary-foreground",
+    beginner: "text-foreground",
+    intermediate: "text-foreground",
+    advanced: "text-foreground",
+    expert: "text-foreground",
   }
 
   return (
-    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${levelColors[level]}`}>
+    <span className={`inline-flex items-center pr-5 py-1 text-sm ${levelColors[level]}`}>
       {skill}
     </span>
   )

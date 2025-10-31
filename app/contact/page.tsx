@@ -19,7 +19,7 @@ export default function ContactPage() {
         <div className="relative w-full lg:w-1/2 lg:ml-[50%] z-10 py-12 sm:py-20">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="text-center mb-12 sm:mb-16">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-balance mb-4 sm:mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-balance mb-4 sm:mb-6">
                 Let's Create Something
                 <span className="text-primary block">Amazing Together</span>
               </h1>
@@ -37,49 +37,33 @@ export default function ContactPage() {
               {/* Contact Information */}
               <Card className="backdrop-blur-sm bg-background/60 border-border/50">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-semibold mb-6">Get in Touch</h2>
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Mail className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Email</p>
-                        <p className="text-muted-foreground">shashankpanjeti@gmail.com</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Phone className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Phone</p>
-                        <p className="text-muted-foreground">+1 (672) 338-2305</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <MapPin className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Location</p>
-                        <p className="text-muted-foreground">Greater Vancouver, BC</p>
-                      </div>
-                    </div>
+                  <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6">
+                    <h3 className="text-xl font-semibold mb-4">Beyond Work</h3>
+                    <p className="text-muted-foreground mb-3">
+                      When I'm not designing or coding, you'll find me exploring new cities with my camera, experimenting with
+                      3D art, or reading about the latest developments in sustainable architecture. I believe that diverse
+                      experiences and curiosity fuel creativity.
+                    </p>
+                    <p className="text-muted-foreground mb-4">
+                      I'm always excited to collaborate on projects that challenge conventional thinking and create positive
+                      impact. Let's build something amazing together.
+                    </p>
                   </div>
+
+
+
+                 
                 </CardContent>
               </Card>
 
               <Card className="backdrop-blur-sm bg-background/60 border-border/50">
                 <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold mb-4">Let's Connect</h3>
-                  <p className="text-muted-foreground mb-6">
+                  <h3 className="">Let's Connect</h3>
+                  <p className="text-muted-foreground mb-0">
                     Follow my work and connect with me on social media for the latest updates and behind-the-scenes
                     content.
                   </p>
-                  <div className="flex gap-4">
+                  {/*<div className="flex gap-4">
                     <a 
                     href="https://www.linkedin.com/in/shashankpanjeti"
                     target="_blank" 
@@ -88,14 +72,14 @@ export default function ContactPage() {
                         LinkedIn
                       </Button>
                     </a>
-                    {/* <a 
+                     <a 
                     href="https://www.linkedin.com/in/shashankpanjeti"
                     target="_blank" 
                     rel="noopener noreferrer">
                       <Button variant="outline" size="sm">
                         Dribbble
                       </Button>
-                    </a> */}
+                    </a> 
                     <a 
                     href="https://www.behance.net/shashankpanjeti"
                     target="_blank" 
@@ -112,16 +96,7 @@ export default function ContactPage() {
                         Instagram
                       </Button>
                     </a>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Credit line */}
-              <Card className="backdrop-blur-sm bg-background/60 border-border/50">
-                <CardContent className="">
-                  <p className="text-xs text-muted-foreground">
-                    Designed and Developed by Shashank Panjeti © {year}. All Rights Reserved.
-                  </p>
+                  </div>*/}
                 </CardContent>
               </Card>
 
@@ -149,6 +124,41 @@ export default function ContactPage() {
 
 
 
+
+
+
+ {/*<h2 className="text-2xl font-semibold mb-6">Get in Touch</h2>
+                  <div className="space-y-6">
+                     <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                        <Mail className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium">Email</p>
+                        <p className="text-muted-foreground">shashankpanjeti@gmail.com</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                        <Phone className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium">Phone</p>
+                        <p className="text-muted-foreground">+1 (672) 338-2305</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                        <MapPin className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium">Location</p>
+                        <p className="text-muted-foreground">Greater Vancouver, BC</p>
+                      </div>
+                    </div> 
+                  </div>*/}
 
 {/* Contact Form */}
   {/* <Card className="backdrop-blur-sm bg-background/90 border-border/50">

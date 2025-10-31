@@ -40,7 +40,7 @@ export default function JumbleText() {
           clearInterval(id)
           cb()
         }
-      }, 40) // Smoother timing
+      }, 25) // Smoother timing
     }
 
     const loop = () => {
@@ -50,9 +50,9 @@ export default function JumbleText() {
       setTimeout(() => {
         idx.current = (idx.current + 1) % occupations.length
         jumbleEffect(occupations[idx.current], () => {
-          setTimeout(loop, 2000) // Slightly longer pause between words
+          setTimeout(loop, 1500) // Slightly longer pause between words
         })
-      }, 2000)
+      }, 1500)
     }
     loop()
     return () => {
@@ -61,7 +61,7 @@ export default function JumbleText() {
   }, [])
 
   return (
-    <p id="jumbleText" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl tracking-wider pb-16">
+    <p id="jumbleText" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl tracking-wider">
       {text}
     </p>
   )

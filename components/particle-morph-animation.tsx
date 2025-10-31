@@ -279,7 +279,7 @@ function MorphingParticles({ customModelPaths }: { customModelPaths: string[] })
 
 export function ParticleMorphAnimation() {
   return (
-    <div className="absolute inset-0 w-full h-full">
+    <div className="absolute inset-0 w-full h-full z-0">
       <Canvas
         camera={{ position: [0, 0, 15], fov: 75 }}
         gl={{ alpha: true, antialias: true }}
