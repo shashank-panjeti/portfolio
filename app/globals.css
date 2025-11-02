@@ -177,6 +177,11 @@
     scroll-behavior: smooth;
   }
 
+  html,
+  body {
+    min-width: 330px;
+  }
+
   h1,
   h2 {
     font-family: "MyFont", serif;

@@ -29,21 +29,24 @@ export default function HomePage() {
             {/* <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-muted-foreground uppercase tracking-wider">Hi I'm</p> */}
             <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-muted-foreground uppercase tracking-wider">Hi I'm</p>
             {/* <h1 className=" text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-foreground text-balance"> */}
-            <div>
-              <h1 className="peer text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-foreground transition-opacity duration-500 hover:opacity-0">
+            <div className="relative flex flex-col justify-between
+            max-h-9 h-9
+            sm:max-h-12 sm:h-12
+            md:max-h-15 md:h-15
+            lg:max-h-18 lg:h-18
+            xl:max-h-24 xl:h-24">
+              <h1 className="absolute inset-0 flex items-center justify-center 
+              text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 
+              font-light text-foreground 
+              peer transition-opacity duration-500 sm:hover:opacity-0">
                 SHASHANK PANJETI
               </h1>
-              {/* <h1 className="telugu pointer-events-none absolute inset-0
-              top-[-66%] sm:top-[-60%] md:top-[-52%] lg:top-[-49%] xl:top-[-45%] 
-              flex items-center justify-center 
+              <h1 className="telugu
+              absolute inset-0 flex justify-center
               text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 
+              top-[19%]
               font-light text-foreground opacity-0 
-              transition-opacity duration-500 peer-hover:opacity-100"> */}
-              <h1 className="telugu pointer-events-none absolute inset-0 
-              flex items-center justify-center leading-9
-              text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 
-              font-light text-foreground opacity-0 
-              transition-opacity duration-500 peer-hover:opacity-100">
+              transition-opacity duration-500 sm:peer-hover:opacity-100">
                 శశాంక్ పంజేటి
               </h1>
             </div>

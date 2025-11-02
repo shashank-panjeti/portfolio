@@ -130,7 +130,7 @@ export function GLTFModelViewer({ modelPath, className = "", cameraPosition = [0
   return (
     <div className={`w-full h-full ${className}`} style={{ minHeight: "400px" }}>
       <Canvas shadows gl={{ alpha: true, antialias: true }}>
-        <PerspectiveCamera makeDefault position={cameraPosition} fov={20} />
+        <PerspectiveCamera makeDefault position={cameraPosition} fov={15} />
 
         <ambientLight intensity={1.2} position={[2, 3, 4]} />
         <directionalLight position={[0, 2, 2]} intensity={0.8} castShadow />
