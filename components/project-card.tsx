@@ -14,11 +14,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <Link href={`/projects/${project.id}`} className="group block">
       <div className="w-full flex items-start justify-center py-6 sm:py-10">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row gap-8 sm:gap-12 md:gap-20 items-start justify-between px-[8%]">
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-20 items-start"> */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-20 items-center">
+          {/* <div className="flex flex-col md:flex-row gap-8 sm:gap-12 md:gap-20 items-start justify-between px-[8%]"> */}
             {/* Project Info */}
             {/* <div className="space-y-4 sm:space-y-6 order-2 lg:order-1"> */}
-            <div className="space-y-2 pt-15">
+            <div className="space-y-2">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light text-foreground group-hover:text-muted-foreground transition-colors text-balance">
                 {project.title}
               </h2>
@@ -32,15 +32,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
             {/* </div> */}
 
             {/* 3D Model or Image */}
-            <div className="relative content-center md:max-w-100 lg:max-w-125 rounded-lg overflow-hidden">
+            <div className="relative aspect-square content-center sm:aspect-[4/3] md:aspect-square md:max-w-100 lg:max-w-125 rounded-lg overflow-hidden order-1 md:order-2">
               {project.modelPath ? (
-                <Project3DModel modelPath={project.modelPath} className="w-full h-full aspect-square sm:aspect-[4/3] md:aspect-square" />
+                <Project3DModel modelPath={project.modelPath} className="w-full h-full" />
               ) : (
                 <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500 aspect-square"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               )}
             </div>
