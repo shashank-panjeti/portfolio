@@ -98,9 +98,9 @@ export function InteriorGallery({ images, columns = 4 }: InteriorGalleryProps) {
 
             {/* Hover Overlay */}
             <div
-              className={`absolute inset-0 bg-black/60 flex items-center justify-center transition-opacity duration-300 ${hoveredIndex === index ? "opacity-100" : "opacity-0"}`}
+              className={`absolute bottom-2 text-foreground text-center transition-all duration-500 z-10 pointer-events-none left-2 right-2 ${hoveredIndex === index ? "opacity-100" : "opacity-0"}`}
             >
-              <p className="text-white text-sm font-medium px-3 sm:px-4 text-center">{image.caption || image.alt}</p>
+              <p className="text-xs sm:text-sm font-medium bg-black/40 px-2 sm:px-3 py-1 sm:py-2 rounded-lg backdrop-blur-sm whitespace-nowrap">{image.caption || image.alt}</p>
             </div>
           </div>
         ))}

@@ -128,7 +128,7 @@ export function GLTFModelViewer({ modelPath, className = "", cameraPosition = [0
   const hasValidModel = modelPath && modelPath.trim() !== ""
 
   return (
-    <div className={`w-full h-full ${className}`} style={{ minHeight: "400px" }}>
+    <div className={`w-full h-full ${className}`} style={{ minHeight: "200px" }}>
       <Canvas shadows gl={{ alpha: true, antialias: true }}>
         <PerspectiveCamera makeDefault position={cameraPosition} fov={15} />
 
