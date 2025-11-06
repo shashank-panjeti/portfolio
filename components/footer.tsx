@@ -8,10 +8,6 @@ import React from "react"
 
 export function Footer() {
   const year = new Date().getFullYear()
-  // const pathname = usePathname()
-  // if (pathname === "/" || pathname === "/contact") return null
-
-  // helper: shared pill/icon box
   const IconBox = ({ children }: { children: React.ReactNode }) => (
     <span className={[
       "inline-flex h-7 w-7 items-center justify-center z-10", 
@@ -22,26 +18,6 @@ export function Footer() {
       {children}
     </span>
   )
-
-  // helper: label that is always visible on mobile/tablet,
-  // but hidden on desktop until hover
-  // const Label = ({ children }: { children: React.ReactNode }) => (
-  //   <span
-  //     className={[
-  //       // base
-  //       "font-medium transition-all duration-300",
-  //       // mobile/tablet: visible normally
-  //       "lg:ml-0",
-  //       // desktop default: hidden/collapsed
-  //       "lg:max-w-0 lg:opacity-0 lg:translate-x-2 lg:overflow-hidden",
-  //       // desktop on hover (via parent .group): reveal
-  //       "lg:hover:bg-foreground lg:group-hover:text-background",
-  //       // "lg:group-hover:max-w-[240px] lg:group-hover:opacity-100 lg:group-hover:translate-x-0 lg:group-hover:ml-2",
-  //     ].join(" ")}
-  //   >
-  //     {children}
-  //   </span>
-  // )
 
   const linkBase =
     "group inline-flex items-center gap-2 hover:text-foreground transition-colors"

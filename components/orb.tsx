@@ -107,9 +107,9 @@ export default function Orb({
       return vec4(colorIn.rgb / (a + 1e-5), a);
     }
     
-    const vec3 baseColor1 = vec3(0.611765, 0.262745, 0.996078);
-    const vec3 baseColor2 = vec3(0.298039, 0.760784, 0.913725);
-    const vec3 baseColor3 = vec3(0.062745, 0.078431, 0.600000);
+    const vec3 baseColor1 = vec3(0.988, 0.988, 0.973);
+    const vec3 baseColor2 = vec3(0.286, 0.314, 0.341);
+    const vec3 baseColor3 = vec3(0.0039, 0.0157, 0.0275);
     const float innerRadius = 0.6;
     const float noiseScale = 0.65;
     
@@ -284,3 +284,27 @@ export default function Orb({
 
   return <div ref={ctnDom} className="w-full h-full" />
 }
+
+
+
+
+
+// const vec3 baseColor1 = vec3(0.611765, 0.262745, 0.996078);
+// const vec3 baseColor2 = vec3(0.298039, 0.760784, 0.913725);
+// const vec3 baseColor3 = vec3(0.062745, 0.078431, 0.600000);
+
+// const vec3 baseColor1 = vec3(0.611765, 0.262745, 0.996078); rgb(156, 67, 254);
+// const vec3 baseColor2 = vec3(0.298039, 0.760784, 0.913725); rgb(76, 194, 233);
+// const vec3 baseColor3 = vec3(0.062745, 0.078431, 0.600000); rgb(16, 20, 153);
+
+
+
+
+
+// const vec3 baseColor1 = vec3(0.988, 0.988, 0.973);
+// const vec3 baseColor2 = vec3(0.286, 0.314, 0.341);
+// const vec3 baseColor3 = vec3(0.0039, 0.0157, 0.0275);
+
+// const vec3 baseColor1 = vec3(0.988, 0.988, 0.973); rgb(252, 252, 248);
+// const vec3 baseColor2 = vec3(0.286, 0.314, 0.341); rgb(73, 80, 87);
+// const vec3 baseColor3 = vec3(0.0039, 0.0157, 0.0275); rgb(1, 4, 7);

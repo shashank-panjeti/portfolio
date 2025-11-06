@@ -66,9 +66,9 @@ export default function HomePage() {
         {/* Sticky container for all projects except the last one */}
         <div className="relative">
           <div className="sticky top-16 z-20 bg-background/80 backdrop-blur-sm">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 xl:px-[3%]">
-                <h2 className="text-xl sm:text-xl lg:text-2xl font-light text-foreground">Selected work</h2>
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-32 py-4 sm:py-6">
+              <div className="flex flex-row items-center justify-between gap-3 sm:gap-4">
+                <h2 className="text-xl sm:text-xl lg:text-2xl font-light text-foreground ">Selected work</h2>
                 <Link
                   href="/projects"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"

@@ -214,4 +214,9 @@
   body.lightbox-open nav {
     display: none !important;
   }
+
+  /* Hide footer when lightbox is open */
+  body.lightbox-open footer {
+    display: none !important;
+  }
 }

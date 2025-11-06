@@ -104,7 +104,7 @@ export function DynamicProjectDetail({ project }: DynamicProjectDetailProps) {
   return (
     <div className="space-y-16">
       {heroSection && (
-        <div className="max-w-[1400px] mx-auto max-h-[650px] overflow-hidden">
+        <div id="project" className="max-w-[1400px] mx-auto max-h-[650px] overflow-hidden">
           <ContentSectionRenderer section={heroSection} />
         </div>
       )}
