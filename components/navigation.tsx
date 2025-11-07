@@ -18,8 +18,11 @@ export function Navigation() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
       <nav className="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-lg font-medium text-foreground hover:text-muted-foreground transition-colors">
-          Shashank Panjeti
+        <Link href="/" className="flex gap-2 sm:gap-3 items-center group">
+          <img src="/logo.png" alt="Logo" className="aspect-square h-7 w-7 border border-foreground/50 rounded-md opacity-90 group-hover:opacity-100 group-hover:border-foreground " />
+          <h2 className="text-lg font-medium text-foreground group-hover:font-semibold transition-font">
+            Shashank Panjeti
+          </h2>
         </Link>
 
         <div className="flex items-center gap-4 sm:gap-8">
