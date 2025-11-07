@@ -61,9 +61,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Selected Projects Section - Sticky until last project */}
+      {/* Selected Work Section */}
       <section className="relative">
-        {/* Sticky container for all projects except the last one */}
         <div className="relative">
           <div className="sticky top-16 z-20 bg-background/80 backdrop-blur-sm">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-32 py-4 sm:py-6">
@@ -71,9 +70,26 @@ export default function HomePage() {
                 <h2 className="text-xl sm:text-xl lg:text-2xl font-light text-foreground ">Selected work</h2>
                 <Link
                   href="/projects"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className=" relative inline-flex h-6 items-center overflow-hidden group
+                  text-sm
+                  hover:text-foreground transition-colors"
                 >
-                  View all projects →
+                  <span className="invisible pointer-events-none select-none text-sm font-medium">
+                    View all projects →
+                  </span>
+
+                  <span className="
+                  absolute inset-0 flex items-center text-sm font-medium text-muted-foreground 
+                  transition-transform duration-200 
+                  group-hover:-translate-y-full">
+                    View all projects →
+                  </span>
+
+                  <span className="absolute inset-0 flex items-center text-sm font-medium text-foreground
+                  transition-transform duration-200 translate-y-full
+                  group-hover:translate-y-0">
+                    View all projects →
+                  </span>
                 </Link>
               </div>
             </div>

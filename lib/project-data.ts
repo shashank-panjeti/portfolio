@@ -1067,7 +1067,7 @@ export const projects: Project[] = [
               "A continuous image scrolling cards with crisp captions.",
             ],
             image: {
-              src: "/ux-ui-gnw/gnw-gallery-animation.gif",
+              src: "/ux-ui-gnw/gnw-gallery.png",
               alt: "GNW Gallery",
               position: "below",
             },

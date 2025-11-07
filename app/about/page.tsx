@@ -125,13 +125,13 @@ export default function AboutPage() {
                   My work spans across UX/UI design, architectural visualization, interior design, 3D modeling, and photography. I believe in the power of good design to solve complex problems and create positive impact.
                 </p>
                 <a 
-                    href="https://www.linkedin.com/in/shashankpanjeti"
-                    target="_blank" 
-                    rel="noopener noreferrer">
-                      <Button variant="outline" size="sm">
-                        LinkedIn
-                      </Button>
-                    </a>
+                  href="https://www.linkedin.com/in/shashankpanjeti"
+                  target="_blank" 
+                  rel="noopener noreferrer">
+                    <Button variant="outline" size="sm">
+                      LinkedIn
+                    </Button>
+                </a>
               </div>
             </div>
             {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center"> */}

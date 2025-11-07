@@ -29,11 +29,33 @@ export function Navigation() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-foreground",
-                  pathname === item.href ? "text-foreground" : "text-muted-foreground",
+                  "relative inline-flex h-6 items-center group transition-colors overflow-hidden",
+                  pathname === item.href ? "text-foreground" : "text-muted-foreground"
                 )}
               >
-                {item.name}
+                <span className="invisible pointer-events-none select-none text-sm font-medium">
+                  {item.name}
+                </span>
+
+                <span
+                  className={cn(
+                    "absolute inset-0 flex items-center text-sm font-medium text-muted-foreground",
+                    "transition-transform duration-200",
+                    "group-hover:-translate-y-full"
+                  )}
+                >
+                  {item.name}
+                </span>
+
+                <span
+                  className={cn(
+                    "absolute inset-0 flex items-center text-sm font-medium text-foreground",
+                    "transition-transform duration-200 translate-y-full",
+                    "group-hover:translate-y-0"
+                  )}
+                >
+                  {item.name}
+                </span>
               </Link>
             ))}
           </div>

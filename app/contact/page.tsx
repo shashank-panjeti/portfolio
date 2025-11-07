@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { CopyEmailButton } from "@/components/email-copy"
 
 export default function ContactPage() {
   const year = new Date().getFullYear()
@@ -27,6 +28,23 @@ export default function ContactPage() {
                 Ready to bring your vision to life? I'd love to hear about your project and explore how we can
                 collaborate.
               </p>
+              <div className="flex gap-8 mt-4 justify-center">
+                <a 
+                  href="https://www.linkedin.com/in/shashankpanjeti"
+                  target="_blank" 
+                  rel="noopener noreferrer">
+                    <Button variant="ghostoutline" size="sm">
+                      LinkedIn
+                    </Button>
+                </a>
+                <a 
+                  className="flex gap-1 items-center"
+                  rel="noopener noreferrer">
+                    mailto:
+                    <CopyEmailButton />
+                </a>
+
+              </div>
             </div>
 
             <div className="grid gap-8 sm:gap-12 max-w-3xl mx-auto">

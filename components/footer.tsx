@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Linkedin, Mail, Instagram } from "lucide-react"
 // import { usePathname } from "next/navigation"
 import React from "react"
+import { CopyEmailIcon } from "@/components/email-copy"
 
 
 export function Footer() {
@@ -58,16 +59,17 @@ export function Footer() {
           </Link>
 
           {/* Email */}
-          <a
+          <CopyEmailIcon />
+          {/* <a
             href="mailto:shashankpanjeti@gmail.com"
             aria-label="Email: shashankpanjeti@gmail.com"
             className={linkBase}
           >
             <IconBox>
               <Mail className="h-4 w-4" />
-            </IconBox>
+            </IconBox> */}
             {/* <Label>shashankpanjeti@gmail.com</Label> */}
-          </a>
+          {/* </a> */}
 
           {/* Instagram */}
           <Link
