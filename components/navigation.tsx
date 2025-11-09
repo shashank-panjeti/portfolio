@@ -20,7 +20,7 @@ export function Navigation() {
       <nav className="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex gap-2 sm:gap-3 items-center group">
           <img src="/logo.png" alt="Logo" className="aspect-square h-7 w-7 border border-foreground/50 rounded-md opacity-90 group-hover:opacity-100 group-hover:border-foreground " />
-          <h2 className="text-lg font-medium text-foreground group-hover:font-semibold transition-font">
+          <h2 className="text-lg font-medium text-foreground hover:font-semibold transition-font">
             Shashank Panjeti
           </h2>
         </Link>
@@ -43,7 +43,7 @@ export function Navigation() {
                 <span
                   className={cn(
                     "absolute inset-0 flex items-center text-sm font-medium text-muted-foreground",
-                    "transition-transform duration-200",
+                    "transition-transform duration-300",
                     "group-hover:-translate-y-full"
                   )}
                 >
@@ -53,7 +53,7 @@ export function Navigation() {
                 <span
                   className={cn(
                     "absolute inset-0 flex items-center text-sm font-medium text-foreground",
-                    "transition-transform duration-200 translate-y-full",
+                    "transition-transform duration-300 translate-y-full",
                     "group-hover:translate-y-0"
                   )}
                 >

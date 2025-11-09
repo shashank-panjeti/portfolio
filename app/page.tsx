@@ -80,13 +80,13 @@ export default function HomePage() {
 
                   <span className="
                   absolute inset-0 flex items-center text-sm font-medium text-muted-foreground 
-                  transition-transform duration-200 
+                  transition-transform duration-300 
                   group-hover:-translate-y-full">
                     View all projects →
                   </span>
 
                   <span className="absolute inset-0 flex items-center text-sm font-medium text-foreground
-                  transition-transform duration-200 translate-y-full
+                  transition-transform duration-300 translate-y-full
                   group-hover:translate-y-0">
                     View all projects →
                   </span>
