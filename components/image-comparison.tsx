@@ -76,7 +76,7 @@ export function ImageComparison({
       {/* Before Image (Clipped) */}
       <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}>
         <Image src={beforeImage || "/placeholder.svg"} alt={beforeLabel} fill className="object-cover" />
-        <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium">
+        <div className="absolute top-4 left-4 bg-black/70 text-white px-1 py-1 rounded-full text-sm font-medium">
           {beforeLabel}
         </div>
       </div>

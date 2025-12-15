@@ -30,6 +30,36 @@ export type ContentSection =
         contribution: string[]
       }
     }
+  // | {
+  //     type: "arch-hero"
+  //     title: string
+  //     subtitle: string
+  //     heroImage: string
+  //     description?: string
+  //     year: string
+  //     overview?: {
+  //       projectName: string
+  //       location: string
+  //       projectType: string
+  //       workDuration: string
+  //       softwareUsed: string
+  //       contribution: string[]
+  //     }
+  //   }
+  | {
+      type: "architecture-hero"
+      title?: string
+      subtitle?: string
+      description?: string
+      meta?: {
+        year?: string
+        type?: string
+        area?: string
+        location?: string
+      }
+      modelPath?: string
+      image?: string
+    }
   | {
       type: "interior-overview"
       heading?: string
@@ -38,8 +68,44 @@ export type ContentSection =
       projectType: string
       workDuration: string
       softwareUsed: string
-      contribution: string[]
+      contribution?: string[]
     }
+
+  | {
+      type: "architecture-concept"
+      heading?: string
+      content: string | string[]
+      sidebar?: {
+        title: string
+        items: string[]
+      }
+    }
+  | {
+      type: "architecture-floor-plans"
+      heading?: string
+      plans: {
+        title?: string
+        image: string
+        alt?: string
+      }[]
+    }
+  | {
+      type: "architecture-materials"
+      heading?: string
+      groups: {
+        title: string
+        items: string[]
+      }[]
+    }
+  | {
+      type: "architecture-gallery"
+      heading?: string
+      images: {
+        src: string
+        alt?: string
+      }[]
+    }
+
   | {
       type: "case-study-section"
       id: string // For scroll spy and navigation
@@ -49,6 +115,7 @@ export type ContentSection =
       blocks?: Array<{
         subheading?: string[]
         content?: string | string[]
+        points?: string[]
         image?: {
           src: string
           alt: string
@@ -64,7 +131,7 @@ export type ContentSection =
         modelPath?: string
         figmaUrl?: string
       }>
-      // Legacy support for single content/image (will be deprecated)
+      points?: string[]
       content?: string | string[]
       image?: {
         src: string
@@ -159,12 +226,13 @@ export type ContentSection =
 
 export interface Project {
   id: string
+  slug?: string 
   title: string
   category: "ux-ui" | "architecture" | "interior" | "3d" | "photography"
   description: string
-  timeline: string
+  timeline?: string
   year: string
-  tags: string[]
+  tags?: string[]
   image: string
   modelPath?: string
   featured?: boolean
@@ -215,20 +283,30 @@ export const projects: Project[] = [
         navLabel: "Struggle",
         navFullLabel: "Struggle (The Problem)",
         heading: "The Problem",
-        content: [
-          "In today’s digital world, seniors (65+) are among the most targeted by scammers. Many feel anxious or ashamed after falling for fake calls, messages, or phishing links.",
-          "They struggle with:",
-          "•  Small text, cluttered layouts, and complex navigation.",
-          "•  Doubt in verifying legitimate messages or calls.",
-          "•  Lack of trustworthy, real-time scam updates.",
-          "•  Fear of using technology without guidance.",
-          "SafeMilo tackles this by combining education, real-time protection, and emotional reassurance, not just stopping scams, but building confidence.",
+        blocks: [
+          {
+            content: [
+              "In today’s digital world, seniors (65+) are among the most targeted by scammers. Many feel anxious or ashamed after falling for fake calls, messages, or phishing links.",
+              "They struggle with:",
+            ],
+            points: [
+              "Small text, cluttered layouts, and complex navigation.",
+              "Doubt in verifying legitimate messages or calls.",
+              "Lack of trustworthy, real-time scam updates.",
+              "Fear of using technology without guidance.",
+            ],
+          },
+          {
+            content: [
+              "SafeMilo tackles this by combining education, real-time protection, and emotional reassurance, not just stopping scams, but building confidence.",
+            ],
+            image: {
+              src: "/ux-ui-safemilo/safemilo-problem.png",
+              alt: "Safemilo Problem identification",
+              position: "below",
+            },
+          },
         ],
-        image: {
-          src: "/ux-ui-safemilo/safemilo-problem.png",
-          alt: "Safemilo Problem identification",
-          position: "below",
-        },
       },
       {
         type: "case-study-section",
@@ -246,12 +324,16 @@ export const projects: Project[] = [
           },
           { 
             subheading: ["Key Insights"],
+            points: [
+              "Topic sensitivity. Many seniors feel embarrassed or ashamed after a scam incident, which reduces help-seeking and disclosure.",
+              "Information reliability. Scam awareness often comes from forwarded messages and social media, sources that are rarely verified and can amplify fear or misinformation.",
+              "Technology dependence. Seniors frequently rely on family or friends for basic digital tasks, slowing their ability to verify threats and respond promptly.",
+            ],
             content: [
-              "•  Topic sensitivity. Many seniors feel embarrassed or ashamed after a scam incident, which reduces help-seeking and disclosure.",
-              "•  Information reliability. Scam awareness often comes from forwarded messages and social media, sources that are rarely verified and can amplify fear or misinformation.",
-              "•  Technology dependence. Seniors frequently rely on family or friends for basic digital tasks, slowing their ability to verify threats and respond promptly.",
               "These findings directly informed SafeMilo’s emphasis on plain language, verified news, voice/large-type interfaces, and just-in-time guidance through an AI assistant.",
             ],
+          },
+          {
             images: [
               {
                 src: "/ux-ui-safemilo/safemilo-user-persona-01.png",
@@ -291,11 +373,11 @@ export const projects: Project[] = [
           },
           {
             subheading: ["Core Features"],
-            content: [
-              "•  Learning Modules: Bite-sized, voice-assisted lessons with quizzes and videos.",
-              "•  Call & Message Screening: Detects suspicious content and warns before answering.",
-              "•  AI Chatbot: 24/7 instant scam-check assistant.",
-              "•  Verified News Feed: Updates from banks and law enforcement.",
+            points: [
+              "Learning Modules: Bite-sized, voice-assisted lessons with quizzes and videos.",
+              "Call & Message Screening: Detects suspicious content and warns before answering.",
+              "AI Chatbot: 24/7 instant scam-check assistant.",
+              "Verified News Feed: Updates from banks and law enforcement.",
             ],
             image: {
               src: "/ux-ui-safemilo/safemilo-features.png",
@@ -316,11 +398,13 @@ export const projects: Project[] = [
             subheading: ["Information Architecture"],
             content: [
               "We structured SafeMilo around the senior user’s mental model of “learn, check, protect,” which informed five top-level areas: Home, Learn, Ask Milo, User Profile, and Notifications.",
-              "•  Home surfaces only what’s “actionable now”: recent scam alerts, call/message screening status, and a gentle prompt to learn.",
-              "•  Learn contains courses, scam categories, and achievements—organized by task, not by content type—to reduce cognitive load.",
-              "•  Ask Milo is a single-purpose space for type/voice questions with clear system feedback (“Milo Answers”).",
-              "•  User Profile centralizes Accessibility Settings (text size, voice, contrast) and App Permissions, so assistive adjustments are always one tap away.",
-              "•  Notifications is separated from Home to avoid clutter and keep alerts reviewable later.",
+            ],
+            points: [
+              "Home surfaces only what’s “actionable now”: recent scam alerts, call/message screening status, and a gentle prompt to learn.",
+              "Learn contains courses, scam categories, and achievements—organized by task, not by content type—to reduce cognitive load.",
+              "Ask Milo is a single-purpose space for type/voice questions with clear system feedback (“Milo Answers”).",
+              "User Profile centralizes Accessibility Settings (text size, voice, contrast) and App Permissions, so assistive adjustments are always one tap away.",
+              "Notifications is separated from Home to avoid clutter and keep alerts reviewable later.",
             ],
             image: {
               src: "/ux-ui-safemilo/safemilo-information-architecture.png",
@@ -544,7 +628,7 @@ export const projects: Project[] = [
     tags: ["UX/UI Design", "Event Planning", "Research", "Branding", "Web"],
     image: "/ux-ui-togathr/togathr-cover-photo.png",
     modelPath: "/ux-ui-togathr/togathr-laptop-model.glb",
-    featured: true,
+    featured: false,
     content: [
       {
         type: "hero",
@@ -829,6 +913,7 @@ export const projects: Project[] = [
       },
     ],
   },
+
   {
     id: "gnwshop-website",
     title: "GNW Shop",
@@ -1106,7 +1191,7 @@ export const projects: Project[] = [
 
 
 
-      {
+  {
     id: "wesley-chapel",
     title: "Wesley Chapel Residence",
     category: "3d",
@@ -1114,14 +1199,14 @@ export const projects: Project[] = [
     timeline: "Timeline - 8 Days",
     year: "2024",
     tags: ["Interior Design", "Residential", "Modern", "Luxury"],
-    image: "/interior-wesleychappel/9.1imp.jpg",
+    image: "/3d-wesleychappel/9.1imp.jpg",
     featured: true,
     content: [
       {
         type: "interior-hero",
         title: "Wesley Chapel Residence",
         subtitle: "3D Rendering Project - Architecture",
-        heroImage: "/interior-wesleychappel/9.1imp.jpg",
+        heroImage: "/3d-wesleychappel/9.1imp.jpg",
         tags: ["Interior Design", "Residential", "Modern", "Luxury"],
         timeline: "Timeline - 8 Days",
         year: "2024",
@@ -1148,10 +1233,10 @@ export const projects: Project[] = [
         heading: "Design Evolution",
         description: "Explore the transformation of key spaces through our interactive comparison view.",
         images: [
-          { src: "/interior-wesleychappel/Autocad.png", alt: "2d-drawing-autocad", caption: "2d Drawing" },
-          { src: "/interior-wesleychappel/Sketchup Model.png", alt: "3d-model-wireframe", caption: "3d Model" },
-          { src: "/interior-wesleychappel/Lumion.png", alt: "real-time-render", caption: "Render" },
-          { src: "/interior-wesleychappel/final.png", alt: "final-image", caption: "Final Image" },
+          { src: "/3d-wesleychappel/Autocad.png", alt: "2d-drawing-autocad", caption: "2d Drawing" },
+          { src: "/3d-wesleychappel/Sketchup Model.png", alt: "3d-model-wireframe", caption: "3d Model" },
+          { src: "/3d-wesleychappel/Lumion.png", alt: "real-time-render", caption: "Render" },
+          { src: "/3d-wesleychappel/final.png", alt: "final-image", caption: "Final Image" },
         ],
       },
       {
@@ -1165,19 +1250,19 @@ export const projects: Project[] = [
             content:
               "Explore the complete transformation of this modern residence through our curated gallery of interior spaces.",
             images: [
-              { src: "/interior-wesleychappel/1.1.jpg", alt: "Exterior Elevation 1", caption: "Exterior Elevation 1" },
-              { src: "/interior-wesleychappel/2.1.jpg", alt: "Exterior Elevation 2", caption: "Exterior Elevation 2" },
-              { src: "/interior-wesleychappel/3.1.jpg", alt: "Swimming Pool", caption: "Swimming Pool" },
-              { src: "/interior-wesleychappel/4.1.jpg", alt: "Swimming Pool", caption: "Swimming Pool" },
-              // { src: "/interior-wesleychappel/5.1.jpg", alt: "Aeriel View", caption: "Aeriel View" },
-              { src: "/interior-wesleychappel/6.1.jpg", alt: "Garden", caption: "Garden" },
-              { src: "/interior-wesleychappel/7.1.jpg", alt: "Back-yard Seating", caption: "Back-yard Seating" },
-              { src: "/interior-wesleychappel/8.1.jpg", alt: "Elevation with Fountain", caption: "Elevation with Fountain" },
-              { src: "/interior-wesleychappel/9.1imp.jpg", alt: "Front Elevation", caption: "Front Elevation" },
-              { src: "/interior-wesleychappel/10.1.jpg", alt: "Exterior Elevation 3", caption: "Exterior Elevation 3" },
-              { src: "/interior-wesleychappel/11.1.jpg", alt: "Exterior Elevation 4", caption: "Exterior Elevation 4" },
-              { src: "/interior-wesleychappel/12.1.jpg", alt: "Aeriel View", caption: "Aeriel View" },
-              { src: "/interior-wesleychappel/13.1.jpg", alt: "Patio", caption: "Patio" },
+              { src: "/3d-wesleychappel/1.1.jpg", alt: "Exterior Elevation", caption: "Exterior Elevation" },
+              { src: "/3d-wesleychappel/2.1.jpg", alt: "Exterior Elevation", caption: "Exterior Elevation" },
+              { src: "/3d-wesleychappel/3.1.jpg", alt: "Swimming Pool", caption: "Swimming Pool" },
+              { src: "/3d-wesleychappel/4.1.jpg", alt: "Swimming Pool", caption: "Swimming Pool" },
+              // { src: "/3d-wesleychappel/5.1.jpg", alt: "Aeriel View", caption: "Aeriel View" },
+              { src: "/3d-wesleychappel/6.1.jpg", alt: "Garden", caption: "Garden" },
+              { src: "/3d-wesleychappel/7.1.jpg", alt: "Back-yard Seating", caption: "Back-yard Seating" },
+              { src: "/3d-wesleychappel/8.1.jpg", alt: "Elevation with Fountain", caption: "Elevation with Fountain" },
+              { src: "/3d-wesleychappel/9.1imp.jpg", alt: "Front Elevation", caption: "Front Elevation" },
+              { src: "/3d-wesleychappel/10.1.jpg", alt: "Exterior Elevation", caption: "Exterior Elevation" },
+              { src: "/3d-wesleychappel/11.1.jpg", alt: "Exterior Elevation", caption: "Exterior Elevation" },
+              { src: "/3d-wesleychappel/12.1.jpg", alt: "Aeriel View", caption: "Aeriel View" },
+              { src: "/3d-wesleychappel/13.1.jpg", alt: "Patio", caption: "Patio" },
 
             ],
             imageLayout: "grid-4",
@@ -1186,6 +1271,475 @@ export const projects: Project[] = [
       },
     ],
   },
+
+  
+  {
+    id: "ashok-residency",
+    title: "Ashok Residence",
+    category: "interior",
+    description: "Modern luxury interior design with contemporary aesthetics",
+    timeline: "Timeline - 3 Months",
+    year: "2023",
+    tags: ["Interior Design", "Residential", "Modern", "Luxury"],
+    image: "/interior-ashokresidence/heroimage.jpg",
+    featured: true,
+    content: [
+      {
+        type: "interior-hero",
+        title: "Ashok Residence",
+        subtitle: "Interior Project",
+        heroImage: "/interior-ashokresidence/heroimage.jpg",
+        tags: ["Interior Design", "Residential", "Modern", "Luxury"],
+        timeline: "Timeline - 3 Months",
+        year: "2023",
+      },
+      {
+        type: "interior-overview",
+        heading: "Project Overview",
+        projectName: "Ashok Residence",
+        location: "Narsing, Telangana, India",
+        projectType: "Residential",
+        workDuration: "3 months",
+        softwareUsed: "SketchUp, Lumion, Photoshop, Autocad, V-ray",
+        // contribution: [
+        //   "I was provided with a comprehensive set of architectural construction drawings by the project's real estate developer. My primary responsibility was to interpret these technical documents and translate them into photorealistic architectural visualizations that accurately reflect the design intent.",
+        //   "The process began with an in-depth review of the architectural, structural, and interior detailing to ensure precision in spatial proportions and materiality. Using SketchUp, I developed a detailed 3D model that captured the architectural language and volumetric articulation of the structure. To achieve real-time rendering performance without compromising quality, the model was seamlessly imported into Lumion.",
+        //   "A curated selection of physically-based rendering (PBR) materials was applied, with careful consideration of surface properties such as roughness, reflectivity, and albedo, to align with both the visual style and material specifications indicated in the construction documents.",
+        //   "To further enhance the realism, I exported multiple render passes including lighting maps, reflection/specular maps, and shadow overlays from Lumion. These were composited and refined in Adobe Photoshop, allowing for greater control over atmospheric conditions, depth, and photorealistic enhancement.",
+        //   "The final visualizations are not just renders. They are a visual narrative that communicates the project's design ethos, spatial qualities, and material textures with clarity and realism.",
+        // ],
+      },
+      // {
+      //   type: "comparison",
+      //   id: "comparison",
+      //   heading: "Design Evolution",
+      //   description: "Explore the transformation of key spaces through our interactive comparison view.",
+      //   images: [
+      //     { src: "/3d-wesleychappel/Autocad.png", alt: "2d-drawing-autocad", caption: "2d Drawing" },
+      //     { src: "/3d-wesleychappel/Sketchup Model.png", alt: "3d-model-wireframe", caption: "3d Model" },
+      //     { src: "/3d-wesleychappel/Lumion.png", alt: "real-time-render", caption: "Render" },
+      //     { src: "/3d-wesleychappel/final.png", alt: "final-image", caption: "Final Image" },
+      //   ],
+      // },
+      {
+        type: "case-study-section",
+        id: "gallery",
+        navLabel: "Gallery",
+        navFullLabel: "Gallery (Project Images)",
+        heading: "Project Gallery",
+        blocks: [
+          {
+            content:
+              "Explore the complete transformation of this modern residence through our curated gallery of interior spaces.",
+            images: [
+              { src: "/interior-ashokresidence/06.jpg", alt: "Living Room", caption: "Living Room" },
+              { src: "/interior-ashokresidence/04.jpg", alt: "Living Room", caption: "Living Room" },
+              { src: "/interior-ashokresidence/05.jpg", alt: "Living Room", caption: "Living Room" },
+              { src: "/interior-ashokresidence/01.jpg", alt: "Dining", caption: "Dining" },
+              { src: "/interior-ashokresidence/02.jpg", alt: "Dining & Kitchen", caption: "Dining & Kitchen" },
+              { src: "/interior-ashokresidence/03.jpg", alt: "Kitchen", caption: "Kitchen" },
+              { src: "/interior-ashokresidence/07.jpg", alt: "Bedroom 1", caption: "Bedroom 1" },
+              { src: "/interior-ashokresidence/08.jpg", alt: "Bedroom 1", caption: "Bedroom 1" },
+              { src: "/interior-ashokresidence/09.jpg", alt: "Bedroom 1", caption: "Bedroom 1" },
+              { src: "/interior-ashokresidence/10.jpg", alt: "Bedroom 2", caption: "Bedroom 2" },
+              { src: "/interior-ashokresidence/11.jpg", alt: "Bedroom 3", caption: "Bedroom 3" },
+              { src: "/interior-ashokresidence/12.jpg", alt: "Bedroom 3", caption: "Bedroom 3" },
+              { src: "/interior-ashokresidence/13.jpg", alt: "Bedroom 3", caption: "Bedroom 3" },
+              { src: "/interior-ashokresidence/14.jpg", alt: "Living Room 2", caption: "Living Room 2" },
+              { src: "/interior-ashokresidence/15.jpg", alt: "Living Room 2", caption: "Living Room 2" },
+              { src: "/interior-ashokresidence/16.jpg", alt: "Living Room 2", caption: "Living Room 2" },
+
+            ],
+            imageLayout: "grid-4",
+          },
+        ],
+      },
+    ],
+  },
+  
+
+  {
+    id: "oxygen-park",
+    title: "Oxygen Park",
+    category: "3d",
+    description: "Recreational Space in the Heart of the City",
+    timeline: "Timeline - 3 Weeks",
+    year: "2023",
+    tags: ["3d render", "Architectural", "Recreational", "Landscape"],
+    image: "/3d-oxygenpark/heroimage.jpg",
+    featured: false,
+    content: [
+      {
+        type: "interior-hero",
+        title: "Oxygen Park",
+        subtitle: "Interior Project",
+        heroImage: "/3d-oxygenpark/heroimage.jpg",
+        tags: ["3d render", "Architectural", "Recreational", "Landscape"],
+        timeline: "Timeline - 3 Weeks",
+        year: "2023",
+      },
+      {
+        type: "interior-overview",
+        heading: "Project Overview",
+        projectName: "Oxygen Park",
+        location: "Hyderabad, Telangana, India",
+        projectType: "Residential",
+        workDuration: "3 Weeks",
+        softwareUsed: "SketchUp, Lumion, Photoshop",
+        // contribution: [
+        //   "I was provided with a comprehensive set of architectural construction drawings by the project's real estate developer. My primary responsibility was to interpret these technical documents and translate them into photorealistic architectural visualizations that accurately reflect the design intent.",
+        //   "The process began with an in-depth review of the architectural, structural, and interior detailing to ensure precision in spatial proportions and materiality. Using SketchUp, I developed a detailed 3D model that captured the architectural language and volumetric articulation of the structure. To achieve real-time rendering performance without compromising quality, the model was seamlessly imported into Lumion.",
+        //   "A curated selection of physically-based rendering (PBR) materials was applied, with careful consideration of surface properties such as roughness, reflectivity, and albedo, to align with both the visual style and material specifications indicated in the construction documents.",
+        //   "To further enhance the realism, I exported multiple render passes including lighting maps, reflection/specular maps, and shadow overlays from Lumion. These were composited and refined in Adobe Photoshop, allowing for greater control over atmospheric conditions, depth, and photorealistic enhancement.",
+        //   "The final visualizations are not just renders. They are a visual narrative that communicates the project's design ethos, spatial qualities, and material textures with clarity and realism.",
+        // ],
+      },
+      // {
+      //   type: "comparison",
+      //   id: "comparison",
+      //   heading: "Design Evolution",
+      //   description: "Explore the transformation of key spaces through our interactive comparison view.",
+      //   images: [
+      //     { src: "/3d-wesleychappel/Autocad.png", alt: "2d-drawing-autocad", caption: "2d Drawing" },
+      //     { src: "/3d-wesleychappel/Sketchup Model.png", alt: "3d-model-wireframe", caption: "3d Model" },
+      //     { src: "/3d-wesleychappel/Lumion.png", alt: "real-time-render", caption: "Render" },
+      //     { src: "/3d-wesleychappel/final.png", alt: "final-image", caption: "Final Image" },
+      //   ],
+      // },
+      {
+        type: "case-study-section",
+        id: "gallery",
+        navLabel: "Gallery",
+        navFullLabel: "Gallery (Project Images)",
+        heading: "Project Gallery",
+        blocks: [
+          {
+            content:
+              "Explore the complete transformation of this modern residence through our curated gallery of interior spaces.",
+            images: [
+              { src: "/3d-oxygenpark/01.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/02.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/03.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/04.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/05.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/06.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/07.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/08.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/09.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/10.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/11.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/12.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/13.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/14.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/15.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/16.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/17.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/18.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/19.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+              { src: "/3d-oxygenpark/20.jpg", alt: "Oxygen Park", caption: "Oxygen Park" },
+            ],
+            imageLayout: "grid-4",
+          },
+        ],
+      },
+    ],
+  },
+
+
+  {
+    id: "urban-habitat",
+    title: "Urban Habitat",
+    category: "interior",
+    description: "Modern luxury interior design with contemporary aesthetics",
+    timeline: "Timeline - 1 Months",
+    year: "2023",
+    tags: ["Interior Design", "Residential", "Modern", "Luxury"],
+    image: "/interior-urbanhabitat/heroimage.jpg",
+    featured: false,
+    content: [
+      {
+        type: "interior-hero",
+        title: "Urban Habitat",
+        subtitle: "Interior Project",
+        heroImage: "/interior-urbanhabitat/heroimage.jpg",
+        tags: ["Interior Design", "Residential", "Modern", "Luxury"],
+        timeline: "Timeline - 1 Months",
+        year: "2023",
+      },
+      {
+        type: "interior-overview",
+        heading: "Project Overview",
+        projectName: "Urban Habitat",
+        location: "Hyderabad, Telangana, India",
+        projectType: "Residential",
+        workDuration: "1 months",
+        softwareUsed: "SketchUp, Lumion, Photoshop",
+        // contribution: [
+        //   "I was provided with a comprehensive set of architectural construction drawings by the project's real estate developer. My primary responsibility was to interpret these technical documents and translate them into photorealistic architectural visualizations that accurately reflect the design intent.",
+        //   "The process began with an in-depth review of the architectural, structural, and interior detailing to ensure precision in spatial proportions and materiality. Using SketchUp, I developed a detailed 3D model that captured the architectural language and volumetric articulation of the structure. To achieve real-time rendering performance without compromising quality, the model was seamlessly imported into Lumion.",
+        //   "A curated selection of physically-based rendering (PBR) materials was applied, with careful consideration of surface properties such as roughness, reflectivity, and albedo, to align with both the visual style and material specifications indicated in the construction documents.",
+        //   "To further enhance the realism, I exported multiple render passes including lighting maps, reflection/specular maps, and shadow overlays from Lumion. These were composited and refined in Adobe Photoshop, allowing for greater control over atmospheric conditions, depth, and photorealistic enhancement.",
+        //   "The final visualizations are not just renders. They are a visual narrative that communicates the project's design ethos, spatial qualities, and material textures with clarity and realism.",
+        // ],
+      },
+      // {
+      //   type: "comparison",
+      //   id: "comparison",
+      //   heading: "Design Evolution",
+      //   description: "Explore the transformation of key spaces through our interactive comparison view.",
+      //   images: [
+      //     { src: "/3d-wesleychappel/Autocad.png", alt: "2d-drawing-autocad", caption: "2d Drawing" },
+      //     { src: "/3d-wesleychappel/Sketchup Model.png", alt: "3d-model-wireframe", caption: "3d Model" },
+      //     { src: "/3d-wesleychappel/Lumion.png", alt: "real-time-render", caption: "Render" },
+      //     { src: "/3d-wesleychappel/final.png", alt: "final-image", caption: "Final Image" },
+      //   ],
+      // },
+      {
+        type: "case-study-section",
+        id: "gallery",
+        navLabel: "Gallery",
+        navFullLabel: "Gallery (Project Images)",
+        heading: "Project Gallery",
+        blocks: [
+          {
+            content:
+              "Explore the complete transformation of this modern residence through our curated gallery of interior spaces.",
+            images: [
+              { src: "/interior-urbanhabitat/01.jpg", alt: "Drawing Room", caption: "Drawing Room" },
+              { src: "/interior-urbanhabitat/02.jpg", alt: "Drawing Room", caption: "Drawing Room" },
+              { src: "/interior-urbanhabitat/03.jpg", alt: "Living Room", caption: "Living Room" },
+              { src: "/interior-urbanhabitat/04.jpg", alt: "Living Room", caption: "Living Room" },
+              { src: "/interior-urbanhabitat/05.jpg", alt: "Living Room", caption: "Living Room" },
+              { src: "/interior-urbanhabitat/06.jpg", alt: "Guest Bedroom", caption: "Guest Bedroom" },
+              { src: "/interior-urbanhabitat/07.jpg", alt: "Guest Bedroom", caption: "Guest Bedroom" },
+              { src: "/interior-urbanhabitat/08.jpg", alt: "Guest Bedroom", caption: "Guest Bedroom" },
+              { src: "/interior-urbanhabitat/09.jpg", alt: "Children Bedroom", caption: "Children Bedroom" },
+              { src: "/interior-urbanhabitat/10.jpg", alt: "Children Bedroom", caption: "Children Bedroom" },
+              { src: "/interior-urbanhabitat/11.jpg", alt: "Master Bedroom", caption: "Master Bedroom" },
+              { src: "/interior-urbanhabitat/12.jpg", alt: "Master Bedroom", caption: "Master Bedroom" },
+              { src: "/interior-urbanhabitat/13.jpg", alt: "Master Bedroom", caption: "Master Bedroom" },
+              { src: "/interior-urbanhabitat/14.jpg", alt: "Master Bedroom", caption: "Master Bedroom" },
+            ],
+            imageLayout: "grid-4",
+          },
+        ],
+      },
+    ],
+  },
+
+
+
+
+  // {
+  //   id: "cliff-house",
+  //   slug: "cliff-house",
+  //   category: "architecture",
+  //   title: "Cliff House Residence",
+  //   description: "A coastal residence that balances openness with protection from the elements.",
+  //   year: "2024",
+  //   tags: ["Interior Design", "Residential", "Modern", "Luxury"],
+  //   image: "/projects/cliff-house/hero.jpg",
+  //   // modelPath: "/models/cliff-house.glb",
+  //   featured: true,
+  //   // ↓ all layout content lives here
+  //   content: [
+  //     {
+  //       type: "architecture-hero",
+  //       title: "Cliff House Residence",
+  //       subtitle: "Architecture Project",
+  //       description:
+  //         "A modern coastal home designed to frame ocean views while sheltering occupants from strong winds.",
+  //       meta: {
+  //         year: "2024",
+  //         type: "Residential",
+  //         area: "2,400 sq ft",
+  //         location: "California, USA",
+  //       },
+  //       // modelPath: "/models/cliff-house.glb",
+  //       image: "/projects/cliff-house/hero.jpg",
+  //     },
+  //     {
+  //       type: "architecture-concept",
+  //       heading: "Design Concept",
+  //       content: [
+  //         "The project explores the transition between cliff edge and interior through stepped terraces and large glazed openings.",
+  //         "Spaces are oriented to capture natural light and ocean views while minimizing heat gain and glare.",
+  //       ],
+  //       sidebar: {
+  //         title: "Key Features",
+  //         items: [
+  //           "Technical design for a coastal residence",
+  //           "Passive solar strategy",
+  //           "Cross ventilation through split-level volumes",
+  //           "Locally sourced materials",
+  //           "Open-plan living zone",
+  //           "Framed ocean vistas",
+  //         ],
+  //       },
+  //     },
+  //     {
+  //       type: "architecture-floor-plans",
+  //       heading: "Floor Plans",
+  //       plans: [
+  //         {
+  //           title: "Ground Floor",
+  //           image: "/projects/cliff-house/plans/ground-floor.png",
+  //           alt: "Ground floor plan of Cliff House Residence",
+  //         },
+  //         {
+  //           title: "Upper Floor",
+  //           image: "/projects/cliff-house/plans/upper-floor.png",
+  //           alt: "Upper floor plan of Cliff House Residence",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       type: "architecture-materials",
+  //       heading: "Materials & Sustainability",
+  //       groups: [
+  //         {
+  //           title: "Exterior",
+  //           items: [
+  //             "Fiber-cement cladding with marine-grade finish",
+  //             "High-performance Low-E glazing",
+  //             "Standing seam metal roof",
+  //             "Board-formed concrete retaining walls",
+  //           ],
+  //         },
+  //         {
+  //           title: "Interior",
+  //           items: [
+  //             "Engineered oak flooring",
+  //             "Recycled steel structure",
+  //             "Lime-based plaster walls",
+  //             "Sheep wool insulation",
+  //           ],
+  //         },
+  //         {
+  //           title: "Systems",
+  //           items: [
+  //             "Roof-mounted solar PV array",
+  //             "Rainwater harvesting for irrigation",
+  //             "Heat recovery ventilation",
+  //             "Smart shading and lighting controls",
+  //           ],
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       type: "architecture-gallery",
+  //       heading: "Project Gallery",
+  //       images: [
+  //         {
+  //           src: "/projects/cliff-house/gallery/exterior-1.jpg",
+  //           alt: "Exterior perspective of Cliff House at sunset",
+  //         },
+  //         {
+  //           src: "/projects/cliff-house/gallery/living-room.jpg",
+  //           alt: "Double-height living space facing the ocean",
+  //         },
+  //         {
+  //           src: "/projects/cliff-house/gallery/terrace.jpg",
+  //           alt: "Terrace space with seating and ocean views",
+  //         },
+  //         {
+  //           src: "/projects/cliff-house/gallery/section.jpg",
+  //           alt: "Sectional view illustrating split levels",
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
+
+
+  
+  // {
+  //   id: "architectural-residence",
+  //   title: "Modern Residence",
+  //   category: "architecture",
+  //   description: "Distilling architectural impact to its spatial essence",
+  //   timeline: "Timeline - 12 Weeks",
+  //   year: "2024",
+  //   tags: ["Design", "Development", "Spatial", "Research", "Residential"],
+  //   image: "/modern-architectural-residence-exterior.jpg",
+  //   featured: true,
+  //   content: [
+  //     {
+  //       type: "hero",
+  //       title: "Modern Residence",
+  //       subtitle: "Architectural Design",
+  //       description: "Distilling architectural impact to its spatial essence",
+  //       tags: ["Design", "Development", "Spatial", "Research", "Residential"],
+  //       year: "2024",
+  //       timeline: "Timeline - 12 Weeks",
+  //       image: "/modern-architectural-residence-exterior.jpg",
+  //     },
+  //     {
+  //       type: "text",
+  //       heading: "Design Philosophy",
+  //       content: [
+  //         "This residence explores the relationship between interior and exterior spaces, creating a seamless flow that blurs traditional boundaries.",
+  //         "Every element serves both functional and aesthetic purposes, from the strategic placement of windows to the choice of materials that age gracefully.",
+  //       ],
+  //     },
+  //     {
+  //       type: "grid-features",
+  //       heading: "Project Details",
+  //       features: [
+  //         {
+  //           title: "Location",
+  //           description: "Hillside site with panoramic valley views",
+  //         },
+  //         {
+  //           title: "Area",
+  //           description: "3,200 sq ft living space + 800 sq ft outdoor terraces",
+  //         },
+  //         {
+  //           title: "Materials",
+  //           description: "Concrete, glass, natural wood, and local stone",
+  //         },
+  //         {
+  //           title: "Sustainability",
+  //           description: "Passive solar design, rainwater harvesting, green roof",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       type: "image-grid",
+  //       heading: "Spatial Exploration",
+  //       images: [
+  //         {
+  //           src: "/modern-architectural-residence-exterior.jpg",
+  //           alt: "Exterior view",
+  //           caption: "Street facade with integrated landscaping",
+  //         },
+  //         {
+  //           src: "/contemporary-interior-living-room.jpg",
+  //           alt: "Interior living space",
+  //           caption: "Open-plan living area with natural light",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       type: "text",
+  //       heading: "Outcome",
+  //       content:
+  //         "The completed residence has been featured in multiple architectural publications and won the Regional Design Award for Residential Architecture.",
+  //     },
+  //   ],
+  // },
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1838,7 +2392,7 @@ export const categories = [
   { id: "all", name: "All Projects" },
   { id: "ux-ui", name: "UX/UI" },
   // { id: "architecture", name: "Architecture" },
-  // { id: "interior", name: "Interior" },
+  { id: "interior", name: "Interior" },
   { id: "3d", name: "3D Works" },
   { id: "photography", name: "Photography" },
 ]

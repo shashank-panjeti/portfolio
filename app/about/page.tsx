@@ -33,7 +33,7 @@ const skills = {
 
 const experience = [
   {
-    period: "Sept 2024 - Present",
+    period: "Sept 2024 - Nov 2025",
     role: "Marker (Design)",
     company: "Langara College, Vancouver, Canada",
     description:[

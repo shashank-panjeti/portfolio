@@ -2,7 +2,8 @@ import { notFound } from "next/navigation"
 import { projects } from "@/lib/project-data"
 import { ProjectNavigation } from "@/components/project-navigation"
 import { UXUICaseStudy } from "@/components/ux-ui-case-study"
-import { ArchitectureProject } from "@/components/architecture-project"
+import { ArchitectureProjectDetail } from "@/components/architecture-project"
+import { InteriorProjectDetail } from "@/components/interior-project"
 import { PhotographyProject } from "@/components/photography-project"
 import { DynamicProjectDetail } from "@/components/dynamic-project-detail"
 import { ScrollToTop } from "@/components/scroll-to-top"
@@ -20,21 +21,27 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   const renderProjectContent = () => {
-    if (project.content && project.content.length > 0) {
-      return <DynamicProjectDetail project={project} />
-    }
+    // if (project.category === "architecture") {
+    //   return <ArchitectureProjectDetail project={project} />
+    // }
+
+    
+
+    // if (project.content && project.content.length > 0) {
+    //   return <DynamicProjectDetail project={project} />
+    // }
 
     switch (project.category) {
       case "ux-ui":
-        return <UXUICaseStudy project={project} />
-      case "architecture":
-        return <ArchitectureProject project={project} />
+        return <DynamicProjectDetail project={project} />
       case "photography":
         return <PhotographyProject project={project} />
+      case "architecture":
+        return <ArchitectureProjectDetail project={project} />
       case "interior":
-        return <ArchitectureProject project={project} />
+        return <InteriorProjectDetail project={project} />
       case "3d":
-        return <UXUICaseStudy project={project} />
+        return <InteriorProjectDetail project={project} />
       default:
         return <UXUICaseStudy project={project} />
     }
