@@ -1678,7 +1678,7 @@ export const projects: Project[] = [
               { src: "/photography/skanda-first/10.jpg", alt: "1st Birthday", caption: "1st Birthday" },
               { src: "/photography/skanda-first/11.jpg", alt: "1st Birthday", caption: "1st Birthday" },
               { src: "/photography/skanda-first/12.jpg", alt: "1st Birthday", caption: "1st Birthday" },
-              { src: "/photography/skanda-first/13.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              // { src: "/photography/skanda-first/13.jpg", alt: "1st Birthday", caption: "1st Birthday" },
               { src: "/photography/skanda-first/14.jpg", alt: "1st Birthday", caption: "1st Birthday" },
               { src: "/photography/skanda-first/15.jpg", alt: "1st Birthday", caption: "1st Birthday" },
             ],
