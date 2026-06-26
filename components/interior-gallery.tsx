@@ -123,8 +123,12 @@ export function InteriorGallery({ images, columns = 4 }: InteriorGalleryProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute left-5 sm:left-10 text-white hover:bg-white/10"
+            className="absolute left-5 sm:left-10 text-white hover:bg-white/10 z-10"
             onClick={goToPrevious}
+
+
+
+            
           >
             <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8" />
           </Button>

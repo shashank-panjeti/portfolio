@@ -242,57 +242,87 @@ type photographyImages = {
 const photographyImages = [
   { 
     id: 1, 
-    src: "/photography/sree/01.jpg", 
-    alt: "Maternity Photoshoot", 
-    title: "Maternity Photoshoot" 
+    src: "/photography/random-gallery/01.jpg", 
+    alt: "Vancouver", 
+    title: "Vancouver" 
   },
   { 
     id: 2, 
-    src: "/photography/sree/02.jpg", 
-    alt: "Maternity Photoshoot", 
-    title: "Maternity Photoshoot" 
+    src: "/photography/random-gallery/02.jpg", 
+    alt: "Golden Hour", 
+    title: "Golden Hour" 
   },
   { 
     id: 3, 
-    src: "/photography/sree/03.jpg", 
-    alt: "Maternity Photoshoot", 
-    title: "Maternity Photoshoot" 
+    src: "/photography/random-gallery/03.jpg", 
+    alt: "Fantacy Destination", 
+    title: "Fantacy Destination" 
   },
   { 
     id: 4, 
-    src: "/photography/sree/04.jpg", 
-    alt: "Maternity Photoshoot", 
-    title: "Maternity Photoshoot" 
+    src: "/photography/random-gallery/04.jpg", 
+    alt: "Sunset in Vancouver", 
+    title: "Sunset in Vancouver" 
   },
   { 
     id: 5, 
-    src: "/photography/sree/05.jpg", 
-    alt: "Maternity Photoshoot", 
-    title: "Maternity Photoshoot" 
+    src: "/photography/random-gallery/05.jpg", 
+    alt: "Travel Stories", 
+    title: "Travel Stories" 
   },
   { 
     id: 6, 
-    src: "/photography/sree/06.jpg", 
-    alt: "Maternity Photoshoot", 
-    title: "Maternity Photoshoot" 
+    src: "/photography/random-gallery/06.jpg", 
+    alt: "Travel Stories", 
+    title: "Travel Stories" 
   },
   { 
     id: 7, 
-    src: "/photography/sree/07.jpg", 
-    alt: "Maternity Photoshoot", 
-    title: "Maternity Photoshoot" 
+    src: "/photography/random-gallery/07.jpg", 
+    alt: "Close to Nature", 
+    title: "Close to Nature" 
   },
   { 
     id: 8, 
-    src: "/photography/sree/08.jpg", 
-    alt: "Maternity Photoshoot", 
-    title: "Maternity Photoshoot" 
+    src: "/photography/random-gallery/08.jpg", 
+    alt: "Golden Hour", 
+    title: "Golden Hour" 
   },
   { 
     id: 9, 
-    src: "/photography/sree/09.jpg", 
-    alt: "Maternity Photoshoot", 
-    title: "Maternity Photoshoot" 
+    src: "/photography/random-gallery/09.jpg", 
+    alt: "Golden Hour", 
+    title: "Golden Hour" 
+  },
+  { 
+    id: 10, 
+    src: "/photography/random-gallery/10.jpg", 
+    alt: "Sunset in Vancouver", 
+    title: "Sunset in Vancouver" 
+  },
+  { 
+    id: 11, 
+    src: "/photography/random-gallery/11.jpg", 
+    alt: "Nature's Beauty", 
+    title: "Nature's Beauty" 
+  },
+  { 
+    id: 12, 
+    src: "/photography/random-gallery/12.jpg", 
+    alt: "Nature's Beauty", 
+    title: "Nature's Beauty" 
+  },
+  { 
+    id: 13, 
+    src: "/photography/random-gallery/13.jpg", 
+    alt: "Life in Vancouver", 
+    title: "Life in Vancouver" 
+  },
+  { 
+    id: 14, 
+    src: "/photography/random-gallery/14.jpg", 
+    alt: "Life in Vancouver", 
+    title: "Life in Vancouver" 
   },
 ]
 

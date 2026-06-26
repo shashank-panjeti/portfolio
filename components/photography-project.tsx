@@ -1,91 +1,139 @@
+"use client"
+
 import Image from "next/image"
-import type { Project } from "@/lib/project-data"
+import { Project3DModel } from "./project-3d-model"
+import { InteriorGallery } from "./interior-gallery"
+import { PhotographyGallery } from "./photo-gallery"
+import type { Project, ContentSection } from "@/lib/project-data"
 
 interface PhotographyProjectProps {
   project: Project
 }
 
 export function PhotographyProject({ project }: PhotographyProjectProps) {
-  const galleryImages = [
-    { src: project.image, alt: `${project.title} - Image 1` },
-    { src: "/natural-light-portrait.png", alt: `${project.title} - Image 2` },
-    { src: "/urban-street-scene.png", alt: `${project.title} - Image 3` },
-    { src: "/minimalist-product-shot.png", alt: `${project.title} - Image 4` },
-  ]
+  const heroSection = project.content?.find(
+    (section): section is Extract<ContentSection, { type: "photography-hero" }> =>
+      section.type === "photography-hero",
+  )
+
+  const orderedContent = project.content?.filter(
+    (section) => section.type !== "photography-hero",
+  )
+
+  if (!project.content || project.content.length === 0) {
+    return (
+      <div className="space-y-8">
+        <h1 className="text-4xl lg:text-5xl font-light">{project.title}</h1>
+        <div className="relative aspect-video bg-muted/20 rounded-lg overflow-hidden">
+          <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-16">
-      {/* Hero Section */}
-      <section className="text-center space-y-8">
-        <div className="space-y-4">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">Photography Series</span>
-          <h1 className="text-4xl lg:text-5xl font-light text-foreground">{project.title}</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{project.description}</p>
+      {heroSection && (
+        <div className="max-w-[1400px] mx-auto max-h-[650px] overflow-hidden">
+          <InteriorHeroSection section={heroSection} />
         </div>
+      )}
 
-        <div className="flex flex-wrap gap-2 justify-center">
-          {project.tags.map((tag) => (
-            <span key={tag} className="px-3 py-1 text-sm bg-muted text-muted-foreground rounded-full">
-              {tag}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* Featured Image */}
-      <section>
-        <div className="relative aspect-[3/2] bg-muted/20 rounded-lg overflow-hidden">
-          <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
-        </div>
-      </section>
-
-      {/* Project Description */}
-      <section className="max-w-3xl mx-auto text-center space-y-6">
-        <h2 className="text-3xl font-light text-foreground">About This Series</h2>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          This photography series explores the interplay between natural light and human emotion, capturing authentic
-          moments that reveal the beauty in everyday life. Each image tells a story of connection, solitude, and the
-          quiet poetry found in ordinary moments.
-        </p>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Shot entirely with natural light using minimal equipment, the series emphasizes the importance of timing,
-          patience, and understanding the subtle qualities of light throughout the day.
-        </p>
-      </section>
-
-      {/* Technical Details */}
-      <section className="bg-muted/20 p-8 lg:p-12 rounded-lg">
-        <h2 className="text-2xl font-light text-foreground mb-8 text-center">Technical Details</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <h3 className="text-lg font-medium text-foreground mb-2">Equipment</h3>
-            <p className="text-sm text-muted-foreground">Canon EOS R5</p>
-            <p className="text-sm text-muted-foreground">85mm f/1.4 lens</p>
-          </div>
-          <div className="text-center">
-            <h3 className="text-lg font-medium text-foreground mb-2">Technique</h3>
-            <p className="text-sm text-muted-foreground">Natural light only</p>
-            <p className="text-sm text-muted-foreground">Minimal post-processing</p>
-          </div>
-          <div className="text-center">
-            <h3 className="text-lg font-medium text-foreground mb-2">Year</h3>
-            <p className="text-sm text-muted-foreground">{project.year}</p>
-            <p className="text-sm text-muted-foreground">12 images total</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery */}
-      <section className="space-y-8">
-        <h2 className="text-3xl font-light text-foreground text-center">Gallery</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {galleryImages.map((image, index) => (
-            <div key={index} className="relative aspect-[4/5] bg-muted/20 rounded-lg overflow-hidden">
-              <Image src={image.src || "/placeholder.svg"} alt={image.alt} fill className="object-cover" />
-            </div>
-          ))}
-        </div>
-      </section>
+      
+      <div className="max-w-[1400px] mx-auto space-y-16">
+        {orderedContent?.map((section, index) => (
+          <ContentSectionRenderer key={index} section={section} project={project} />
+        ))}
+      </div>
     </div>
+  )
+}
+
+
+
+function ContentSectionRenderer({ section, project }: { section: ContentSection; project?: Project }) {
+  switch (section.type) {
+    case "case-study-section":
+      return <CaseStudySection section={section} project={project} />
+
+    default:
+      return null
+  }
+}
+
+
+
+
+  function InteriorHeroSection({ section }: { section: Extract<ContentSection, { type: "photography-hero" }> }) {
+    return (
+      // <div className="relative w-full sm:h-[35vh] md:h-[50vh] lg:h-[65vh] min-h-[250px] overflow-hidden">
+      <div className="relative w-full sm:min-h-[35vh] md:min-h-[40vh] lg:min-h-[45vh] min-h-[250px] overflow-hidden">
+        <Image
+          src={section.heroImage || "/placeholder.svg"}
+          alt={section.title}
+          fill
+          // className="w-full h-full object-cover object-center"
+          className="object-cover object-center lg:top-[-20%]"
+          priority
+        />
+        <div className="absolute inset-0 z-10 flex flex-col justify-end max-w-[1400px] mx-auto w-full">
+          <div className="space-y-4 text-white bg-black/50 px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4">
+            <h1 className="text-xl md:text-3xl lg:text-4xl font-light m-0">{section.title}</h1>
+            <div className="inset-0 flex flex-row w-full justify-between items-baseline ">
+              <p className="text-md md:text-xl text-white/90">{section.subtitle}</p>
+              {/* <div className="hidden sm:flex flex-wrap gap-2 pt-2">
+                {section.tags.map((tag) => (
+                  <span key={tag} className="px-3 py-1 text-sm bg-white/20 backdrop-blur-sm text-white rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div> */}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+
+
+function CaseStudySection({
+  section,
+  project,
+}: {
+  section: Extract<ContentSection, { type: "case-study-section" }>
+  project?: Project
+}) {
+  const isGallery =
+    (project?.category === "photography") &&
+    section.id === "gallery" &&
+    section.blocks?.[0]?.images
+
+  if (isGallery) {
+    const block = section.blocks![0]
+    return (
+      <section className="space-y-8">
+        <h2 className="text-3xl font-light">{section.heading}</h2>
+        {block.content && <p className="text-lg text-muted-foreground">{block.content}</p>}
+        <PhotographyGallery images={block.images!} />
+        {/* <InteriorGallery images={block.images!} /> */}
+      </section>
+    )
+  }
+
+  const content = Array.isArray(section.content) ? section.content : section.content ? [section.content] : []
+
+  return (
+    <section className="space-y-8">
+      <h2 className="text-3xl font-light">{section.heading}</h2>
+
+      {content.map((p, i) => (
+        <p key={i} className="text-lg text-muted-foreground leading-relaxed">
+          {p}
+        </p>
+      ))}
+
+      {section.modelPath && <Project3DModel modelPath={section.modelPath} />}
+    </section>
   )
 }

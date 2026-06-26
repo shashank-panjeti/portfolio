@@ -25,13 +25,13 @@ export function ProjectGridCard({ project }: ProjectGridCardProps) {
           </h3>
           <p className="text-sm text-muted-foreground line-clamp-2">{project.description}</p>
 
-          <div className="flex flex-wrap gap-1 pt-1">
+          {/* <div className="flex flex-wrap gap-1 pt-1">
             {project.tags.slice(0, 3).map((tag) => (
               <span key={tag} className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded">
                 {tag}
               </span>
             ))}
-          </div>
+          </div> */}
 
           <div className="text-xs text-muted-foreground">{project.year}</div>
         </div>

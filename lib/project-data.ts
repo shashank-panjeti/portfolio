@@ -13,24 +13,41 @@ export type ContentSection =
       image?: string
       modelPath?: string
     }
-  | {
-      type: "interior-hero"
-      title: string
-      subtitle: string
-      heroImage: string
-      tags: string[]
-      timeline: string
-      year: string
-      overview?: {
-        projectName: string
-        location: string
-        projectType: string
-        workDuration: string
-        softwareUsed: string
-        contribution: string[]
+    | {
+        type: "interior-hero"
+        title: string
+        subtitle: string
+        heroImage: string
+        tags: string[]
+        timeline: string
+        year: string
+        overview?: {
+          projectName: string
+          location: string
+          projectType: string
+          workDuration: string
+          softwareUsed: string
+          contribution: string[]
+        }
       }
-    }
-  // | {
+    | {
+        type: "photography-hero"
+        title: string
+        subtitle: string
+        heroImage: string
+        tags?: string[]
+        timeline: string
+        year: string
+        overview?: {
+          projectName: string
+          location: string
+          projectType: string
+          workDuration: string
+          softwareUsed: string
+          contribution: string[]
+        }
+      }
+    // | {
   //     type: "arch-hero"
   //     title: string
   //     subtitle: string
@@ -1519,6 +1536,151 @@ export const projects: Project[] = [
               { src: "/interior-urbanhabitat/12.jpg", alt: "Master Bedroom", caption: "Master Bedroom" },
               { src: "/interior-urbanhabitat/13.jpg", alt: "Master Bedroom", caption: "Master Bedroom" },
               { src: "/interior-urbanhabitat/14.jpg", alt: "Master Bedroom", caption: "Master Bedroom" },
+            ],
+            imageLayout: "grid-4",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "maternity-photoshoot",
+    title: "Blooming Into Motherhood",
+    category: "photography",
+    description: "Documenting the chapter couple wil cherish for a lifetime.",
+    year: "2025",
+    // tags: ["Photography", "Portrait", "Natural light"],
+    image: "/photography/sree/08.jpg",
+    featured: false,
+    content: [
+      {
+        type: "photography-hero",
+        title: "Blooming Into Motherhood",
+        subtitle: "Maternity Photoshoot",
+        heroImage: "/photography/sree/08.jpg",
+        // tags: ["Interior Design", "Residential", "Modern", "Luxury"],
+        timeline: "Timeline - 3 Months",
+        year: "2023",
+      },
+      {
+        type: "case-study-section",
+        id: "gallery",
+        navLabel: "Gallery",
+        navFullLabel: "Gallery (Project Images)",
+        heading: "Photo Gallery",
+        blocks: [
+          {
+            images: [
+              { src: "/photography/sree/01.jpg", alt: "Maternity Photoshoot", caption: "Maternity Photoshoot" },
+              { src: "/photography/sree/02.jpg", alt: "Maternity Photoshoot", caption: "Maternity Photoshoot" },
+              { src: "/photography/sree/03.jpg", alt: "Maternity Photoshoot", caption: "Maternity Photoshoot" },
+              { src: "/photography/sree/04.jpg", alt: "Maternity Photoshoot", caption: "Maternity Photoshoot" },
+              { src: "/photography/sree/05.jpg", alt: "Maternity Photoshoot", caption: "Maternity Photoshoot" },
+              { src: "/photography/sree/06.jpg", alt: "Maternity Photoshoot", caption: "Maternity Photoshoot" },
+              { src: "/photography/sree/07.jpg", alt: "Maternity Photoshoot", caption: "Maternity Photoshoot" },
+              { src: "/photography/sree/08.jpg", alt: "Maternity Photoshoot", caption: "Maternity Photoshoot" },
+              { src: "/photography/sree/09.jpg", alt: "Maternity Photoshoot", caption: "Maternity Photoshoot" },
+            ],
+            imageLayout: "grid-4",
+          },
+        ],
+      },
+    ],
+  },
+
+
+
+  {
+    id: "su-pd-wedding",
+    title: "SU & PD Wedding",
+    category: "photography",
+    description: "A special shout out for the bride",
+    year: "2026",
+    // tags: ["Photography", "Portrait", "Natural light"],
+    image: "/photography/su-wed/99.jpg",
+    featured: false,
+    content: [
+      {
+        type: "photography-hero",
+        title: "SU & PD Wedding",
+        subtitle: "Wedding Photography",
+        heroImage: "/photography/su-wed/99.jpg",
+        // tags: ["Interior Design", "Residential", "Modern", "Luxury"],
+        timeline: "Timeline - 3 Months",
+        year: "2023",
+      },
+      {
+        type: "case-study-section",
+        id: "gallery",
+        navLabel: "Gallery",
+        navFullLabel: "Gallery (Project Images)",
+        heading: "Photo Gallery",
+        blocks: [
+          {
+            images: [
+              { src: "/photography/su-wed/01.jpg", alt: "SU & PD Wedding", caption: "SU & PD Wedding" },
+              { src: "/photography/su-wed/02.jpg", alt: "SU & PD Wedding", caption: "SU & PD Wedding" },
+              { src: "/photography/su-wed/03.jpg", alt: "SU & PD Wedding", caption: "SU & PD Wedding" },
+              { src: "/photography/su-wed/04.jpg", alt: "SU & PD Wedding", caption: "SU & PD Wedding" },
+              { src: "/photography/su-wed/05.jpg", alt: "SU & PD Wedding", caption: "SU & PD Wedding" },
+              { src: "/photography/su-wed/06.jpg", alt: "SU & PD Wedding", caption: "SU & PD Wedding" },
+              { src: "/photography/su-wed/07.jpg", alt: "SU & PD Wedding", caption: "SU & PD Wedding" },
+              { src: "/photography/su-wed/08.jpg", alt: "SU & PD Wedding", caption: "SU & PD Wedding" },
+              { src: "/photography/su-wed/09.jpg", alt: "SU & PD Wedding", caption: "SU & PD Wedding" },
+              { src: "/photography/su-wed/10.jpg", alt: "SU & PD Wedding", caption: "SU & PD Wedding" },
+            ],
+            imageLayout: "grid-4",
+          },
+        ],
+      },
+    ],
+  },
+
+
+  {
+    id: "baby-photos",
+    title: "Skanda Turned 1",
+    category: "photography",
+    description: "A special shout out for the bride",
+    year: "2026",
+    // tags: ["Photography", "Portrait", "Natural light"],
+    image: "/photography/skanda/99.jpg",
+    featured: false,
+    content: [
+      {
+        type: "photography-hero",
+        title: "Skanda Turned 1",
+        subtitle: "Year 1",
+        heroImage: "/photography/skanda/99.jpg",
+        // tags: ["Interior Design", "Residential", "Modern", "Luxury"],
+        timeline: "Timeline - 3 Months",
+        year: "2023",
+      },
+      {
+        type: "case-study-section",
+        id: "gallery",
+        navLabel: "Gallery",
+        navFullLabel: "Gallery (Project Images)",
+        heading: "Photo Gallery",
+        blocks: [
+          {
+            images: [
+              { src: "/photography/skanda/01.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/02.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/03.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/04.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/05.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/06.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/07.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/08.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/09.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/10.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/11.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/12.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/13.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/14.jpg", alt: "1st Birthday", caption: "1st Birthday" },
+              { src: "/photography/skanda/15.jpg", alt: "1st Birthday", caption: "1st Birthday" },
             ],
             imageLayout: "grid-4",
           },
