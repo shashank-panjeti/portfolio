@@ -226,7 +226,7 @@
 
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -363,6 +363,34 @@ export function PhotographyGallery({ images=photographyImages, columns = 4 }: Ph
     3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
     4: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4",
   } as const
+
+    // swipe function
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
+
+  const MIN_SWIPE_DISTANCE = 50
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+  touchStartX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    const distance = touchStartX.current - touchEndX.current
+
+    if (Math.abs(distance) < MIN_SWIPE_DISTANCE) return
+
+    if (distance > 0) {
+      // Swipe Left -> Next Image
+      goToNext()
+    } else {
+      // Swipe Right -> Previous Image
+      goToPrevious()
+    }
+  }
   
   useEffect(() => {
     if (selectedIndex === null) return
@@ -449,7 +477,12 @@ export function PhotographyGallery({ images=photographyImages, columns = 4 }: Ph
               </p>
             </div>
 
-            <div className="relative w-full h-full">
+            <div 
+              className="relative w-full h-full"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
               <Image
                 src={images[selectedIndex].src || "/placeholder.svg"}
                 alt={images[selectedIndex].alt}
